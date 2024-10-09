@@ -1,14 +1,13 @@
 # hascogui
 Docker and documentation required to create the front-end of a HASCO/Repo instance.
 
-# Installation
+1. Installation and Execution
 
 * docker-compose down
 * docker-compose up -d
 
-# Running the Front-End
+2. Running the Front-End
 
-
-# Connecting the Back-End API to the Front-End
+3. Connecting the Back-End API to the Front-End
 
 
