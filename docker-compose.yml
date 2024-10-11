@@ -1,82 +1,47 @@
 version: '3'
 
 services:
+  drupal:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: drupal
+    ports:
+      - "8081:8081"
+    volumes:
+      - drupal-data:/var/www/html
+    environment:
+      DB_HOST: db
+      DB_NAME: drupal
+      DB_USER: drupal
+      DB_PASS: drupal
+    depends_on:
+      - db
+    networks:
+      hascoapi:
+        aliases:
+          - drupal
+    command: ["apache2-foreground"]
 
-    drupal:
-        image: drupal:10.3.0-php8.3
-        container_name: drupal
-        ports:
-            - "8081:80"
-        volumes:
-            - drupal-data:/var/www/html
-        environment:
-            DRUPAL_DB_HOST: db
-            DRUPAL_DB_NAME: drupal
-            DRUPAL_DB_USER: drupal
-            DRUPAL_DB_PASSWORD: drupal
-        depends_on:
-            - db
-        networks:
-            hascoapi:
-                aliases:
-                    - drupal
-
-    db:
-        image: uselagoon/mariadb-10.6-drupal:22.2.0
-        container_name: drupal_db
-        environment:
-            MYSQL_ROOT_PASSWORD: rootpassword
-            MYSQL_DATABASE: drupal
-            MYSQL_USER: drupal
-            MYSQL_PASSWORD: drupal
-        volumes:
-            - db-data:/var/lib/mysql
-        networks:
-            hascoapi:
-                aliases:
-                    - db
-    # The primary hascoapi web app
-    #hascoapi:
-    #    build: ./
-    #    restart: always
-    #    container_name: hascoapi
-    #    tty: true
-    #    ports:
-    #        - "9000:9000"
-    #    networks:
-    #        hascoapi:
-    #            aliases:
-    #                - hascoapi
-    #    environment:
-            # Uncomment below setting when using Solr Authentication. Then rename security.json.template under solr/solr-home/ folder to security.json. Add user & passowrd detail in the hascoapi.conf/hascoapi-docker.conf file. All changes are mandatory for Solr Authentication to work.
-            # JAVA_OPTS: -Xms128m -Xmx12g -Dsolr.httpclient.builder.factory=org.apache.solr.client.solrj.impl.PreemptiveBasicAuthClientBuilderFactory -Dbasicauth=solr:SolrRocks
-            # Comment out below setting when using Solr Authentication
-     #       JAVA_OPTS: -Xms128m -Xmx12g
-      #  volumes:
-            # Creates a volume to store the various csv files. This allows the data
-            #   to be persisted when the container is removed or when Hadatac is rebuilt.
-            # Example command: docker cp <filename> hascoapi:/root/app/csvs/unprocessed_csv
-
-            # Comment out this option to use external binding
-            # - hascoapi-csvs:/hascoapi/csvs
-            # - hascoapi-working_csv:/hascoapi/working_csv
-            #            - /Users/kandws01/Documents/merge3/local:/root/app/csvs  # Uncomment this option to use external binding
-            # Creates a volume for the config files. This way configuration file changes
-            #   are persisted when the container is removed or rebuilt.
-
-            # Comment out this option to use external binding
-            # - hascoapi-conf:/hascoapi/conf
-            #            - /path in host server/conf:/root/app/conf # Uncomment this option to use external binding
-       #     - /var/log/hascoapi:/hascoapi/logs
-        #links:
-         #   - fuseki
-        #depends_on:
-         #   - fuseki
+  db:
+    image: uselagoon/mariadb-10.6-drupal:22.2.0
+    container_name: drupal_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: drupal
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      hascoapi:
+        aliases:
+          - db
 
 volumes:
-    drupal-data:
-    db-data:
-    # hascoapi-conf:
+  drupal-data:
+  db-data:
 
 networks:
-    hascoapi:
+  hascoapi:
+
