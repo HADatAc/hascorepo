@@ -26,6 +26,8 @@ RUN chown -R www-data:www-data /var/www/html && \
 RUN composer global require drush/drush:^11 --prefer-dist --no-progress --no-scripts --with-all-dependencies && \
     ln -s ~/.composer/vendor/bin/drush /usr/local/bin/drush
 
+RUN composer require drupal/color drupal/key drupal/devel --no-interaction
+
 # Copiar o script de entrada
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
