@@ -26,7 +26,12 @@ RUN chown -R www-data:www-data /var/www/html && \
 RUN composer global require drush/drush:^11 --prefer-dist --no-progress --no-scripts --with-all-dependencies && \
     ln -s ~/.composer/vendor/bin/drush /usr/local/bin/drush
 
-RUN composer require drupal/color drupal/key drupal/devel --no-interaction
+
+RUN composer require drupal/bootstrap_barrio
+
+RUN composer require hasco/hasco_barrio:@dev --no-interaction
+
+RUN composer require drupal/color drupal/key drupal/devel --prefer-dist --no-interaction --update-with-dependencies
 
 # Copiar o script de entrada
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh

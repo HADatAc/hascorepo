@@ -67,5 +67,28 @@ else
     echo "Drupal já está instalado."
 fi
 
+echo "Habilitando hasco_barrio..."
+$DRUSH_COMMAND -v theme:enable hasco_barrio -y
+
+if $DRUSH_COMMAND pml --type=theme --status=enabled | grep -q 'hasco_barrio'; then
+    $DRUSH_COMMAND config-set system.theme default hasco_barrio -y
+    echo "Tema hasco_barrio definido como padrão com sucesso."
+else
+    echo "Erro ao habilitar o tema hasco_barrio."
+fi
+
+# Limpar cache novamente após definir o tema
+$DRUSH_COMMAND cr
+
+echo "Habilitando módulos..."
+MODULES=("color" "key" "devel")
+for MODULE in "${MODULES[@]}"; do
+    echo "Habilitando módulo: $MODULE"
+    $DRUSH_COMMAND en $MODULE -y || echo "Erro ao habilitar módulo: $MODULE"
+done
+
+# Limpar cache
+$DRUSH_COMMAND cr
+
 # Iniciar o Apache em foreground
 apache2-foreground
