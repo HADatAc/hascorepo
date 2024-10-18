@@ -9,7 +9,7 @@ services:
     ports:
       - "8081:8081"
     volumes:
-      - drupal-data:/var/www/html
+      - drupal-data:/opt/drupal/web
     environment:
       DB_HOST: db
       DB_NAME: drupal
@@ -44,4 +44,3 @@ volumes:
 
 networks:
   hascoapi:
-
