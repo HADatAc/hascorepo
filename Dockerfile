@@ -48,6 +48,11 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN dos2unix /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
+RUN chmod 644 /opt/drupal/web/sites/default/default.settings.php && \
+    chmod 644 /opt/drupal/web/sites/default/default.services.yml && \
+    chown www-data:www-data /opt/drupal/web/sites/default/default.settings.php && \
+    chown www-data:www-data /opt/drupal/web/sites/default/default.services.yml
+    
 RUN cp web/sites/default/default.settings.php web/sites/default/settings.php && \
     cp web/sites/default/default.services.yml web/sites/default/services.yml && \
     chmod 644 web/sites/default/settings.php && \
