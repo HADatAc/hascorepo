@@ -96,7 +96,7 @@ fi
 $DRUSH_COMMAND cr
 
 echo "Enabling modules..."
-MODULES=("color" "key" "rep" "sir" "devel")
+MODULES=("color" "key" "rep" "sir" "std" "sem" "dpl" "devel")
 for MODULE in "${MODULES[@]}"; do
     echo "Enabling module: $MODULE"
     $DRUSH_COMMAND en $MODULE -y || echo "Error enabling module: $MODULE"
