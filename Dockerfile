@@ -33,11 +33,11 @@ RUN composer require hasco/hasco_barrio:@dev --no-interaction
 
 RUN composer require drupal/color drupal/key drupal/devel --prefer-dist --no-interaction --update-with-dependencies
 
-RUN composer require hasco/rep:dev-DEVELOPMENT_V0.7 --no-interaction --with-all-dependencies
-RUN composer require hasco/sir:dev-DEVELOPMENT_V0.7 --no-interaction --with-all-dependencies
-RUN composer require hasco/std:dev-DEVELOPMENT_V0.7 --no-interaction --with-all-dependencies
-RUN composer require hasco/sem:dev-DEVELOPMENT_V0.7 --no-interaction --with-all-dependencies
-RUN composer require hasco/dpl:dev-DEVELOPMENT_V0.7 --no-interaction --with-all-dependencies
+RUN composer require hasco/rep:dev-DEVELOPMENT_V0.8 --no-interaction --with-all-dependencies
+RUN composer require hasco/sir:dev-DEVELOPMENT_V0.8 --no-interaction --with-all-dependencies
+RUN composer require hasco/std:dev-DEVELOPMENT_V0.8 --no-interaction --with-all-dependencies
+RUN composer require hasco/sem:dev-DEVELOPMENT_V0.8 --no-interaction --with-all-dependencies
+RUN composer require hasco/dpl:dev-DEVELOPMENT_V0.8 --no-interaction --with-all-dependencies
 
 
 # Adjust the .htaccess file
