@@ -3,6 +3,8 @@ Docker and documentation required to create the front-end of a HASCO/Repo instan
 
 # Tutorial Docker-Compose
 
+(Tiago, we need this document to be in English, thanks!)
+
 ## Iniciar os Containers com Docker Compose
 
 Com os ficheiros docker-compose.yml, Dockerfile e entrypoint.sh já configurados, siga os passos abaixo para iniciar o Drupal:
