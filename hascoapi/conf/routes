@@ -1,0 +1,195 @@
+# Routes
+# This file defines all applicatƒion routes (Higher priority routes first)
+# ~~~~
+
+# Webjars
+->      /webjars                                          webjars.Routes
+
+# Home page
+GET     /                                                   org.hascoapi.console.controllers.Portal.index(request: Request)
+GET     /hascoapi                                           org.hascoapi.console.controllers.Portal.index(request: Request)
+GET     /hascoapi/                                          org.hascoapi.console.controllers.Portal.index(request: Request)
+POST    /hascoapi/                                          org.hascoapi.console.controllers.Portal.postIndex(request: Request)
+GET     /hascoapi/version                                   org.hascoapi.console.controllers.Version.index()
+POST    /hascoapi/version                                   org.hascoapi.console.controllers.Version.postIndex()
+
+# RETRIEVAL GENERIC
+
+GET     /hascoapi/api/uri/:uri                              org.hascoapi.console.controllers.restapi.URIPage.getUri(uri: String)
+GET     /hascoapi/api/urigen/:elementtype                   org.hascoapi.console.controllers.restapi.URIPage.uriGen(elementtype: String)
+GET     /hascoapi/api/usage/:uri                            org.hascoapi.console.controllers.restapi.SIRElementAPI.usage(uri: String)
+GET     /hascoapi/api/derivation/:uri                       org.hascoapi.console.controllers.restapi.SIRElementAPI.derivation(uri: String)
+GET     /hascoapi/api/hascotype/:uri                        org.hascoapi.console.controllers.restapi.SIRElementAPI.hascoType(uri: String)
+GET     /hascoapi/api/children/:superuri                    org.hascoapi.console.controllers.restapi.HAScOClassAPI.getChildren(superuri: String)
+GET     /hascoapi/api/:elementType/elements/:pageSize/:offset                                       org.hascoapi.console.controllers.restapi.SIRElementAPI.getElementsWithPage(elementType: String, pageSize : Integer, offset : Integer)
+GET     /hascoapi/api/:elementType/elements/total                                                   org.hascoapi.console.controllers.restapi.SIRElementAPI.getTotalElements(elementType: String)
+GET     /hascoapi/api/:elementType/keywordlanguage/:keyword/:language/:pageSize/:offset             org.hascoapi.console.controllers.restapi.SIRElementAPI.getElementsByKeywordAndLanguageWithPage(elementType: String, keyword : String, language : String, pageSize : Integer, offset : Integer)
+GET     /hascoapi/api/:elementType/keywordlanguage/total/:keyword/:language                         org.hascoapi.console.controllers.restapi.SIRElementAPI.getTotalElementsByKeywordAndLanguage(elementType : String, keyword : String, language : String)
+GET     /hascoapi/api/:elementType/keyword/:keyword/:pageSize/:offset                               org.hascoapi.console.controllers.restapi.SIRElementAPI.getElementsByKeywordWithPage(elementType: String, keyword : String, pageSize : Integer, offset : Integer)
+GET     /hascoapi/api/:elementType/keyword/total/:keyword                                           org.hascoapi.console.controllers.restapi.SIRElementAPI.getTotalElementsByKeyword(elementType : String, keyword : String)
+GET     /hascoapi/api/:elementType/manageremail/:managerEmail/:pageSize/:offset                     org.hascoapi.console.controllers.restapi.SIRElementAPI.getElementsByManagerEmail(elementType: String, managerEmail : String, pageSize : Integer, offset : Integer)
+GET     /hascoapi/api/:elementType/manageremail/total/:managerEmail                                 org.hascoapi.console.controllers.restapi.SIRElementAPI.getTotalElementsByManagerEmail(elementType : String, managerEmail : String)
+GET     /hascoapi/api/:elementtype/manageremailbystudy/:studyuri/:manageremail/:pageSize/:offset    org.hascoapi.console.controllers.restapi.StudyAPI.getElementsByManagerEmailByStudy(studyuri : String, elementtype: String, manageremail : String, pageSize : Integer, offset : Integer)
+GET     /hascoapi/api/:elementtype/manageremailbystudy/total/:studyuri/:manageremail                org.hascoapi.console.controllers.restapi.StudyAPI.getTotalElementsByManagerEmailByStudy(studyuri : String, elementtype : String, manageremail : String)
+GET     /hascoapi/api/:elementtype/manageremailbysoc/:socuri/:manageremail/:pageSize/:offset        org.hascoapi.console.controllers.restapi.StudyObjectCollectionAPI.getElementsByManagerEmailBySOC(socuri : String, elementtype: String, manageremail : String, pageSize : Integer, offset : Integer)
+GET     /hascoapi/api/:elementtype/manageremailbysoc/total/:socuri/:manageremail                    org.hascoapi.console.controllers.restapi.StudyObjectCollectionAPI.getTotalElementsByManagerEmailBySOC(socuri : String, elementtype : String, manageremail : String)
+GET     /hascoapi/api/:elementtype/manageremailbycontainer/:containeruri/:manageremail/:pageSize/:offset        org.hascoapi.console.controllers.restapi.ContainerAPI.getElementsByManagerEmailByContainer(containeruri : String, elementtype: String, manageremail : String, pageSize : Integer, offset : Integer)
+GET     /hascoapi/api/:elementtype/manageremailbycontainer/total/:containeruri/:manageremail                    org.hascoapi.console.controllers.restapi.ContainerAPI.getTotalElementsByManagerEmailByContainer(containeruri : String, elementtype : String, manageremail : String)
+
+# RETRIEVAL REVERSE
+GET     /hascoapi/api/place/contains/place/:uri/:pageSize/:offset                         org.hascoapi.console.controllers.restapi.PlaceAPI.findContainsPlace(uri: String, pageSize : Integer, offset : Integer)
+GET     /hascoapi/api/place/contains/place/total/:uri                                     org.hascoapi.console.controllers.restapi.PlaceAPI.findTotalContainsPlace(uri: String)
+GET     /hascoapi/api/place/contains/postaladdress/:placeuri/:pageSize/:offset            org.hascoapi.console.controllers.restapi.PostalAddressAPI.findContainsPostalAddress(placeuri: String, pageSize : Integer, offset : Integer)
+GET     /hascoapi/api/place/contains/postaladdress/total/:placeuri                        org.hascoapi.console.controllers.restapi.PostalAddressAPI.findTotalContainsPostalAddress(placeuri: String)
+GET     /hascoapi/api/place/contains/element/:placeuri/:elementtype/:pageSize/:offset     org.hascoapi.console.controllers.restapi.PostalAddressAPI.findContainsElement(placeuri: String, elementtype: String, pageSize : Integer, offset : Integer)
+GET     /hascoapi/api/place/contains/element/total/:placeuri/:elementtype                 org.hascoapi.console.controllers.restapi.PostalAddressAPI.findTotalContainsElement(placeuri: String, elementtype: String)
+GET     /hascoapi/api/organization/suborganizations/:uri/:pageSize/:offset                org.hascoapi.console.controllers.restapi.OrganizationAPI.findSubOrganizations(uri: String, pageSize : Integer, offset : Integer)
+GET     /hascoapi/api/organization/suborganizations/total/:uri                            org.hascoapi.console.controllers.restapi.OrganizationAPI.findTotalSubOrganizations(uri: String)
+GET     /hascoapi/api/organization/affiliations/:uri/:pageSize/:offset                    org.hascoapi.console.controllers.restapi.OrganizationAPI.findAffiliations(uri: String, pageSize : Integer, offset : Integer)
+GET     /hascoapi/api/organization/affiliations/total/:uri                                org.hascoapi.console.controllers.restapi.OrganizationAPI.findTotalAffiliations(uri: String)
+GET     /hascoapi/api/study/dataacquisitions/total/:uri                                   org.hascoapi.console.controllers.restapi.StudyAPI.findTotalDAs(uri: String)
+GET     /hascoapi/api/study/studyroles/total/:uri                                         org.hascoapi.console.controllers.restapi.StudyAPI.findTotalRoles(uri: String)
+GET     /hascoapi/api/study/socs/:uri/:pageSize/:offset                                   org.hascoapi.console.controllers.restapi.StudyAPI.findSOCs(uri: String, pageSize : Integer, offset : Integer)
+GET     /hascoapi/api/study/socs/total/:uri                                               org.hascoapi.console.controllers.restapi.StudyAPI.findTotalSOCs(uri: String)
+GET     /hascoapi/api/study/virtualcolumns/:uri                                           org.hascoapi.console.controllers.restapi.StudyAPI.findVCs(uri: String)
+GET     /hascoapi/api/study/virtualcolumns/total/:uri                                     org.hascoapi.console.controllers.restapi.StudyAPI.findTotalVCs(uri: String)
+GET     /hascoapi/api/study/studyobjects/total/:uri                                       org.hascoapi.console.controllers.restapi.StudyAPI.findTotalSOs(uri: String)
+
+# MANAGEMENT GENERIC 
+
+POST    /hascoapi/api/:elementType/create/:json             org.hascoapi.console.controllers.restapi.SIRElementAPI.createElement(elementType: String, json: String)
+GET     /hascoapi/api/:elementType/create/:json             org.hascoapi.console.controllers.restapi.SIRElementAPI.createElement(elementType: String, json: String)
+POST    /hascoapi/api/:elementType/delete/:uri              org.hascoapi.console.controllers.restapi.SIRElementAPI.deleteElement(elementType: String, uri: String)
+GET     /hascoapi/api/:elementType/delete/:uri              org.hascoapi.console.controllers.restapi.SIRElementAPI.deleteElement(elementType: String, uri: String)
+
+# RETRIEVAL REPO
+
+GET     /hascoapi/api/repo                                  org.hascoapi.console.controllers.restapi.RepoPage.getRepository()
+GET     /hascoapi/api/repo/label/:label                     org.hascoapi.console.controllers.restapi.RepoPage.updateLabel(label : String)
+GET     /hascoapi/api/repo/title/:title                     org.hascoapi.console.controllers.restapi.RepoPage.updateTitle(title : String)
+GET     /hascoapi/api/repo/description/:description         org.hascoapi.console.controllers.restapi.RepoPage.updateDescription(description : String)
+GET     /hascoapi/api/repo/namespace/default/:abbreviation/:url    org.hascoapi.console.controllers.restapi.RepoPage.updateDefaultNamespace(abbreviation : String, url : String)
+GET     /hascoapi/api/repo/namespace/reset                  org.hascoapi.console.controllers.restapi.RepoPage.resetNamespaces()
+GET     /hascoapi/api/repo/namespace/create/:json           org.hascoapi.console.controllers.restapi.RepoPage.createNamespace(json : String)
+GET     /hascoapi/api/repo/namespace/delete/:abbreviation   org.hascoapi.console.controllers.restapi.RepoPage.deleteSelectedNamespace(abbreviation : String)
+GET     /hascoapi/api/repo/namespace/delete                 org.hascoapi.console.controllers.restapi.RepoPage.deleteNamespace()
+GET     /hascoapi/api/repo/table/informants                 org.hascoapi.console.controllers.restapi.RepoPage.getInformants()
+GET     /hascoapi/api/repo/table/languages                  org.hascoapi.console.controllers.restapi.RepoPage.getLanguages()
+GET     /hascoapi/api/repo/table/generationactivities       org.hascoapi.console.controllers.restapi.RepoPage.getGenerationActivities()
+GET     /hascoapi/api/repo/table/namespaces                 org.hascoapi.console.controllers.restapi.RepoPage.getNamespaces()
+GET     /hascoapi/api/repo/table/instrumentpositions        org.hascoapi.console.controllers.restapi.RepoPage.getInstrumentPositions()
+GET     /hascoapi/api/repo/table/subcontainerpositions      org.hascoapi.console.controllers.restapi.RepoPage.getSubcontainerPositions()
+GET     /hascoapi/api/repo/ont/load                         org.hascoapi.console.controllers.restapi.RepoPage.loadOntologies()
+GET     /hascoapi/api/repo/ont/delete                       org.hascoapi.console.controllers.restapi.RepoPage.deleteOntologies()
+
+# RENDERING/TRANSLATION METHODS
+
+GET     /hascoapi/api/instrument/totext/plain/:uri          org.hascoapi.console.controllers.restapi.InstrumentAPI.toTextPlain(uri: String)
+GET     /hascoapi/api/instrument/totext/html/:uri           org.hascoapi.console.controllers.restapi.InstrumentAPI.toTextHTML(uri: String)
+GET     /hascoapi/api/instrument/totext/pdf/:uri            org.hascoapi.console.controllers.restapi.InstrumentAPI.toTextPDF(uri: String)
+GET     /hascoapi/api/instrument/tordf/:uri                 org.hascoapi.console.controllers.restapi.InstrumentAPI.toRDF(uri: String)
+GET     /hascoapi/api/instrument/tofhir/:uri                org.hascoapi.console.controllers.restapi.InstrumentAPI.toFHIR(uri: String)
+
+# CONCEPT-SPECIFIC METHODS
+
+POST    /hascoapi/api/slots/container/create/:containerUri/:totSlots  org.hascoapi.console.controllers.restapi.ContainerSlotAPI.createContainerSlots(containerUri: String, totSlots : String)
+GET     /hascoapi/api/slots/container/create/:containerUri/:totSlots  org.hascoapi.console.controllers.restapi.ContainerSlotAPI.createContainerSlots(containerUri: String, totSlots : String)
+POST    /hascoapi/api/subcontainer/update/:json                       org.hascoapi.console.controllers.restapi.SubcontainerAPI.updateSubcontainer(json: String)
+POST    /hascoapi/api/slots/codebook/create/:codebookUri/:totSlots    org.hascoapi.console.controllers.restapi.CodebookSlotAPI.createCodebookSlots(codebookUri: String, totSlots : String)
+POST    /hascoapi/api/slots/codebook/delete/:codebookUri              org.hascoapi.console.controllers.restapi.CodebookSlotAPI.deleteCodebookSlots(codebookUri: String)
+
+GET     /hascoapi/api/slots/container/attach/:elementUri/:containerSlotUri          org.hascoapi.console.controllers.restapi.ContainerAPI.attach(elementUri: String, containerSlotUri : String)
+GET     /hascoapi/api/slots/container/detach/:containerSlotUri                      org.hascoapi.console.controllers.restapi.ContainerAPI.detach(containerSlotUri : String)
+GET     /hascoapi/api/slots/codebook/attach/:responseOptionUri/:codebookSlotUri     org.hascoapi.console.controllers.restapi.CodebookAPI.attach(responseOptionUri: String, codebookSlotUri : String)
+GET     /hascoapi/api/slots/codebook/detach/:codebookSlotUri                        org.hascoapi.console.controllers.restapi.CodebookAPI.detach(codebookSlotUri : String)
+        
+GET     /hascoapi/api/slotelements/bycontainer/:containerUri                        org.hascoapi.console.controllers.restapi.ContainerAPI.getSlotElements(containerUri: String)
+GET     /hascoapi/api/annotationsbycontainerposition/:containerUri/:positionUri     org.hascoapi.console.controllers.restapi.AnnotationAPI.getAnnotationByContainerAndPosition(containerUri: String, positionUri: String)
+GET     /hascoapi/api/slots/bycodebook/:codebookUri                                 org.hascoapi.console.controllers.restapi.CodebookSlotAPI.getCodebookSlotsByCodebook(codebookUri: String)
+
+GET     /hascoapi/api/studyobjectcollection/bystudy/:studyUri         org.hascoapi.console.controllers.restapi.StudyObjectCollectionAPI.getSOCsByStudy(studyUri: String)
+GET     /hascoapi/api/virtualcolumn/bystudy/:studyUri                 org.hascoapi.console.controllers.restapi.VirtualColumnAPI.getVCsByStudy(studyUri: String)
+GET     /hascoapi/api/studyobject/bysoc/:socUri/:pageSize/:offset     org.hascoapi.console.controllers.restapi.StudyObjectAPI.getStudyObjectsBySOCWithPage(socUri: String, pageSize: Integer, offset: Integer)
+GET     /hascoapi/api/studyobject/bysoc/total/:socUri                 org.hascoapi.console.controllers.restapi.StudyObjectAPI.getTotalStudyObjectsBySOC(socUri: String)
+
+GET     /hascoapi/api/deployment/:state/:email/:pageSize/:offset      org.hascoapi.console.controllers.restapi.DeploymentAPI.findCanUpdateWithPages(state: String, email: String, pageSize: Integer, offset: Integer)
+GET     /hascoapi/api/deployment/total/:state/:email                  org.hascoapi.console.controllers.restapi.DeploymentAPI.findTotalCanUpdateWithPages(state: String, email: String)
+GET     /hascoapi/api/deploymentbyplatforminstance/:platforminstanceUri/:pageSize/:offset  org.hascoapi.console.controllers.restapi.DeploymentAPI.findDeploymentsByPlatformInstanceWithPage(platforminstanceUri: String, pageSize: Integer, offset: Integer)
+GET     /hascoapi/api/deploymentbyplatforminstance/total/:platforminstanceUri              org.hascoapi.console.controllers.restapi.DeploymentAPI.findTotalDeploymentsByPlatformInstance(platforminstanceUri: String)
+
+GET     /hascoapi/api/stream/:state/:email/:deploymentUri/:pageSize/:offset       org.hascoapi.console.controllers.restapi.StreamAPI.findCanUpdateByDeploymentWithPages(state: String, email: String, deploymentUri: String, pageSize: Integer, offset: Integer)
+GET     /hascoapi/api/stream/total/:state/:email/:deploymentUri                   org.hascoapi.console.controllers.restapi.StreamAPI.findTotalCanUpdateByDeploymentWithPages(state: String, email: String, deploymentUri: String)
+
+GET     /hascoapi/api/platforminstance/byplatform/:platformUri/:pageSize/:offset  org.hascoapi.console.controllers.restapi.VSTOIInstanceAPI.findPlatformInstancesByPlatformWithPage(platformUri: String, pageSize: Integer, offset: Integer)
+GET     /hascoapi/api/platforminstance/byplatform/total/:platformUri              org.hascoapi.console.controllers.restapi.VSTOIInstanceAPI.findTotalPlatformInstancesByPlatform(platformUri: String)
+
+# INGESTION METHODS
+
+POST    /hascoapi/api/ingest/:elementType/:elementUri    org.hascoapi.console.controllers.restapi.IngestionAPI.ingest(elementType: String, elementUri: String, request: play.mvc.Http.Request)
+GET     /hascoapi/api/uningest/:dataFileUri              org.hascoapi.console.controllers.restapi.IngestionAPI.uningestDataFile(dataFileUri: String)
+GET     /hascoapi/api/uningest/mt/:metadataTemplateUri   org.hascoapi.console.controllers.restapi.IngestionAPI.uningestMetadataTemplate(metadataTemplateUri: String)
+GET     /hascoapi/api/ingestion/:dataFileUri/log         org.hascoapi.console.controllers.restapi.IngestionAPI.getLog(dataFileUri : String)
+
+# TESTING METHODS
+
+GET     /hascoapi/test/instrument/create                    org.hascoapi.console.controllers.restapi.InstrumentAPI.createInstrumentForTesting()
+GET     /hascoapi/test/instrument/delete                    org.hascoapi.console.controllers.restapi.InstrumentAPI.deleteInstrumentForTesting()
+GET     /hascoapi/test/subcontainer/create                  org.hascoapi.console.controllers.restapi.SubcontainerAPI.createSubcontainerForTesting()
+GET     /hascoapi/test/subcontainer/delete                  org.hascoapi.console.controllers.restapi.SubcontainerAPI.deleteSubcontainerForTesting()
+GET     /hascoapi/test/detectorstem/create                  org.hascoapi.console.controllers.restapi.DetectorStemAPI.createDetectorStemsForTesting()
+GET     /hascoapi/test/detectorstem/delete                  org.hascoapi.console.controllers.restapi.DetectorStemAPI.deleteDetectorStemsForTesting()
+GET     /hascoapi/test/detector/create                      org.hascoapi.console.controllers.restapi.DetectorAPI.createDetectorsForTesting()
+GET     /hascoapi/test/detector/delete                      org.hascoapi.console.controllers.restapi.DetectorAPI.deleteDetectorsForTesting()
+GET     /hascoapi/test/detector/attach                      org.hascoapi.console.controllers.restapi.ContainerAPI.attachForTesting()
+GET     /hascoapi/test/detector/detach                      org.hascoapi.console.controllers.restapi.ContainerAPI.detachForTesting()
+GET     /hascoapi/test/containerslot/create                 org.hascoapi.console.controllers.restapi.ContainerSlotAPI.createContainerSlotsForTesting()
+GET     /hascoapi/test/containerslot/delete                 org.hascoapi.console.controllers.restapi.ContainerSlotAPI.deleteContainerSlotsForTesting()
+GET     /hascoapi/test/codebook/create                      org.hascoapi.console.controllers.restapi.CodebookAPI.createCodebookForTesting()
+GET     /hascoapi/test/codebook/delete                      org.hascoapi.console.controllers.restapi.CodebookAPI.deleteCodebookForTesting()
+GET     /hascoapi/test/responseoption/create                org.hascoapi.console.controllers.restapi.ResponseOptionAPI.createResponseOptionsForTesting()
+GET     /hascoapi/test/responseoption/delete                org.hascoapi.console.controllers.restapi.ResponseOptionAPI.deleteResponseOptionsForTesting()
+GET     /hascoapi/test/responseoption/attach                org.hascoapi.console.controllers.restapi.CodebookAPI.attachForTesting()
+GET     /hascoapi/test/responseoption/detach                org.hascoapi.console.controllers.restapi.CodebookAPI.detachForTesting()
+GET     /hascoapi/test/codebookslot/create                  org.hascoapi.console.controllers.restapi.CodebookSlotAPI.createCodebookSlotsForTesting()
+GET     /hascoapi/test/codebookslot/delete                  org.hascoapi.console.controllers.restapi.CodebookSlotAPI.deleteCodebookSlotsForTesting()
+GET     /hascoapi/test/annotationstem/create                org.hascoapi.console.controllers.restapi.AnnotationStemAPI.createAnnotationStemsForTesting()
+GET     /hascoapi/test/annotationstem/delete                org.hascoapi.console.controllers.restapi.AnnotationStemAPI.deleteAnnotationStemsForTesting()
+GET     /hascoapi/test/annotation/create                    org.hascoapi.console.controllers.restapi.AnnotationAPI.createAnnotationsForTesting()
+GET     /hascoapi/test/annotation/delete                    org.hascoapi.console.controllers.restapi.AnnotationAPI.deleteAnnotationsForTesting()
+GET     /hascoapi/test/semanticvariable/create              org.hascoapi.console.controllers.restapi.SemanticVariableAPI.createSemanticVariablesForTesting()
+GET     /hascoapi/test/semanticvariable/delete              org.hascoapi.console.controllers.restapi.SemanticVariableAPI.deleteSemanticVariablesForTesting()
+GET     /hascoapi/test/entity/create                        org.hascoapi.console.controllers.restapi.EntityAPI.createEntityForTesting()
+GET     /hascoapi/test/entity/delete                        org.hascoapi.console.controllers.restapi.EntityAPI.deleteEntityForTesting()
+GET     /hascoapi/test/attribute/create                     org.hascoapi.console.controllers.restapi.AttributeAPI.createAttributesForTesting()
+GET     /hascoapi/test/attribute/delete                     org.hascoapi.console.controllers.restapi.AttributeAPI.deleteAttributesForTesting()
+GET     /hascoapi/test/unit/create                          org.hascoapi.console.controllers.restapi.UnitAPI.createUnitForTesting()
+GET     /hascoapi/test/unit/delete                          org.hascoapi.console.controllers.restapi.UnitAPI.deleteUnitForTesting()
+
+# DOCUMENTATION METHODS
+
+GET     /hascoapi/documentation/elementsmethodlist          org.hascoapi.console.controllers.documentation.ElementsMethodList.index()
+GET     /hascoapi/documentation/createinstrumentexample     org.hascoapi.console.controllers.documentation.ElementsMethodList.createInstrumentExample()
+GET     /hascoapi/documentation/deleteinstrumentexample     org.hascoapi.console.controllers.documentation.ElementsMethodList.deleteInstrumentExample()
+GET     /hascoapi/documentation/createdetectorstemexample   org.hascoapi.console.controllers.documentation.ElementsMethodList.createDetectorStemExample()
+GET     /hascoapi/documentation/deletedetectorstemexample   org.hascoapi.console.controllers.documentation.ElementsMethodList.deleteDetectorStemExample()
+GET     /hascoapi/documentation/createdetectorexample       org.hascoapi.console.controllers.documentation.ElementsMethodList.createDetectorExample()
+GET     /hascoapi/documentation/deletedetectorexample       org.hascoapi.console.controllers.documentation.ElementsMethodList.deleteDetectorExample()
+
+GET     /hascoapi/documentation/retrievalmethodlist         org.hascoapi.console.controllers.documentation.RetrievalMethodList.index()
+GET     /hascoapi/documentation/queryuriexample             org.hascoapi.console.controllers.documentation.RetrievalMethodList.queryURIExample()
+GET     /hascoapi/documentation/queryelementsexample        org.hascoapi.console.controllers.documentation.RetrievalMethodList.queryElementsExample()
+GET     /hascoapi/documentation/queryelementsexample/keyword    org.hascoapi.console.controllers.documentation.RetrievalMethodList.queryElementsExampleWithKeyword()
+GET     /hascoapi/documentation/queryelementstotalexample/keyword    org.hascoapi.console.controllers.documentation.RetrievalMethodList.queryElementsTotalExampleWithKeyword()
+GET     /hascoapi/documentation/instrumentrenderingexample  org.hascoapi.console.controllers.documentation.RetrievalMethodList.instrumentRenderingExample()
+
+GET     /hascoapi/documentation/testingmethodlist           org.hascoapi.console.controllers.documentation.TestingMethodList.index()
+
+GET     /hascoapi/documentation/repositorymethodlist        org.hascoapi.console.controllers.documentation.RepositoryMethodList.index()
+
+# ONTOLOGIES
+
+GET     /hascoapi/ontologies/maintenance                   org.hascoapi.console.controllers.ontologies.Maintenance.index()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /hascoapi/assets/*file                              controllers.Assets.versioned(path="/public", file: Asset)
+

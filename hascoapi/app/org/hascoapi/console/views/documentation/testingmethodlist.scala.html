@@ -1,0 +1,124 @@
+@()
+
+@import helper._
+@import org.hascoapi.utils.NameSpaces
+@import org.hascoapi.console.views.html._
+@import org.hascoapi.console.controllers._
+@import org.hascoapi.entity.pojo.HADatAcClass
+@import org.hascoapi.entity.pojo.HADatAcThing
+@import org.hascoapi.entity.pojo.Instrument
+@import play.api.Play
+@import com.typesafe.config.ConfigFactory
+
+@main("Testing RESTful API","","") {
+    <div class="container-fluid">
+
+        <div class="row">
+
+            @header()
+
+            <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h2>Testing RESTful API</h2>
+
+                <h4>Test Container (Instrument and Subcontainer)</h4>
+
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/instrument/create" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/instrument/create</a> - Create a test instrument.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/instrument/delete" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/instrument/delete</a> - Delete a test instrument.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/subcontainer/create" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/subcontainer/create</a> - Create a test subcontainer. This method requires the test instrument to exist before it is called. <br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/subcontainer/delete" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/subcontainer/delete</a> - Delete a test subcontainer.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/containerslot/create" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/containerslot/create</a> - Create two containerSlots for the test instrument and two container slots for the subcontainer. This method requires both the test instrument and the test subcontainer to exist before it is called. <br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/containerslot/delete" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/containerslot/delete</a> - Delete containerSlots of test instrument and of test subcontainer, if any. This method requires the test instrument and the subcontainer to exist and for both containers to have containerSlots.<br>
+
+                <br>
+                <h4>Test Detector Stem</h4>
+
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/detectorstem/create" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/detectorstem/create</a> - Create test detector stem 1 and 2 for a test instrument.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/detectorstem/delete" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/detectorstem/delete</a> - Delete test detector stem 1 and 2.<br>
+
+                <br>
+                <h4>Test Detector</h4>
+
+                <p><b>Note1:</b> Create test detector stems 1 and 2 before creating test detectors</p>
+                <p><b>Note2:</b> Create a test instrument along with its containerSlots before creating test detectors</p>
+
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/detector/create" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/detector/create</a> - Create test detector 1 and 2 for a test instrument.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/detector/delete" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/detector/delete</a> - Delete test detector 1 and 2.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/detector/attach" role="button">GET     /hascoapi/test/detector/attach</a> - Attach test detectors 1 and 2 to test instrument.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/detector/detach" role="button">GET     /hascoapi/test/detector/detach</a> - Detach test detectors 1 and 2 from test instrument.<br>
+
+                <br>
+                <h4>Test Codebook</h4>
+
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/codebook/create" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/codebook/create</a> - Create test codebook.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/codebook/delete" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/codebook/delete</a> - Delete test codebook.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/codebookslot/create" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/codebookslot/create</a> - Create two codebook slots for the test codebook. This methods requires the test codebook to exist before it is called. <br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/codebookslot/delete" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/codebookslot/delete</a> - Delete codebook slots of test codebook, if any. This method requires the test codebook to exist and to have codebook slots.<br>
+
+                <br>
+                <h4>Test Response Option</h4>
+
+                <p><b>Note:</b> Create a test codebook before creating test response options</p>
+
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/responseoption/create" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/responseoption/create</a> - Create test response options 1 and 2 for a test codebook.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/responseoption/delete" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/responseoption/delete</a> - Delete test response options 1 and 2.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/responseoption/attach" role="button">GET     /hascoapi/test/responseoption/attach</a> - Attach test response options 1 and 2 to test codebook.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/responseoption/detach" role="button">GET     /hascoapi/test/responseoption/detach</a> - Detach test response options 1 and 2 from test codebook.<br>
+
+                <br>
+                <h4>Test Annotation Stem</h4>
+
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/annotationstem/create" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/annotationstem/create</a> - Create test annotation stems 1 and 2.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/annotationstem/delete" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/annotationstem/delete</a> - Delete test annotation stems 1 and 2.<br>
+
+                <br>
+                <h4>Test Annotation</h4>
+
+                <p><b>Note1:</b> Create test annotation stems before creating test annotations</p>
+                <p><b>Note2:</b> Create a test instrument before creating test annotations</p>
+
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/annotation/create" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/annotation/create</a> - Create test annotations 1 and 2.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/annotation/delete" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/annotation/delete</a> - Delete test annotations 1 and 2.<br>
+
+                <br>
+                <h4>Test Semantic Variable</h4>
+
+                <p><b>Note:</b> Create the following before creating test semantic variables: test entity, test attributes, and test unit.</p>
+
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/semanticvariable/create" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/semanticvariable/create</a> - Create test semantic variables.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/semanticvariable/delete" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/semanticvariable/delete</a> - Delete test semantic variables.<br>
+
+                <br>
+                <h4>Test Entity</h4>
+
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/entity/create" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/entity/create</a> - Create test entity.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/entity/delete" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/entity/delete</a> - Delete test entity.<br>
+
+                <br>
+                <h4>Test Attribute</h4>
+
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/attribute/create" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/attribute/create</a> - Create test attributes 1 and 2.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/attribute/delete" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/attribute/delete</a> - Delete test attributes 1 and 2.<br>
+
+                <br>
+                <h4>Test Unit</h4>
+
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/unit/create" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/unit/create</a> - Create test unit.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/test/unit/delete" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/test/unit/delete</a> - Delete test unit.<br>
+
+                <br><br><br>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <a href="@org.hascoapi.console.controllers.routes.Portal.index()" class="btn btn-success" role="button">Back to Main Page</a>
+        </div>
+    </div>
+
+}

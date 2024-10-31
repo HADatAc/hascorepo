@@ -1,0 +1,49 @@
+@()
+
+@import helper._
+@import org.hascoapi.console.views.html._
+@import org.hascoapi.console.controllers._
+@import play.api.Play
+@import com.typesafe.config.ConfigFactory
+
+@main("Create Detector Example","","") {
+
+    <div class="container-fluid">
+
+        @header()
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h3>Create Detector Example</h3>
+
+                <h4>JSON of a new <i>ExampleDetector1</i> associated with instrument <i>ExampleInstrument</i> to be loaded</h4>
+
+                <pre><code data-trim>{"uri":"http://hadatac.org/kb/test/ExampleDetector1","typeUri":"http://hadatac.org/ont/vstoi#Detector","hascoTypeUri":"http://hadatac.org/ont/vstoi#Detector","label":"Example Detector 1","comment":"Example of a detector to be added into SIR","isInstrumentContainerSlot":"http://hadatac.org/kb/test/ExampleInstrument"}</code></pre>
+                <br>
+
+                <h4>Encoded version of the JSON</h4>
+
+                Texts can be URLencoded online with the use of apps like <a href="https://www.urlencoder.io/">https://www.urlencoder.io/</a>
+                <pre><code data-trim>%7B%22uri%22%3A%22http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FExampleDetector1%22%2C%22typeUri%22%3A%22http%3A%2F%2Fhadatac.org%2Font%2Fvstoi%23Detector%22%2C%22hascoTypeUri%22%3A%22http%3A%2F%2Fhadatac.org%2Font%2Fvstoi%23Detector%22%2C%22label%22%3A%22Example%20Detector%201%22%2C%22comment%22%3A%22Example%20of%20a%20detector%20to%20be%20added%20into%20SIR%22%2C%22isInstrumentContainerSlot%22%3A%22http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FExampleInstrument%22%7D</code></pre>
+                <br>
+
+                <h4>CURL command to invoke /hascoapi/api/detector/create/(detectorJson) (assuming SIR API is deployed at localhost:9000)</h4>
+
+                <pre><code data-trim>curl -X POST localhost:9000/hascoapi/api/detector/create/%7B%22uri%22%3A%22http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FExampleDetector1%22%2C%22typeUri%22%3A%22http%3A%2F%2Fhadatac.org%2Font%2Fvstoi%23Detector%22%2C%22hascoTypeUri%22%3A%22http%3A%2F%2Fhadatac.org%2Font%2Fvstoi%23Detector%22%2C%22label%22%3A%22Example%20Detector%201%22%2C%22comment%22%3A%22Example%20of%20a%20detector%20to%20be%20added%20into%20SIR%22%2C%22isInstrumentContainerSlot%22%3A%22http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FExampleInstrument%22%7D</code></pre>
+
+                <br><br><br>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <a href="@org.hascoapi.console.controllers.documentation.routes.ElementsMethodList.index()" class="btn btn-success" role="button">Back to RESTful API</a>
+        </div>
+    </div>
+
+}

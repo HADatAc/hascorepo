@@ -1,0 +1,46 @@
+@()
+
+@import helper._
+@import org.hascoapi.utils.NameSpaces
+@import org.hascoapi.console.views.html._
+@import org.hascoapi.console.controllers._
+@import org.hascoapi.entity.pojo.HADatAcClass
+@import org.hascoapi.entity.pojo.HADatAcThing
+@import org.hascoapi.entity.pojo.Instrument
+@import play.api.Play
+@import com.typesafe.config.ConfigFactory
+
+@main("Instrument Rendering Examples","","") {
+
+    <div class="container-fluid">
+
+        @header()
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h3>Instrument Rendering Example</h3>
+
+                <br>
+                <p><b>Note:</b>The example queries below are based on the Test instrument and its detectors. Make sure you create a test instrument and its detectors before rendering the instrument.</p>
+                <br>
+
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/instrument/totext/plain/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestInstrument" role="button">GET /hascoapi/api/instrument/totext/plain/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestInstrument</a> - Returns the Test instrument's rendering in plain text.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/instrument/totext/html/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestInstrument" role="button">GET /hascoapi/api/instrument/totext/html/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestInstrument</a> - Returns the Test instrument's rendering in HTML.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/instrument/totext/pdf/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestInstrument" role="button">GET /hascoapi/api/instrument/totext/pdf/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestInstrument</a> - Returns the Test instrument's rendering in PDF.<br>
+
+                <br><br><br>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <a href="@org.hascoapi.console.controllers.documentation.routes.RetrievalMethodList.index()" class="btn btn-success" role="button">Back to RESTFul API</a>
+        </div>
+    </div>
+
+}

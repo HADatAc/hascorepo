@@ -1,0 +1,63 @@
+@(namespaces : List[org.hascoapi.entity.pojo.NameSpace])
+
+@import helper._
+@import org.hascoapi.RepositoryInstance
+@import org.hascoapi.utils.NameSpaces
+@import org.hascoapi.console.views.html._
+@import org.hascoapi.console.controllers._
+@import org.hascoapi.console.controllers.ontologies._
+@import org.hascoapi.entity.pojo.HADatAcClass
+@import org.hascoapi.entity.pojo.HADatAcThing
+@import org.hascoapi.entity.pojo.Instrument
+@import play.api.Play
+
+@main("RESTful API","","") {
+
+    <div class="container-fluid">
+
+        @header()
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h3>SIR-Supporting Ontologies</h3>
+                <br>
+                <table id="ns-table" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th style="width: 50px;" scope="col">#</th>
+                        <th style="width: 100px;" scope="col">Abbreviation</th>
+                        <th style="width: 300px;" scope="col">Definition (mandatory)</th>
+                        <th style="width: 150px;" scope="col">Mime Type (only for loaded ontologies)</th>
+                        <th style="width: 300px;" scope="col">Loading URL (only for loaded ontologies)</th>
+                        <th style="width: 80px;" scope="col">No. of Triples Loaded</th>
+                    </tr>
+                    </thead>
+                    <tbody id="ns-table-body">
+                    @for((ns, i) <- namespaces.zipWithIndex) {
+                    <tr>
+                        <td style="word-break: break-all;">@(i+1)</td>
+                        <td style="word-break: break-all;" axis="nsAbbrev@(i+1)">@ns.getLabel()</td>
+                        <td style="word-break: break-all;" axis="nsName@(i+1)">@ns.getUri()</td>
+                        <td style="word-break: break-all;" axis="nsMimeType@(i+1)">@ns.getSourceMime()</td>
+                        <td style="word-break: break-all;" axis="nsURL@(i+1)">@ns.getSource()</td>
+                        <td style="word-break: break-all;" axis="nsTripleSize@(i+1)">@ns.getNumberOfLoadedTriples()</td>
+                    </tr>
+                    }
+                    </tbody>
+                </table>
+                <br>
+                <p><b>Local namespace:</b> @RepositoryInstance.getInstance().getHasDefaultNamespaceAbbreviation()</p>
+                <br><br><br>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <a href="@org.hascoapi.console.controllers.routes.Portal.index()" class="btn btn-success" role="button">Back to Main Page</a>
+            </div>
+    </div>
+
+}

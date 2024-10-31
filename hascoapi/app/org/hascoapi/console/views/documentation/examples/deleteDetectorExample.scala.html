@@ -1,0 +1,49 @@
+@()
+
+@import helper._
+@import org.hascoapi.console.views.html._
+@import org.hascoapi.console.controllers._
+@import play.api.Play
+@import com.typesafe.config.ConfigFactory
+
+@main("Delete Detector Example","","") {
+
+    <div class="container-fluid">
+
+        @header()
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h3>Delete Detector Stem Example</h3>
+
+                <h4>URI of an existing <i>ExampleDetectorStem</i> to be deleted</h4>
+
+                <pre><code data-trim>http://hadatac.org/kb/test/ExampleDetectorStem1</code></pre>
+                <br>
+
+                <h4>Encoded version of the URI</h4>
+
+                Texts can be URLencoded online with the use of apps like <a href="https://www.urlencoder.io/">https://www.urlencoder.io/</a>
+                <pre><code data-trim>http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FExampleDetector1</code></pre>
+                <br>
+
+                <h4>CURL command to invoke /hascoapi/api/detectorstem/delete/(detectorUri) (assuming SIR API is deployed at localhost:9000)</h4>
+
+                <pre><code data-trim>curl -X POST localhost:9000/hascoapi/api/detectorstem/delete/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FExampleDetectorStem1</code></pre>
+
+                <br><br><br>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <a href="@org.hascoapi.console.controllers.documentation.routes.ElementsMethodList.index()" class="btn btn-success" role="button">Back to RESTful API</a>
+        </div>
+    </div>
+
+}

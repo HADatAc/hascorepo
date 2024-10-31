@@ -1,0 +1,43 @@
+@()
+
+@import helper._
+@import org.hascoapi.utils.NameSpaces
+@import org.hascoapi.console.views.html._
+@import org.hascoapi.console.controllers._
+@import org.hascoapi.entity.pojo.HADatAcClass
+@import org.hascoapi.entity.pojo.HADatAcThing
+@import org.hascoapi.entity.pojo.Instrument
+@import play.api.Play
+@import com.typesafe.config.ConfigFactory
+
+@main("Query Element Individuals Total Example with Keyword","","") {
+
+    <div class="container-fluid">
+
+        @header()
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h3>Query Totals of Element Individuals Example</h3>
+
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/semanticvariable/keyword/total/test" role="button">GET /hascoapi/api/semanticvariable/keyword/total/test</a> - Returns total count of semantic variables with keyword 'test'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/entity/keyword/total/test" role="button">GET /hascoapi/api/entity/keyword/total/test</a> - Returns total count of entities with keyword 'test'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/attribute/keyword/total/test" role="button">GET /hascoapi/api/attribute/keyword/total/test</a> - Returns total count of attributes with keyword 'test'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/unit/keyword/total/test" role="button">GET /hascoapi/api/unit/keyword/total/test</a> - Returns total count of units with keyword 'test'.<br>
+
+                <br><br><br>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <a href="@org.hascoapi.console.controllers.documentation.routes.RetrievalMethodList.index()" class="btn btn-success" role="button">Back to RESTFul API</a>
+        </div>
+    </div>
+
+}

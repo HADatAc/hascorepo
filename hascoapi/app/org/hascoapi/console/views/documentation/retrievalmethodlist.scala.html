@@ -1,0 +1,89 @@
+@()
+
+@import helper._
+@import org.hascoapi.utils.NameSpaces
+@import org.hascoapi.console.views.html._
+@import org.hascoapi.console.controllers._
+@import org.hascoapi.entity.pojo.HADatAcClass
+@import org.hascoapi.entity.pojo.HADatAcThing
+@import org.hascoapi.entity.pojo.Instrument
+@import play.api.Play
+@import com.typesafe.config.ConfigFactory
+
+@main("Elements RESTful API","","") {
+    <div class="container-fluid">
+
+        <div class="row">
+
+            @header()
+
+            <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h2>Elements Retrieval RESTful API</h2>
+
+                <br>
+                <h3>Retrieval of SIR Elements</h3>
+
+                <p><b>Note:</b>Every single SIR element is the instantiation of a concept, which is registered at SIR under an unique URI. Instances of concepts like instruments, instrument types, and detectors are example of SIR elements.</p>
+
+                <p>Methods for following element types: <b>instrumenttype</b>, <b>instrument</b>, <b>detectorstemtype</b>, <b>detectorstem</b>, <b>detector</b>, <b>containerslot</b>, <b>codebook</b>, <b>responseoption</b>, <b>codebookslot</b>, <b>semanticvariable</b>, <b>entity</b>, <b>attribute</b> or <b>unit</b></p>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/uri/(elementuri)</button> - Returns a full description of an element (instrument, detectorstem, detector, codebook or response option) as described in SIR. URI needs to be URL encoded. Use the <a href="@org.hascoapi.console.controllers.documentation.routes.RetrievalMethodList.queryURIExample()">'Query URI' Example</a> to query different kinds of URI Elements<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/usage/(elementuri)</button> - Returns elements that make use of the element with the provided uri (e.g., instruments that make use of a given detector). URI needs to be URL encoded.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/derivation/(elementuri)</button> - Returns elements that are derived from the element with the provided uri (e.g., detectors derived from a given detector). URI needs to be URL encoded.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/(elementtype)/elements/(pagesize)/(offset)</button> - Returns individuals SIR of the given class (or subclasses in SIR of a given class). Use the <a href="@org.hascoapi.console.controllers.documentation.routes.RetrievalMethodList.queryElementsExample()">'Query Elements' Example</a> to query different kinds of URI Elements<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/(elementtype)/elements/total</button> - Returns count of individuals (or subclasses) of the given class.<br>
+
+                <br><p>Methods for following element types: <b>instrument</b>, <b>detectorstem</b>, <b>detector</b>, <b>codebook</b>, <b>responseoption</b></p>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/(elementtype)/keywordlanguage/(keyword)/(language)/(pagesize)/(offset)</button> - Returns elements in SIR of the given type that simultaneously have the keyword as part of their labels and that are in the requested language, including their properties.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/(elementtype)/keywordlanguage/total/(keyword)/(language)</button> - Returns the number of elements in SIR of the given type that simultaneously have the keyword as part of their labels and that are in the requested language, including their properties.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/(elementtype)/manageremail/(manageremail)/(pagesize)/(offset)</button> - Returns elements in SIR of the given type that are managed by the user with the given manager email.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/(elementtype)/manageremail/total/(manageremail)</button> - Returns the number of elements in SIR of the given type that are managed by the user with the given manager email.<br>
+ 
+                <br><p>Methods for following element types: <b>entity</b>, <b>attribute</b>, <b>unit</b></p>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/(elementtype)/keyword/(keyword)/(pagesize)/(offset)</button> - Returns elements in SIR of the given type that have the keyword as part of their labels, including their properties. Use the <a href="@org.hascoapi.console.controllers.documentation.routes.RetrievalMethodList.queryElementsExampleWithKeyword()">'Query Elements with Keyword' Example</a> to query different kinds of URI Elements<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/(elementtype)/keyword/total/(keyword)</button> - Returns the number of elements in SIR of the given type that have the keyword as part of their labels, including their properties. Use the <a href="@org.hascoapi.console.controllers.documentation.routes.RetrievalMethodList.queryElementsTotalExampleWithKeyword()">'Query Element Totals with Keyword' Example</a> to query different kinds of URI Elements<br>
+
+                <br><p>Element-type-specific methods:</p>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/containerslot/byinstrument/(instruri)</button> - Returns detectors that belong to the instrument with the given URI. URI needs to be URL encoded.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/codebookslot/bycodebook/(codebookuri)</button> - Returns responseoptions that belong to the codebook with the given URI. URI needs to be URL encoded.<br>
+
+                <br>
+                <h3>Interoperability of SIR Elements</h3>
+
+                <br>
+                <h4>Semantic Support for Instrument Interoperability</h4>
+
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/instrument/tordf/(instrUri)</button> - Returns RDF encoding in XML for requested instrument.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/instrument/tofhir/(instrUri)</button> - Returns FHIR encoding in JSON for requested instrument.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/instrument/toredcap/(instrUri)</button> - Returns RedCAP encoding for requested instrument.<br>
+
+                <br>
+                <h4>Semantic Support for Instrument Response Interoperability</h4>
+
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/response/sdd/(instrUri)</button> - Returns Semantic Data Dictionary of instrument response for requested instrument.<br>
+
+                <br>
+                <h4>Instrument Rendering (for Instruments that are not Physical Devices)</h4>
+
+                <p><b>Note:</b> Use the <a href="@org.hascoapi.console.controllers.documentation.routes.RetrievalMethodList.instrumentRenderingExample()">Instrument Rendering Examples</a> to see how to render the Test Instrument using different kinds of formats.<br>
+
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/instrument/totext/plain/(instrUri)</button> - Returns Text encoding in Plain for requested instrument.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/instrument/totext/html/(instrUri)</button> - Returns Text encoding in HTML for requested instrument.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/instrument/totext/pdf/(instrUri)</button> - Returns Text encoding in PDF for requested instrument.<br>
+
+                <br><br><br>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <a href="@org.hascoapi.console.controllers.routes.Portal.index()" class="btn btn-success" role="button">Back to Main Page</a>
+        </div>
+    </div>
+
+}

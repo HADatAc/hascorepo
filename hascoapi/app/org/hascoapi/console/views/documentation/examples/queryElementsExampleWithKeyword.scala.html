@@ -1,0 +1,43 @@
+@()
+
+@import helper._
+@import org.hascoapi.utils.NameSpaces
+@import org.hascoapi.console.views.html._
+@import org.hascoapi.console.controllers._
+@import org.hascoapi.entity.pojo.HADatAcClass
+@import org.hascoapi.entity.pojo.HADatAcThing
+@import org.hascoapi.entity.pojo.Instrument
+@import play.api.Play
+@import com.typesafe.config.ConfigFactory
+
+@main("Query Element Individuals Example with Keyword","","") {
+
+    <div class="container-fluid">
+
+        @header()
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h3>Query Element Individuals Example</h3>
+
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/semanticvariable/keyword/test/12/0" role="button">GET /hascoapi/api/semanticvariable/keyword/test/12/0</a> - Returns first 12 semantic variables with keyword 'test'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/entity/keyword/test/12/0" role="button">GET /hascoapi/api/entity/keyword/test/12/0</a> - Returns first 12 entities with keyword 'test'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/attribute/keyword/test/12/0" role="button">GET /hascoapi/api/attribute/keyword/test/12/0</a> - Returns first 12 attributes with keyword 'test'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/unit/keyword/test/12/0" role="button">GET /hascoapi/api/unit/keyword/test/12/0</a> - Returns first 12 units with keyword 'test'.<br>
+
+                <br><br><br>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <a href="@org.hascoapi.console.controllers.documentation.routes.RetrievalMethodList.index()" class="btn btn-success" role="button">Back to RESTFul API</a>
+        </div>
+    </div>
+
+}

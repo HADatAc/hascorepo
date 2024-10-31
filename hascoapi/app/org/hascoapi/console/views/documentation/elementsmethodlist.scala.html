@@ -1,0 +1,67 @@
+@()
+
+@import helper._
+@import org.hascoapi.utils.NameSpaces
+@import org.hascoapi.console.views.html._
+@import org.hascoapi.console.controllers._
+@import org.hascoapi.entity.pojo.HADatAcClass
+@import org.hascoapi.entity.pojo.HADatAcThing
+@import org.hascoapi.entity.pojo.Instrument
+@import play.api.Play
+@import com.typesafe.config.ConfigFactory
+
+@main("Elements RESTful API","","") {
+    <div class="container-fluid">
+
+        <div class="row">
+
+            @header()
+
+            <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h2>Element Management RESTful API</h2>
+
+                <p><b>Note:</b> Instrument types and detector types are loaded into SIR through the VSTOI ontology. The VSTOI ontology needs to be modified and reloaded to create instrument type and detector type or to delete an existing instrument type or detector type.</p>
+
+                <br>
+                <h4>Generic</h4>
+                <p>Methods for following element types: <b>instrumenttype</b>, <b>instrument</b>, <b>subcontainer</b>, <b>detectorstemtype</b>, <b>detectorstem</b>, <b>detector</b>, <b>codebook</b>, <b>responseoption</b>, <b>annotationstem</b>, <b>annotation</b>, <b>semanticvariable</b>, <b>entity</b>, <b>attribute</b> or <b>unit</b></p>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>POST /hascoapi/api/(elementtype)/create/(json)</button> - Create a new object of given element type according to the json specification provided. Json needs to be URL encoded. Use the <a href="@org.hascoapi.console.controllers.documentation.routes.ElementsMethodList.createInstrumentExample()">Create Instrument Example</a> to see how to use a CURL with POST method to create instruments.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>POST /hascoapi/api/(elementtype)/delete/(uri)</button> - Delete an existing object of given element using the URI provided. URI needs to be URL encoded. Use the <a href="@org.hascoapi.console.controllers.documentation.routes.ElementsMethodList.deleteInstrumentExample()">Delete Instrument Example</a> to see how to use a CURL with POST method to delete instruments.<br>
+
+                <br>
+                <h4>ContainerSlot-Specific Methods</h4>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>POST /hascoapi/api/containerslot/create/:containerUri/:totSlots</button> - For an existing container (instrument or subcontainer) with the URI provided, create the given number of containerSlots.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>POST /hascoapi/api/containerslot/delete/:containerUri</button> - For an existing container (instrument or subcontainer) with the URI provided, delete all its containerSlot at once.<br>
+
+                <br>
+                <h4>Detectors-Specific Methods</h4>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>POST /hascoapi/api/detector/attach/:uri/:containerSlotUri</button> - Attach a detector to an instrument's containerSlot. This method requires the detector and instrument's containerSlot to exist.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>POST /hascoapi/api/detector/detach/:containerSlotUri</button> - Detach a detector from a given instrument's containerSlot.<br>
+
+                <br>
+                <h4>CodebookSlot-Specific Methods</h4>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>POST /hascoapi/api/codebookslot/create/:instrUri/:totSlots</button> - For an existing codebook with the URI provided, create the given number of codebookSlots.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>POST /hascoapi/api/codebookslot/delete/:instrUri</button> - For an existing codebook with the URI provided, delete all its codebookSlots at once.<br>
+
+                <br>
+                <h4>ResponseOption-Specific Methods</h4>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>POST /hascoapi/api/responseoption/attach/:uri/:codebookSlotUri/:totSlots</button> - Attach a responseOption to a codebook's codebookSlot. This method required the response option and codebook's codebookSlot to exist.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>POST /hascoapi/api/responseoption/detach/:codebookSlotUri</button> - Detach a responseOption from a given codebook's codebookSlot.<br>
+
+                <br><br><br>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <a href="@org.hascoapi.console.controllers.routes.Portal.index()" class="btn btn-success" role="button">Back to Main Page</a>
+        </div>
+    </div>
+
+}

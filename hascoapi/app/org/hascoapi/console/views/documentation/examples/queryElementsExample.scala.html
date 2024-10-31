@@ -1,0 +1,55 @@
+@()
+
+@import helper._
+@import org.hascoapi.utils.NameSpaces
+@import org.hascoapi.console.views.html._
+@import org.hascoapi.console.controllers._
+@import org.hascoapi.entity.pojo.HADatAcClass
+@import org.hascoapi.entity.pojo.HADatAcThing
+@import org.hascoapi.entity.pojo.Instrument
+@import play.api.Play
+@import com.typesafe.config.ConfigFactory
+
+@main("Query Element Individuals Example","","") {
+
+    <div class="container-fluid">
+
+        @header()
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h3>Query Element Individuals Example</h3>
+
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/instrumenttype/elements/12/0" role="button">GET /hascoapi/api/instrumenttype/elements/12/0</a> - Returns first 12 subclasses of class 'instrument'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/instrument/elements/12/0" role="button">GET /hascoapi/api/instrument/elements/12/0</a> - Returns first 12 individuals of class 'instrument'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/subcontainer/elements/12/0" role="button">GET /hascoapi/api/subcontainer/elements/12/0</a> - Returns first 12 individuals of class 'subcontainer'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/detectorstemtype/elements/12/0" role="button">GET /hascoapi/api/detectorstemtype/elements/12/0</a> - Returns first 12 subclasses of class 'detectorstem'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/detectorstem/elements/12/0" role="button">GET /hascoapi/api/detectorstem/elements/12/0</a> - Returns first 12 individuals of class 'detectorstem'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/detector/elements/12/0" role="button">GET /hascoapi/api/detector/elements/12/0</a> - Returns first 12 individuals of class 'detector'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/containerslot/elements/12/0" role="button">GET /hascoapi/api/containerslot/elements/12/0</a> - Returns first 12 individuals of class 'containerslot'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/codebook/elements/12/0" role="button">GET /hascoapi/api/codebook/elements/12/0</a> - Returns first 12 individuals of class 'codebook'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/responseoption/elements/12/0" role="button">GET /hascoapi/api/responseoption/elements/12/0</a> - Returns first 12 individuals of class 'responseoption'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/codebookslot/elements/12/0" role="button">GET /hascoapi/api/codebookslot/elements/12/0</a> - Returns first 12 individuals of class 'codebookslot'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/annotationstem/elements/12/0" role="button">GET /hascoapi/api/annotationstem/elements/12/0</a> - Returns first 12 individuals of class 'annotationstem'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/annotation/elements/12/0" role="button">GET /hascoapi/api/annotation/elements/12/0</a> - Returns first 12 individuals of class 'annotation'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/semanticvariable/elements/12/0" role="button">GET /hascoapi/api/semanticvariable/elements/12/0</a> - Returns first 12 individuals of type 'semanticvariable'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/entity/elements/12/0" role="button">GET /hascoapi/api/entity/elements/12/0</a> - Returns first 12 subclasses of class 'entity'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/attribute/elements/12/0" role="button">GET /hascoapi/api/attribute/elements/12/0</a> - Returns first 12 subclasses of class 'attribute'.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/unit/elements/12/0" role="button">GET /hascoapi/api/unit/elements/12/0</a> - Returns first 12 subclasses of class 'unit'.<br>
+
+                <br><br><br>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <a href="@org.hascoapi.console.controllers.documentation.routes.RetrievalMethodList.index()" class="btn btn-success" role="button">Back to RESTFul API</a>
+        </div>
+    </div>
+
+}

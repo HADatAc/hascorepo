@@ -1,0 +1,55 @@
+@()
+
+@import helper._
+@import org.hascoapi.utils.NameSpaces
+@import org.hascoapi.console.views.html._
+@import org.hascoapi.console.controllers._
+@import org.hascoapi.entity.pojo.HADatAcClass
+@import org.hascoapi.entity.pojo.HADatAcThing
+@import org.hascoapi.entity.pojo.Instrument
+@import play.api.Play
+@import com.typesafe.config.ConfigFactory
+
+@main("Repository RESTful API","","") {
+
+    <div class="container-fluid">
+
+        @header()
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h2>Repository RESTful API</h2>
+
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/repo" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/api/repo</a> - Return repository setting information.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/repo/label/(label)</button> - Set a new internal name for the repository. (label) needs to be URL encoded.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/repo/title/(title)</button> - Set a new title for the repository that appears in SIR API's GUI. (title) needs to be URL encoded.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/repo/description/(description)</button> - Set a new description for the repository that appears in the SIR API's GUI. (description) needs to be URL encoded.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/repo/namespace/default/(abbreviation)/(url)</button> - Set a new abbreviation and URL for the repository's default namespace. (abbreviation) and (url) need to be URL encoded.<br>
+                <button type="button" class="btn btn-outline-primary btn-sm" disabled>GET&nbsp;&nbsp;&nbsp;  /hascoapi/api/repo/namespace/create/(abbreviation)/(url)</button> - Set a new abbreviation and URL for the repository's list of namespaces. (abbreviation) and (url) need to be URL encoded.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/repo/namespace/delete" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/api/repo/namespace/delete</a> - Delete the repository's default namespace, if any.<br>
+
+                <br>
+                <h3>Tables</h3>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/repo/table/namespaces" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/api/repo/table/namespaces</a> - Namespaces table.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/repo/table/informants" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/api/repo/table/informants</a> - Informants table.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/repo/table/languages" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/api/repo/table/languages</a> - Language table.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/repo/table/generationactivities" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/api/repo/table/generationactivities</a> - Generation activities table.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/repo/table/instrumentpositions" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/api/repo/table/instrumentpositions</a> - Page positions table.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/repo/table/subcontainerpositions" role="button">GET&nbsp;&nbsp;&nbsp; /hascoapi/api/repo/table/subcontainerpositions</a> - Subcontainer positions table.<br>
+
+                <br><br><br>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <a href="@org.hascoapi.console.controllers.routes.Portal.index()" class="btn btn-success" role="button">Back to Main Page</a>
+        </div>
+    </div>
+
+}

@@ -1,0 +1,34 @@
+@import com.typesafe.config.ConfigFactory
+@import views.html.helper.style
+@(title: String, nav: String = "",userName: String)(content: Html)
+@import org.hascoapi.console.controllers._
+@import views.html._
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@title</title>
+    <script type="text/javascript" src="@controllers.routes.Assets.versioned("lib/jquery/jquery.js")"></script>
+    <script type="text/javascript" src="@controllers.routes.Assets.versioned("lib/bootstrap/js/bootstrap.js")"></script>
+    <link rel="stylesheet" href="@controllers.routes.Assets.versioned("lib/bootstrap/css/bootstrap.css")">
+    <link href="@controllers.routes.Assets.versioned("css/upload.css")" rel="stylesheet">
+    <link href="@controllers.routes.Assets.versioned("css/main.css")" rel="stylesheet">
+    <script type="text/stylesheet" rel="stylesheet" media="print" href="@controllers.routes.Assets.versioned("css/printfriendly.css")"></script>
+
+</head>
+<body>
+<nav class="navbar fixed-top bg-dark">
+    <a class="navbar-brand" style="color: white;" href="@org.hascoapi.console.controllers.routes.Portal.index()">&nbsp;&nbsp;HAScO API Home</a>
+</nav>
+@content
+<div class="footer">
+    <hr>
+    <a href="@org.hascoapi.console.controllers.routes.Version.index()">Version</a><br>
+    (c) 2015-2023 <a href="http://hadatac.org">HADatAc.org</a>
+</div>
+
+</body>
+</html>
+

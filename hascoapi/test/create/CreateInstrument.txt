@@ -1,0 +1,27 @@
+package test.create;
+
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import play.mvc.Result;
+import static org.junit.Assert.assertEquals;
+import org.hascoapi.console.controllers.restapi.InstrumentAPI;
+import static play.test.Helpers.contentAsString;
+
+import static test.Responses.*;
+
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+public class CreateInstrument {
+
+    // Unit test deleteInstrumentForTesting
+    @Order(020)
+    @Test
+    public void test020CreateInstrument() {
+		System.out.println("Testing 020 create Instrument");
+        final InstrumentAPI controller = new InstrumentAPI();
+        Result result = controller.createInstrumentForTesting();
+        assertEquals(RESPONSE_OK_CREATE_INSTRUMENT,contentAsString(result));
+    }
+
+}

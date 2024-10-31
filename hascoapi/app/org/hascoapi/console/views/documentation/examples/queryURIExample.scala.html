@@ -1,0 +1,65 @@
+@()
+
+@import helper._
+@import org.hascoapi.utils.NameSpaces
+@import org.hascoapi.console.views.html._
+@import org.hascoapi.console.controllers._
+@import org.hascoapi.entity.pojo.HADatAcClass
+@import org.hascoapi.entity.pojo.HADatAcThing
+@import org.hascoapi.entity.pojo.Instrument
+@import play.api.Play
+@import com.typesafe.config.ConfigFactory
+
+@main("Query URI Example","","") {
+
+    <div class="container-fluid">
+
+        @header()
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h3>Query URI Example</h3>
+
+                <p><b>Note:</b>The example queries below are based on the Test instrument and its detectors. Make sure you create a test instrument before running the Query URI for an instrument URI. Make sure you create test detectors before running the Query URI for the detectors' examples below.</p>
+
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestInstrument" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestInstrument</a> - Returns the Test instrument's JSON.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestSubcontainer1" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestSubcontainer1</a> - Returns the Test Subcontainer1's JSON.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestSubcontainer2" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestSubcontainer2</a> - Returns the Test Subcontainer2's JSON.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestInstrument%2FDTS%2F1" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestInstrument%2FDTS%2F1</a> - Returns ContainerSlot 1's JSON of Test instrument.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestInstrument%2FDTS%2F2" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestInstrument%2FDTS%2F2</a> - Returns ContainerSlot 2's JSON of Test instrument.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestDetectorStem1" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestDetectorStem1</a> - Returns DetectorStem1's JSON of Detector1 of Test instrument.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestDetectorStem2" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestDetectorStem2</a> - Returns DetectorStem2's JSON of Detector2 of Test instrument.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestDetector1" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestDetector1</a> - Returns Detector1's JSON of Test instrument.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestDetector2" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestDetector2</a> - Returns Detector2's JSON of Test instrument.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestCodebook" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestCodebook</a> - Returns the Test Codebook's JSON.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestCodebook%2FROS%2F1" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestCodebook%2FROS%2F1</a> - Returns Codebook Slot 1's JSON of Test Codebook.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestCodebook%2FROS%2F2" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestCodebook%2FROS%2F2</a> - Returns Codebook Slot 2's JSON of Test Codebook.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestResponseOption1" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestResponseOption1</a> - Returns ResponseOption1's JSON of Test Codebook.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestResponseOption2" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestResponseOption2</a> - Returns ResponseOption2's JSON of Test Codebook.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestAnnotationStem1" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestAnnotationStem1</a> - Returns AnnotationStem1's JSON of Annotation1 of Test instrument.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestAnnotationStem2" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestAnnotationStem2</a> - Returns AnnotationStem2's JSON of Annotation2 of Test instrument.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestAnnotation1" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestAnnotation1</a> - Returns Annotation1's JSON of Test instrument.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestAnnotation2" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestAnnotation2</a> - Returns Annotation2's JSON of Test instrument.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestSemanticVariable1" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestSemanticVariable1</a> - Returns Test Semantic Variable 1.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestSemanticVariable2" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestSemanticVariable2</a> - Returns Test Semantic Variable 2.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestEntity" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestEntity</a> - Returns Test entity.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestAttribute1" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestAttribute1</a> - Returns Test Attribute1.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestAttribute2" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestAttribute2</a> - Returns Test Attribute2.<br>
+                <a class="btn btn-outline-primary btn-sm" href="/hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestUnit" role="button">GET /hascoapi/api/uri/http%3A%2F%2Fhadatac.org%2Fkb%2Ftest%2FTestUnit</a> - Returns Test Unit.<br>
+
+                <br><br><br>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <a href="@org.hascoapi.console.controllers.documentation.routes.RetrievalMethodList.index()" class="btn btn-success" role="button">Back to RESTFul API</a>
+        </div>
+    </div>
+
+}
