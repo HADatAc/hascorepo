@@ -9,7 +9,7 @@ JWT_KEY_VALUE="qwertyuiopasdfghjklzxcvbnm123456"
 API_BASE_URL="http://hascoapi:9000"  
 
 drupal_login() {
-    echo "Realizando login no Drupal..."
+    echo "Logging in to Drupal..."
 
     response=$(curl -s -c "$COOKIE_FILE" -X POST "$DRUPAL_URL/user/login" \
         -d "name=$ADMIN_USER&pass=$ADMIN_PASS&form_id=user_login_form" \
@@ -17,16 +17,15 @@ drupal_login() {
         -H "Referer: $DRUPAL_URL/user/login")
 
     if echo "$response" | grep -q "Redirecting"; then
-        echo "Login realizado com sucesso."
+        echo "Login successful."
     else
-        echo "Falha no login. Verifique as credenciais ou a configuração do Drupal."
+        echo "Login failed. Check credentials or Drupal configuration."
         exit 1
     fi
 }
 
 
 add_key() {
-    echo "Obtendo tokens de formulário..."
     form_page=$(curl -s -X GET "$DRUPAL_URL/admin/config/system/keys/add" \
         -H "Content-Type: application/json" \
         -b "$COOKIE_FILE")
@@ -35,11 +34,10 @@ add_key() {
     form_token=$(echo "$form_page" | grep -oP '(?<=name="form_token" value=")[^"]+')
 
     if [[ -z "$form_build_id" || -z "$form_token" ]]; then
-        echo "Erro ao obter tokens de formulário. Verifique o login e a URL."
+        echo "Error getting the form tokens."
         exit 1
     fi
 
-    echo "Criando chave JWT no Drupal..."
     response=$(curl -s -X POST "$DRUPAL_URL/admin/config/system/keys/add" \
         -H "Content-Type: application/x-www-form-urlencoded" \
         -b "$COOKIE_FILE" \
@@ -58,7 +56,6 @@ add_key() {
 
 
 config_drupal_api() {
-    echo "Obtendo tokens de formulário para configurar API..."
     form_page=$(curl -s -X GET "$DRUPAL_URL/admin/config/rep" \
         -H "Content-Type: application/json" \
         -b "$COOKIE_FILE")
@@ -67,11 +64,10 @@ config_drupal_api() {
     form_token=$(echo "$form_page" | grep -oP '(?<=name="form_token" value=")[^"]+')
 
     if [[ -z "$form_build_id" || -z "$form_token" ]]; then
-        echo "Erro ao obter tokens de formulário. Verifique o login e a URL."
+        echo "Error getting the form tokens."
         exit 1
     fi
 
-    echo "Configurando API no Drupal..."
     response=$(curl -s -X POST "$DRUPAL_URL/admin/config/rep" \
         -H "Content-Type: application/x-www-form-urlencoded" \
         -b "$COOKIE_FILE" \
@@ -89,23 +85,18 @@ config_drupal_api() {
 }
 
 reload_triples() {
-    echo "Obtendo tokens de formulário para recarregar triples..."
     form_page=$(curl -s -X GET "$DRUPAL_URL/admin/config/rep/namespace" \
         -H "Content-Type: application/json" \
         -b "$COOKIE_FILE")
 
-    # Extrair form_build_id e form_token
     form_build_id=$(echo "$form_page" | grep -oP '(?<=name="form_build_id" value=")[^"]+')
     form_token=$(echo "$form_page" | grep -oP '(?<=name="form_token" value=")[^"]+')
 
-    # Verificar se os tokens foram obtidos com sucesso
     if [[ -z "$form_build_id" || -z "$form_token" ]]; then
-        echo "Erro ao obter tokens de formulário. Verifique o login e a URL."
+        echo "Error getting the form tokens."
         exit 1
     fi
 
-    # Realizar o POST para recarregar os triples
-    echo "Recarregando triples de todos os namespaces..."
     response=$(curl -s -X POST "$DRUPAL_URL/admin/config/rep/namespace" \
         -H "Content-Type: application/x-www-form-urlencoded" \
         -b "$COOKIE_FILE" \
@@ -120,13 +111,11 @@ set_preferred_names() {
         -H "Content-Type: application/json" \
         -b "$COOKIE_FILE")
 
-    # Extrair form_build_id e form_token
     form_build_id=$(echo "$form_page" | grep -oP '(?<=name="form_build_id" value=")[^"]+')
     form_token=$(echo "$form_page" | grep -oP '(?<=name="form_token" value=")[^"]+')
 
-    # Verificar se os tokens foram obtidos com sucesso
     if [[ -z "$form_build_id" || -z "$form_token" ]]; then
-        echo "Erro ao obter tokens de formulário. Verifique o login e a URL."
+        echo "Error getting the form tokens."
         exit 1
     fi
 

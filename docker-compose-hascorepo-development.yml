@@ -40,7 +40,7 @@ services:
     command: ["apache2-foreground"]
 
   fuseki:
-    image: tiagomoreira2099/hascoapi-fuseki:latest
+    image: graxiom/hascoapi-fuseki:latest
     container_name: hascoapi_fuseki
     ports:
       - "3030:3030"
@@ -53,7 +53,7 @@ services:
     restart: always
 
   fuseki-yasgui:
-    image: tiagomoreira2099/hascoapi-fuseki-yasgui:latest
+    image: graxiom/hascoapi-fuseki-yasgui:latest
     container_name: hascoapi_fuseki_yasgui
     ports:
       - "8888:8888"
@@ -67,7 +67,7 @@ services:
           - fuseki-yasgui
 
   hascoapi:
-    image: tiagomoreira2099/hascoapi-development:hascoapi_docker
+    image: graxiom/hascoapi-development:hascoapi_docker
     container_name: hascoapi
     tty: true
     ports:
