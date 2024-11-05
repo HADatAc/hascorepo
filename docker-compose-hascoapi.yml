@@ -3,51 +3,49 @@ version: '3'
 services:
 
     fuseki:
-        build: ./hascoapi/fuseki
-        container_name: hascoapi_fuseki
-        ports:
-            - "3030:3030"
-        networks:
-            hascoapi:
-                aliases:
-                    - fuseki
-        volumes:
-            - hascoapi-fuseki-data:/fuseki/databases
-        restart: always
+    image: tiagomoreira2099/hascoapi-fuseki:latest
+    container_name: hascoapi_fuseki
+    ports:
+      - "3030:3030"
+    volumes:
+      - hascoapi-fuseki-data:/fuseki/databases
+    networks:
+      hascorepo:
+        aliases:
+          - fuseki
+    restart: always
 
     fuseki-yasgui:
-        build: ./hascoapi/fuseki-yasgui
+        image: tiagomoreira2099/hascoapi-fuseki-yasgui:latest
         container_name: hascoapi_fuseki_yasgui
         ports:
-            - "8888:8888"
-        networks:
-            hascoapi:
-                aliases:
-                    - fuseki-yasgui
+        - "8888:8888"
         environment:
-            DEFAULT_SPARQL_ENDPOINT: "http://fuseki:3030/dataset/sparql"  # Corrigido
+        DEFAULT_SPARQL_ENDPOINT: "http://fuseki:3030/dataset/sparql"
         depends_on:
-            - fuseki
+        - fuseki
+        networks:
+        hascorepo:
+            aliases:
+            - fuseki-yasgui
 
     hascoapi:
-        build:
-          context: ./hascoapi
-          dockerfile: Dockerfile
-        restart: always
+        image: tiagomoreira2099/hascoapi:hascoapi_docker
         container_name: hascoapi
         tty: true
         ports:
-            - "9000:9000"
-        networks:
-            hascoapi:
-                aliases:
-                    - hascoapi
+        - "9000:9000"
         environment:
-            JAVA_OPTS: "-Xms128m -Xmx12g"
+        JAVA_OPTS: "-Xms128m -Xmx12g"
         volumes:
-            - /var/log/hascoapi:/hascoapi/logs
+        - /var/log/hascoapi:/hascoapi/logs
         depends_on:
-            - fuseki
+        - fuseki
+        networks:
+        hascorepo:
+            aliases:
+            - hascoapi
+        restart: always
 
 volumes:
     hascoapi-fuseki-data:

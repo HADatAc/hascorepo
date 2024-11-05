@@ -58,13 +58,11 @@ add_key() {
 
 
 config_drupal_api() {
-    # Obter tokens de formulário
     echo "Obtendo tokens de formulário para configurar API..."
     form_page=$(curl -s -X GET "$DRUPAL_URL/admin/config/rep" \
         -H "Content-Type: application/json" \
         -b "$COOKIE_FILE")
 
-    # Extrair form_build_id e form_token
     form_build_id=$(echo "$form_page" | grep -oP '(?<=name="form_build_id" value=")[^"]+')
     form_token=$(echo "$form_page" | grep -oP '(?<=name="form_token" value=")[^"]+')
 
@@ -73,7 +71,6 @@ config_drupal_api() {
         exit 1
     fi
 
-    # Configuração da API no Drupal
     echo "Configurando API no Drupal..."
     response=$(curl -s -X POST "$DRUPAL_URL/admin/config/rep" \
         -H "Content-Type: application/x-www-form-urlencoded" \
@@ -89,12 +86,66 @@ config_drupal_api() {
         --data-urlencode "form_token=$form_token" \
         --data-urlencode "form_id=rep_form_settings" \
         --data-urlencode "op=Save configuration")
-
-    # Imprimir resposta completa para debugging
-    echo "Resposta completa do servidor: $response"
 }
+
+reload_triples() {
+    echo "Obtendo tokens de formulário para recarregar triples..."
+    form_page=$(curl -s -X GET "$DRUPAL_URL/admin/config/rep/namespace" \
+        -H "Content-Type: application/json" \
+        -b "$COOKIE_FILE")
+
+    # Extrair form_build_id e form_token
+    form_build_id=$(echo "$form_page" | grep -oP '(?<=name="form_build_id" value=")[^"]+')
+    form_token=$(echo "$form_page" | grep -oP '(?<=name="form_token" value=")[^"]+')
+
+    # Verificar se os tokens foram obtidos com sucesso
+    if [[ -z "$form_build_id" || -z "$form_token" ]]; then
+        echo "Erro ao obter tokens de formulário. Verifique o login e a URL."
+        exit 1
+    fi
+
+    # Realizar o POST para recarregar os triples
+    echo "Recarregando triples de todos os namespaces..."
+    response=$(curl -s -X POST "$DRUPAL_URL/admin/config/rep/namespace" \
+        -H "Content-Type: application/x-www-form-urlencoded" \
+        -b "$COOKIE_FILE" \
+        --data-urlencode "reload=Reload Triples from All NameSpaces with URL" \
+        --data-urlencode "form_build_id=$form_build_id" \
+        --data-urlencode "form_token=$form_token" \
+        --data-urlencode "form_id=rep_form_namespace")
+}
+
+set_preferred_names() {
+    form_page=$(curl -s -X GET "$DRUPAL_URL/admin/config/rep/preferred" \
+        -H "Content-Type: application/json" \
+        -b "$COOKIE_FILE")
+
+    # Extrair form_build_id e form_token
+    form_build_id=$(echo "$form_page" | grep -oP '(?<=name="form_build_id" value=")[^"]+')
+    form_token=$(echo "$form_page" | grep -oP '(?<=name="form_token" value=")[^"]+')
+
+    # Verificar se os tokens foram obtidos com sucesso
+    if [[ -z "$form_build_id" || -z "$form_token" ]]; then
+        echo "Erro ao obter tokens de formulário. Verifique o login e a URL."
+        exit 1
+    fi
+
+    response=$(curl -s -X POST "$DRUPAL_URL/admin/config/rep/preferred" \
+        -H "Content-Type: application/x-www-form-urlencoded" \
+        -b "$COOKIE_FILE" \
+        --data-urlencode "preferred_instrument=Instrument" \
+        --data-urlencode "preferred_detector=Detector" \
+        --data-urlencode "back=Back to rep Settings" \
+        --data-urlencode "form_build_id=$form_build_id" \
+        --data-urlencode "form_token=$form_token" \
+        --data-urlencode "form_id=rep_form_preferred_names")
+
+}
+
 
 
 drupal_login       
 add_key
-config_drupal_api           
+config_drupal_api
+reload_triples
+set_preferred_names
