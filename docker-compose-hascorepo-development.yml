@@ -67,8 +67,9 @@ services:
           - fuseki-yasgui
 
   hascoapi:
-    image: graxiom/hascoapi-development:hascoapi_docker
-    container_name: hascoapi
+    build:
+        context: .
+        dockerfile: Dockerfile-hascoapi-development
     tty: true
     ports:
       - "9000:9000"
@@ -76,6 +77,7 @@ services:
       JAVA_OPTS: "-Xms128m -Xmx12g"
     volumes:
       - /var/log/hascoapi:/hascoapi/logs
+      - /tmp/sbt:/hascoapi/target
     depends_on:
       - fuseki
     networks:

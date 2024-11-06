@@ -52,6 +52,10 @@ RUN cp web/sites/default/default.settings.php web/sites/default/settings.php && 
     chmod 644 web/sites/default/settings.php && \
     chmod 644 web/sites/default/services.yml && \
     chown -R www-data:www-data web/sites/default
+
+RUN mkdir -p /opt/drupal/web/sites/default/files && \
+    chmod 755 /opt/drupal/web/sites/default/files && \
+    chown -R www-data:www-data /opt/drupal/web/sites/default/files
     
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["apache2-foreground"]
