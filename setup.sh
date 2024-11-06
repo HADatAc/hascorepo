@@ -6,7 +6,7 @@ ADMIN_USER="admin"
 ADMIN_PASS="admin"
 COOKIE_FILE="/tmp/drupal_cookie.txt"
 JWT_KEY_VALUE="qwertyuiopasdfghjklzxcvbnm123456"
-API_BASE_URL="http://hascoapi:9000"  
+API_BASE_URL="http://hascoapi:9000"
 
 drupal_login() {
     echo "Logging in to Drupal..."
@@ -131,10 +131,14 @@ set_preferred_names() {
 
 }
 
-
-
 drupal_login       
 add_key
 config_drupal_api
 reload_triples
 set_preferred_names
+
+echo "Cleaning cache..."
+docker exec drupal drush cr
+
+echo "Setup completed successfully."
+exit 0
