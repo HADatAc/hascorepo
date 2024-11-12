@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  backup:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backup_service
+    volumes:
+      - backup_storage:/backups
+    networks:
+      - hascorepo
+    restart: always
+
+volumes:
+  backup_storage:
+
+networks:
+  hascorepo:
+    external: true
