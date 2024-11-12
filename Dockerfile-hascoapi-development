@@ -1,22 +1,15 @@
-# Usar a imagem base do Scala e SBT
 FROM sbtscala/scala-sbt:eclipse-temurin-11.0.16_1.7.2_2.12.17
 
-# Definir o diretório de trabalho
 WORKDIR /hascoapi
 
-# Clonar o repositório específico do projeto
 RUN git clone --branch hascoapi_docker https://github.com/HADatAc/hascoapi.git .
 
-# Instalar tmux
 RUN apt-get update && \
     apt-get install -y tmux && \
     rm -rf /var/lib/apt/lists/*
 
-# Atualizar dependências do SBT
 RUN sbt update
 
-# Expor a porta necessária
 EXPOSE 9000
 
-# Iniciar o serviço sbt em uma sessão tmux acessível
 CMD ["tmux", "new-session", "-s", "hascoapi", "sbt run"]
