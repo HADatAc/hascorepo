@@ -40,6 +40,11 @@ jobs:
       - name: Download Selenium standalone jar
         run: |
           curl -L -o selenium-server.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-server/4.26.0/selenium-server-4.26.0.jar
+          
+      - name: Download JUnit 5
+        run: |
+          mkdir -p junit5
+          curl -L -o junit5/junit-platform-console-standalone-1.8.2.jar https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.8.2/junit-platform-console-standalone-1.8.2.jar
 
       - name: Compile UnitTest.java
         run: |
