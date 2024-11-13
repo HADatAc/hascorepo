@@ -1,0 +1,112 @@
+version: '3'
+
+services:
+  db:
+    image: uselagoon/mariadb-10.6-drupal:22.2.0
+    container_name: drupal_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: drupal
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      hascorepo:
+        aliases:
+          - db
+
+  drupal:
+    build:
+      context: ./hascogui
+      dockerfile: Dockerfile-development
+    container_name: drupal
+    ports:
+      - "8081:8081"
+    volumes:
+      - drupal-data:/opt/drupal/web
+    environment:
+      DB_HOST: db
+      DB_NAME: drupal
+      DB_USER: drupal
+      DB_PASS: drupal
+      DOCKER_COMPOSE_FILE: docker-compose-hascorepo-development.yml
+    depends_on:
+      - db
+    networks:
+      hascorepo:
+        aliases:
+          - drupal
+    command: ["apache2-foreground"]
+
+  fuseki:
+    image: graxiom/hascoapi-fuseki:latest
+    container_name: hascoapi_fuseki
+    ports:
+      - "3030:3030"
+    volumes:
+      - hascoapi-fuseki-data:/fuseki/databases
+    networks:
+      hascorepo:
+        aliases:
+          - fuseki
+    restart: always
+
+  fuseki-yasgui:
+    image: graxiom/hascoapi-fuseki-yasgui:latest
+    container_name: hascoapi_fuseki_yasgui
+    ports:
+      - "8888:8888"
+    environment:
+      DEFAULT_SPARQL_ENDPOINT: "http://fuseki:3030/dataset/sparql"
+    depends_on:
+      - fuseki
+    networks:
+      hascorepo:
+        aliases:
+          - fuseki-yasgui
+
+  hascoapi:
+    build:
+        context: .
+        dockerfile: Dockerfile-hascoapi-development
+    stdin_open: true    
+    tty: true
+    ports:
+      - "9000:9000"
+    environment:
+      JAVA_OPTS: "-Xms128m -Xmx12g"
+    volumes:
+      - /var/log/hascoapi:/hascoapi/logs
+      - /tmp/sbt:/hascoapi/target
+    depends_on:
+      - fuseki
+    networks:
+      hascorepo:
+        aliases:
+          - hascoapi
+    restart: always
+    
+  setup:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: setup
+    tty: true
+    depends_on:
+      - drupal
+      - hascoapi
+    networks:
+      hascorepo:
+        aliases:
+          - setup
+    restart: on-failure
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+volumes:
+  drupal-data:
+  db-data:
+  hascoapi-fuseki-data:
+
+networks:
+  hascorepo:

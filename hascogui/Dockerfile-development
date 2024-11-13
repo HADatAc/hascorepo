@@ -1,0 +1,73 @@
+FROM drupal:10.3.0-php8.3
+# Installation of basic dependencies
+RUN apt-get update && \
+    apt-get install -y curl netcat-openbsd git unzip mariadb-client\
+            dos2unix && \
+    rm -rf /var/lib/apt/lists/*
+# Installation of Composer
+RUN curl -sS https://getcomposer.org/installer | \
+    php -- --install-dir=/usr/local/bin --filename=composer
+# Set the working directory to /opt/drupal
+WORKDIR /opt/drupal
+# Remove all content from the folder, including hidden files and directories
+RUN rm -rf /opt/drupal.* /opt/drupal* || true
+# Create the Drupal project in the main directory
+RUN composer create-project drupal/recommended-project:^10 . \
+    --no-interaction
+# Adjust permissions of the Drupal directory
+RUN find /opt/drupal -type d \
+    -exec 'chmod 755 {} && chown www-data:www-data {}' \;
+RUN find /opt/drupal -type f \
+    -exec 'chmod 644 {} && chown www-data:www-data {}' \;
+RUN a2enmod rewrite
+# Install Drush compatible with Drupal 10 (using version 11.x)
+RUN composer global require drush/drush:^11 --prefer-dist --no-progress --no-scripts --with-all-dependencies && \
+    ln -s ~/.composer/vendor/bin/drush /usr/local/bin/drush
+
+RUN mkdir -p /opt/drupal/web/themes/custom/bootstrap_barrio && \
+    git clone --branch 5.5.x https://git.drupalcode.org/project/bootstrap_barrio.git /opt/drupal/web/themes/custom/bootstrap_barrio
+
+
+# Clonar o tema `hasco_barrio`
+RUN mkdir -p /opt/drupal/web/themes/custom/hasco_barrio && \
+    git clone --branch DEVELOPMENT_V0.8 https://github.com/HADatAc/hasco_barrio.git /opt/drupal/web/themes/custom/hasco_barrio
+
+# Instalar os módulos adicionais com o Composer
+RUN composer require drupal/color drupal/key drupal/devel --prefer-dist --no-interaction --update-with-dependencies
+
+# Clonar módulos específicos a partir do branch `DEVELOPMENT_V0.8`
+RUN mkdir -p /opt/drupal/web/modules/custom
+RUN git clone --branch DEVELOPMENT_V0.8 https://github.com/HADatAc/rep.git /opt/drupal/web/modules/custom/rep
+RUN git clone --branch DEVELOPMENT_V0.8 https://github.com/HADatAc/sir.git /opt/drupal/web/modules/custom/sir
+RUN git clone --branch DEVELOPMENT_V0.8 https://github.com/HADatAc/std.git /opt/drupal/web/modules/custom/std
+RUN git clone --branch DEVELOPMENT_V0.8 https://github.com/HADatAc/sem.git /opt/drupal/web/modules/custom/sem
+RUN git clone --branch DEVELOPMENT_V0.8 https://github.com/HADatAc/dpl.git /opt/drupal/web/modules/custom/dpl
+# Adjust the .htaccess file
+RUN if [ ! -f /opt/drupal/web/.htaccess ]; then \
+        cp /opt/drupal/web/example.htaccess /opt/drupal/web/.htaccess; \
+    fi && \
+    chmod 644 /opt/drupal/web/.htaccess && \
+    chown www-data:www-data /opt/drupal/web/.htaccess
+    
+# Copy the entrypoint-development script
+COPY entrypoint-development.sh /usr/local/bin/entrypoint-development.sh
+RUN dos2unix /usr/local/bin/entrypoint-development.sh
+RUN chmod +x /usr/local/bin/entrypoint-development.sh
+
+RUN chmod 644 /opt/drupal/web/sites/default/default.settings.php && \
+    chmod 644 /opt/drupal/web/sites/default/default.services.yml && \
+    chown www-data:www-data /opt/drupal/web/sites/default/default.settings.php && \
+    chown www-data:www-data /opt/drupal/web/sites/default/default.services.yml
+    
+RUN cp web/sites/default/default.settings.php web/sites/default/settings.php && \
+    cp web/sites/default/default.services.yml web/sites/default/services.yml && \
+    chmod 644 web/sites/default/settings.php && \
+    chmod 644 web/sites/default/services.yml && \
+    chown -R www-data:www-data web/sites/default
+
+RUN mkdir -p /opt/drupal/web/sites/default/files && \
+    chmod 755 /opt/drupal/web/sites/default/files && \
+    chown -R www-data:www-data /opt/drupal/web/sites/default/files
+
+ENTRYPOINT ["/usr/local/bin/entrypoint-development.sh"]
+CMD ["apache2-foreground"]

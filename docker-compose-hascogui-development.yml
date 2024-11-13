@@ -3,8 +3,8 @@ version: '3'
 services:
   drupal:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ./hascogui
+      dockerfile: Dockerfile-development
     container_name: drupal
     ports:
       - "8081:8081"
@@ -15,6 +15,8 @@ services:
       DB_NAME: drupal
       DB_USER: drupal
       DB_PASS: drupal
+      DOCKER_COMPOSE_FILE: docker-compose-hascogui-development.yml
+
     depends_on:
       - db
     networks:

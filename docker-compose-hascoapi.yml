@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+
+    fuseki:
+    image: graxiom/hascoapi-fuseki:latest
+    container_name: hascoapi_fuseki
+    ports:
+      - "3030:3030"
+    volumes:
+      - hascoapi-fuseki-data:/fuseki/databases
+    networks:
+      hascorepo:
+        aliases:
+          - fuseki
+    restart: always
+
+    fuseki-yasgui:
+        image: graxiom/hascoapi-fuseki-yasgui:latest
+        container_name: hascoapi_fuseki_yasgui
+        ports:
+        - "8888:8888"
+        environment:
+        DEFAULT_SPARQL_ENDPOINT: "http://fuseki:3030/dataset/sparql"
+        depends_on:
+        - fuseki
+        networks:
+        hascorepo:
+            aliases:
+            - fuseki-yasgui
+
+    hascoapi:
+        image: graxiom/hascoapi:hascoapi_docker
+        container_name: hascoapi
+        tty: true
+        ports:
+        - "9000:9000"
+        environment:
+        JAVA_OPTS: "-Xms128m -Xmx12g"
+        volumes:
+        - /var/log/hascoapi:/hascoapi/logs
+        depends_on:
+        - fuseki
+        networks:
+        hascorepo:
+            aliases:
+            - hascoapi
+        restart: always
+
+volumes:
+    hascoapi-fuseki-data:
+
+networks:
+    hascoapi:
