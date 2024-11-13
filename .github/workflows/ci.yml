@@ -43,8 +43,8 @@ jobs:
 
       - name: Compile UnitTest.java
         run: |
-          javac -cp ".:selenium-java-4.26.0/*:/usr/share/maven-repo/junit/junit/4.13.2/junit-4.13.2.jar" UnitTest.java
+          javac -cp ".:tests/selenium-java-4.26.0/*:/usr/share/maven-repo/junit/junit/4.13.2/junit-4.13.2.jar" tests/UnitTest.java
 
       - name: Run UnitTest
         run: |
-          java -cp ".:selenium-java-4.26.0/*:/usr/share/maven-repo/junit/junit-4.13.2/junit-4.13.2.jar" org.junit.runner.JUnitCore UnitTest
+          java -cp ".:tests/selenium-java-4.26.0/*:/usr/share/maven-repo/junit/junit-4.13.2/junit-4.13.2.jar" org.junit.runner.JUnitCore tests.UnitTest
