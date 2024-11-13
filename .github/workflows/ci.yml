@@ -29,7 +29,7 @@ jobs:
 
       - name: Download and Install ChromeDriver
         run: |
-          DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE")
+          DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_130")
           DRIVER_URL="https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip"
           
           curl -L -o chromedriver.zip "$DRIVER_URL"
