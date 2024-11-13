@@ -17,13 +17,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
 
 public class UnitTest {
-    private WebDriverManager driver;
+    private DriverManager driver;
 
     @Before
     public void setUp() {
-        WebDriverManager.chromedriver().setup();
 
-        // Configura as opções do Chrome
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
         options.addArguments("--no-sandbox");
