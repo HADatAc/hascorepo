@@ -17,7 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
 
 public class UnitTest {
-    private WebDriver driver;
+    private WebDriverManager driver;
 
     @Before
     public void setUp() {
