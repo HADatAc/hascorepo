@@ -30,13 +30,15 @@ jobs:
       - name: Download and Install ChromeDriver
         run: |
           DRIVER_URL="https://storage.googleapis.com/chrome-for-testing-public/131.0.6778.69/linux64/chromedriver-linux64.zip"
-          
+    
           curl -L -o chromedriver.zip "$DRIVER_URL"
           
           unzip chromedriver.zip -d /usr/local/bin/
           rm chromedriver.zip
-          chmod +x /usr/local/bin/chromedriver
 
+          mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
+          chmod +x /usr/local/bin/chromedriver
+          
       - name: Download Selenium standalone jar
         run: |
           curl -L -o selenium-server.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-server/4.26.0/selenium-server-4.26.0.jar
