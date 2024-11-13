@@ -29,12 +29,12 @@ jobs:
 
       - name: Download and Install ChromeDriver
         run: |
-          # Obtém a versão mais recente do ChromeDriver usando a nova URL
           CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
-          DRIVER_URL="https://googlechromelabs.github.io/chrome-for-testing/"
-          DRIVER_LATEST_URL="${DRIVER_URL}${CHROME_VERSION}/linux64/chromedriver-linux64.zip"
+
+          DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+          DRIVER_URL="https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip"
           
-          curl -L -o chromedriver.zip "$DRIVER_LATEST_URL"
+          curl -L -o chromedriver.zip "$DRIVER_URL"
           unzip chromedriver.zip -d /usr/local/bin/
           rm chromedriver.zip
           chmod +x /usr/local/bin/chromedriver
