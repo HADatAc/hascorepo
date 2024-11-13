@@ -21,14 +21,19 @@ public class UnitTest {
 
     @Before
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+        WebDriverManager.chromedriver().setup();
+
+        // Configura as opções do Chrome
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-gpu");
-        options.addArguments("--window-size=1920,1080");
-        this.driver = new ChromeDriver(options);
+
+        // Inicializa o ChromeDriver com as opções
+        ChromeDriver driver = new ChromeDriver(options);
+
     }
 
     public void authenticate() {
