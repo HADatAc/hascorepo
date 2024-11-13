@@ -27,13 +27,17 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
 
-      - name: Install ChromeDriver
+      - name: Download and Install ChromeDriver
         run: |
-          CHROME_VERSION=$(google-chrome-stable --version | grep -oP '\d+\.\d+\.\d+') 
-          DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
-          curl -L -o chromedriver.zip "https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip"
+          # Obtém a versão mais recente do ChromeDriver usando a nova URL
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+          DRIVER_URL="https://googlechromelabs.github.io/chrome-for-testing/"
+          DRIVER_LATEST_URL="${DRIVER_URL}${CHROME_VERSION}/linux64/chromedriver-linux64.zip"
+          
+          curl -L -o chromedriver.zip "$DRIVER_LATEST_URL"
           unzip chromedriver.zip -d /usr/local/bin/
           rm chromedriver.zip
+          chmod +x /usr/local/bin/chromedriver
 
       - name: Download Selenium Java bindings
         run: |
