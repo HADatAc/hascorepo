@@ -25,7 +25,9 @@ jobs:
       - name: Install Chrome
         run: |
           sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
+          sudo apt-get install -y wget
+          wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_131.0.6778.69-1_amd64.deb
+          sudo apt install -y ./google-chrome-stable_131.0.6778.69-1_amd64.deb
 
       - name: Download and Install ChromeDriver
         run: |
@@ -38,7 +40,7 @@ jobs:
 
           mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
           chmod +x /usr/local/bin/chromedriver
-          
+
       - name: Download Selenium standalone jar
         run: |
           curl -L -o selenium-server.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-server/4.26.0/selenium-server-4.26.0.jar
