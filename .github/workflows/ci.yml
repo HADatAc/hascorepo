@@ -29,10 +29,10 @@ jobs:
 
       - name: Download and Install ChromeDriver
         run: |
-          DRIVER_VERSION="130.0.0"
-          DRIVER_URL="https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip"
+          DRIVER_URL="https://storage.googleapis.com/chrome-for-testing-public/131.0.6778.69/linux64/chromedriver-linux64.zip"
           
           curl -L -o chromedriver.zip "$DRIVER_URL"
+          
           unzip chromedriver.zip -d /usr/local/bin/
           rm chromedriver.zip
           chmod +x /usr/local/bin/chromedriver
