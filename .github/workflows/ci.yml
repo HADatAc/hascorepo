@@ -1,0 +1,43 @@
+name: Run Selenium Tests
+
+on:
+  push:
+    branches:
+      - gitflow
+  pull_request:
+    branches:
+      - gitflow
+jobs:
+  run-selenium-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Install ChromeDriver
+        uses: actions/setup-chromedriver@v2
+
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      - name: Download Selenium Java bindings
+        run: |
+          mkdir selenium-java-4.26.0
+          curl -L -o selenium-java-4.26.0.zip https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-java/4.26.0/selenium-java-4.26.0.zip
+          unzip selenium-java-4.26.0.zip -d selenium-java-4.26.0
+
+      - name: Compile UnitTest.java
+        run: |
+          javac -cp ".:selenium-java-4.26.0/*:/usr/share/maven-repo/junit/junit/4.13.2/junit-4.13.2.jar" UnitTest.java
+
+      - name: Run UnitTest
+        run: |
+          java -cp ".:selenium-java-4.26.0/*:/usr/share/maven-repo/junit/junit/4.13.2/junit-4.13.2.jar" org.junit.runner.JUnitCore UnitTest
