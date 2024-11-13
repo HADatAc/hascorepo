@@ -1,5 +1,3 @@
-package tests;
-
 import java.time.Duration;
 import org.junit.After;
 import org.junit.Assert;
@@ -23,7 +21,6 @@ public class UnitTest {
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--remote-allow-origins=*");

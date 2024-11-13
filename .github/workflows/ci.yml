@@ -51,6 +51,9 @@ jobs:
         run: |
           javac -cp ".:tests/selenium-java-4.26.0/*:junit4/junit-4.13.2.jar:junit4/hamcrest-core-1.3.jar" tests/UnitTest.java
 
+      - name: List compiled classes
+        run: ls -R tests
+
       - name: Run UnitTest
         run: |
-          java -cp ".:tests/selenium-java-4.26.0/*:junit4/junit-4.13.2.jar:junit4/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore tests.UnitTest
+          java -cp ".:tests:tests/selenium-java-4.26.0/*:junit4/junit-4.13.2.jar:junit4/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore tests.UnitTest
