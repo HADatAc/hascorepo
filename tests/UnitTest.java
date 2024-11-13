@@ -17,21 +17,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
 
 public class UnitTest {
-    private DriverManager driver;
+    private WebDriver driver;
 
     @Before
     public void setUp() {
-
+        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-gpu");
-
-        // Inicializa o ChromeDriver com as opções
-        ChromeDriver driver = new ChromeDriver(options);
-
+        this.driver = new ChromeDriver(options);
     }
 
     public void authenticate() {
