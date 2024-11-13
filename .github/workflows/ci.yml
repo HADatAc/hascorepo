@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - gitflow
+
 jobs:
   run-selenium-tests:
     runs-on: ubuntu-latest
@@ -20,13 +21,18 @@ jobs:
         with:
           java-version: '11'
 
-      - name: Install ChromeDriver
-        uses: actions/setup-chromedriver@v2
-
       - name: Install Chrome
         run: |
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
+
+      - name: Install ChromeDriver
+        run: |
+          CHROME_VERSION=$(google-chrome-stable --version | grep -oP '\d+\.\d+\.\d+') 
+          DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+          curl -L -o chromedriver.zip "https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip"
+          unzip chromedriver.zip -d /usr/local/bin/
+          rm chromedriver.zip
 
       - name: Download Selenium Java bindings
         run: |
@@ -40,4 +46,4 @@ jobs:
 
       - name: Run UnitTest
         run: |
-          java -cp ".:selenium-java-4.26.0/*:/usr/share/maven-repo/junit/junit/4.13.2/junit-4.13.2.jar" org.junit.runner.JUnitCore UnitTest
+          java -cp ".:selenium-java-4.26.0/*:/usr/share/maven-repo/junit/junit-4.13.2/junit-4.13.2.jar" org.junit.runner.JUnitCore UnitTest
