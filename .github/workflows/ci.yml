@@ -37,11 +37,9 @@ jobs:
           rm chromedriver.zip
           chmod +x /usr/local/bin/chromedriver
 
-      - name: Download Selenium Java bindings
+      - name: Download Selenium standalone jar
         run: |
-          mkdir selenium-java-4.26.0
-          curl -L -o selenium-java-4.26.0.zip https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-java/4.26.0/selenium-java-4.26.0.zip
-          unzip selenium-java-4.26.0.zip -d selenium-java-4.26.0
+          curl -L -o selenium-server.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-server/4.26.0/selenium-server-4.26.0.jar
 
       - name: Compile UnitTest.java
         run: |
