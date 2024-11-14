@@ -22,14 +22,6 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-      - name: Stop hascorepo environment
-        run: |
-          docker-compose -f docker-compose-hascorepo-development.yml down -v
-
-      - name: Start hascorepo environment
-        run: |
-          docker-compose -f docker-compose-hascorepo-development.yml up --build -d
-
       - name: Install Chrome
         run: |
           sudo apt-get update
@@ -81,8 +73,3 @@ jobs:
       - name: Run UnitTest
         run: |
           java -cp ".:tests:tests/selenium-java-4.26.0/*:junit4/junit-4.13.2.jar:junit4/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore tests.UnitTest
-
-      - name: Stop hascorepo environment after tests
-        if: always()
-        run: |
-          docker-compose -f docker-compose-hascorepo-development.yml down -v
