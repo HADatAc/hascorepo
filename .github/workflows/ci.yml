@@ -51,6 +51,14 @@ jobs:
           curl -L -o junit4/junit-4.13.2.jar https://repo1.maven.org/maven2/junit/junit/4.13.2/junit-4.13.2.jar
           curl -L -o junit4/hamcrest-core-1.3.jar https://repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
 
+      - name: Install Xvfb
+        run: sudo apt-get install -y xvfb
+
+      - name: Start Xvfb
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 &
+          export DISPLAY=:99
+
       - name: Compile UnitTest.java
         run: |
           javac -cp ".:tests/selenium-java-4.26.0/*:junit4/junit-4.13.2.jar:junit4/hamcrest-core-1.3.jar" tests/UnitTest.java
