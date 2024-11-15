@@ -64,7 +64,7 @@ public class UnitTest {
             WebElement subOption = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@title='Manage SDD Templates' and text()='Manage SDD Templates']")));
             subOption.click();
 
-            wait.until(ExpectedConditions.urlContains("/rep/select/mt/sdd/table/1/9/none"));
+            wait.until(ExpectedConditions.urlContains("/rep/select/mt/sdd/table/1/10/none"));
             WebElement deleteButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("edit-delete-selected-element")));
 
             JavascriptExecutor js = (JavascriptExecutor) driver;
