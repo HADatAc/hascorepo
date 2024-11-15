@@ -17,4 +17,4 @@ volumes:
 
 networks:
   hascorepo:
-    external: true
+    driver: bridge
