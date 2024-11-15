@@ -35,12 +35,14 @@ jobs:
     
           curl -L -o chromedriver.zip "$DRIVER_URL"
           
-          unzip chromedriver.zip -d /usr/local/bin/
+          mkdir -p $HOME/chromedriver
+          unzip chromedriver.zip -d $HOME/chromedriver/
           rm chromedriver.zip
 
-          mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
-          chmod +x /usr/local/bin/chromedriver
+          mv $HOME/chromedriver/chromedriver-linux64/chromedriver $HOME/chromedriver/chromedriver
+          chmod +x $HOME/chromedriver/chromedriver
 
+          echo "$HOME/chromedriver" >> $GITHUB_PATH
       - name: Download Selenium standalone jar
         run: |
           curl -L -o selenium-server.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-server/latest/selenium-server-latest.jar
