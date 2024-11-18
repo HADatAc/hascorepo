@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - gitflow
-  pull_request:
-    branches:
-      - gitflow
 
 jobs:
   run-selenium-tests:
