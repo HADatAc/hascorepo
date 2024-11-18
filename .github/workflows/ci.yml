@@ -91,110 +91,16 @@ jobs:
               issue_number: context.payload.pull_request.number,
               body: message
             });
-      name: Run Selenium Tests
-
-on:
-  push:
-    branches:
-      - gitflow
-  pull_request:
-    branches:
-      - gitflow
-
-jobs:
-  run-selenium-tests:
-    runs-on: self-hosted
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Java
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'temurin'
-
-      - name: Install Chrome
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wget
-          wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_131.0.6778.69-1_amd64.deb
-          sudo apt install -y ./google-chrome-stable_131.0.6778.69-1_amd64.deb
-
-      - name: Download and Install ChromeDriver
-        run: |
-          DRIVER_URL="https://storage.googleapis.com/chrome-for-testing-public/131.0.6778.69/linux64/chromedriver-linux64.zip"
-    
-          curl -L -o chromedriver.zip "$DRIVER_URL"
-          
-          mkdir -p $HOME/chromedriver
-          unzip -o chromedriver.zip -d $HOME/chromedriver/
-          rm chromedriver.zip
-
-          mv $HOME/chromedriver/chromedriver-linux64/chromedriver $HOME/chromedriver/chromedriver
-          chmod +x $HOME/chromedriver/chromedriver
-
-          echo "$HOME/chromedriver" >> $GITHUB_PATH
-          
-      - name: Download Selenium standalone jar
-        run: |
-          curl -L -o selenium-server.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-server/latest/selenium-server-latest.jar
-          
-      - name: Download JUnit 4.13.2
-        run: |
-          mkdir -p junit4
-          curl -L -o junit4/junit-4.13.2.jar https://repo1.maven.org/maven2/junit/junit/4.13.2/junit-4.13.2.jar
-          curl -L -o junit4/hamcrest-core-1.3.jar https://repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
-
-      - name: Install Xvfb
-        run: sudo apt-get install -y xvfb
-
-      - name: Start Xvfb
-        run: |
-          Xvfb :99 -screen 0 1920x1080x24 &
-          export DISPLAY=:99
-
-      - name: Compile UnitTest.java
-        run: |
-          javac -cp ".:tests/selenium-java-4.26.0/*:junit4/junit-4.13.2.jar:junit4/hamcrest-core-1.3.jar" tests/UnitTest.java
-      
-      - name: Wait for hascogui to be ready
-        run: |
-          until curl -s http://localhost:8081/ > /dev/null; do
-            echo "Waiting for hascogui environment to start..."
-            sleep 5
-          done
-
-      - name: Run UnitTest
-        run: |
-          java -cp ".:tests:tests/selenium-java-4.26.0/*:junit4/junit-4.13.2.jar:junit4/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore tests.UnitTest
-
-      - name: Notify on failure
-        if: failure()
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const prAuthor = context.payload.pull_request.user.login;
-            const message = `❌ The tests have failed! @${prAuthor}, please check the logs and fix the problems before merging.`;
-
-            github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-              body: message
-            });
-
       - name: Notify via Slack on failure
         if: failure()
         run: |
             curl -X POST -H 'Content-type: application/json' \
-            --data '{"text":"❌ The tests for the PR #${{ github.event.pull_request.number }} have failed. Autor: @${{ github.event.pull_request.user.login }}. Check the details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}' \
+            --data '{"text":"❌ The tests for the PR #${{ github.event.pull_request.number }} have failed. Author: @${{ github.event.pull_request.user.login }}. Check the details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}' \
             ${{ secrets.SLACK_WEBHOOK_URL }}
 
-      - name: Notify Slack on Success
+      - name: Notify Slack on success
         if: success()
         run: |
           curl -X POST -H 'Content-type: application/json' \
-          --data '{"text":"✅ The tests for the PR #${{ github.event.pull_request.number }} have passed! Autor: @${{ github.event.pull_request.user.login }}. Check the details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}' \
-          ${{ secrets.SLACK_WEBHOOK_URL }}               
+          --data '{"text":"✅ The tests for the PR #${{ github.event.pull_request.number }} have passed! Author: @${{ github.event.pull_request.user.login }}. Check the details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}' \
+          ${{ secrets.SLACK_WEBHOOK_URL }}        
