@@ -90,4 +90,17 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.payload.pull_request.number,
               body: message
-            });    
+            });
+      - name: Notify via Slack on failure
+        if: failure()
+        run: |
+            curl -X POST -H 'Content-type: application/json' \
+            --data '{"text":"❌ The tests for the PR #${{ github.event.pull_request.number }} have failed. Author: @${{ github.event.pull_request.user.login }}. Check the details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}' \
+            ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Notify Slack on success
+        if: success()
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":"✅ The tests for the PR #${{ github.event.pull_request.number }} have passed! Author: @${{ github.event.pull_request.user.login }}. Check the details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}' \
+          ${{ secrets.SLACK_WEBHOOK_URL }}        
