@@ -3,9 +3,13 @@ name: Run Selenium Tests
 on:
   push:
     branches:
+      - main
+      - DEVELOPMENT_V0.8
       - gitflow
   pull_request:
     branches:
+      - main
+      - DEVELOPMENT_V0.8
       - gitflow
 
 jobs:
