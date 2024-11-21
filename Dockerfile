@@ -20,6 +20,7 @@ RUN composer global require drush/drush:^11 --prefer-dist --no-progress --no-scr
 WORKDIR /opt/setup
 
 COPY setup.sh .
+
 RUN chmod +x setup.sh
 RUN dos2unix setup.sh
 CMD ["./setup.sh"]
