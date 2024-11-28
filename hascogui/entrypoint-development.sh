@@ -72,6 +72,14 @@ sed -i "s/\$databases = \[\];/\$databases['default']['default'] = array( \
   'prefix' => '', \
 );/" $DRUPAL_ROOT/web/sites/default/settings.php
 
+# Configure the private file path in settings.php
+if grep -q "# \$settings\['file_private_path'\] = '';" $DRUPAL_ROOT/web/sites/default/settings.php; then
+    sed -i "s|# \$settings\['file_private_path'\] = '';|\$settings['file_private_path'] = 'sites/default/hascorepo/';|" $DRUPAL_ROOT/web/sites/default/settings.php
+    echo "Private file path configured in settings.php"
+else
+    echo "Private file path setting not found or already configured in settings.php"
+fi
+
 # Check if the Drupal site is already installed
 if ! $DRUSH_COMMAND status bootstrap | grep -q 'Successful'; then
     echo "Installing Drupal site..."
