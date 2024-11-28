@@ -103,6 +103,23 @@ services:
     restart: on-failure
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
+  tests:
+    build:
+      context: .
+      dockerfile: ./hascogui/Dockerfile-tests
+    container_name: drupal_tests
+    depends_on:
+      - drupal
+    networks:
+      hascorepo:
+        aliases:
+          - tests
+    environment:
+      DISPLAY: ":99"
+      TEST_ENV: "docker"
+    stdin_open: true
+    tty: true
 volumes:
   drupal-data:
   db-data:

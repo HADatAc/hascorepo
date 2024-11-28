@@ -1,7 +1,8 @@
 FROM php:8.3-cli
 
 RUN apt-get update && \
-    apt-get install -y curl git && \
+    apt-get install -y curl git \
+    dos2unix && \
     rm -rf /var/lib/apt/lists/*
 
 RUN curl -sS https://getcomposer.org/installer | \
@@ -21,5 +22,7 @@ WORKDIR /opt/setup
 COPY setup.sh .
 
 RUN chmod +x setup.sh
+
+RUN dos2unix setup.sh
 
 CMD ["./setup.sh"]
