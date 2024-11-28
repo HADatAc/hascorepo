@@ -6,7 +6,9 @@ on:
       - main
       - DEVELOPMENT_V0.8
       - gitflow
-
+  push:
+    branches:
+      - development_tests
 jobs:
   run-selenium-tests:
     runs-on: self-hosted

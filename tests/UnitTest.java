@@ -18,6 +18,7 @@ import org.openqa.selenium.JavascriptExecutor;
 
 public class UnitTest {
     private WebDriver driver;
+    private String baseUrl;
 
     @Before
     public void setUp() {
@@ -29,11 +30,18 @@ public class UnitTest {
         options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
         this.driver = new ChromeDriver(options);
+
+        String testEnv = System.getenv("TEST_ENV");
+        if ("docker".equalsIgnoreCase(testEnv)) {
+            this.baseUrl = "http://drupal:8081/";
+        } else {
+            this.baseUrl = "http://localhost:8081/";
+        }
     }
 
     public void authenticate() {
         try {
-            driver.get("http://localhost:8081/");
+            driver.get(this.baseUrl);
             WebElement loginLink = driver.findElement(By.cssSelector("a.nav-link.nav-link--user-login"));
             loginLink.click();
     
@@ -64,7 +72,7 @@ public class UnitTest {
             WebElement subOption = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@title='Manage SDD Templates' and text()='Manage SDD Templates']")));
             subOption.click();
 
-            wait.until(ExpectedConditions.urlContains("/rep/select/mt/sdd/table/1/9/none"));
+            wait.until(ExpectedConditions.urlContains("/rep/select/mt/sdd/table/1/10/none"));
             WebElement deleteButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("edit-delete-selected-element")));
 
             JavascriptExecutor js = (JavascriptExecutor) driver;
