@@ -28,8 +28,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y wget
           wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_131.0.6778.69-1_amd64.deb
-          sudo apt install -y ./google-chrome-stable_131.0.6778.69-1_amd64.deb
-
+          sudo apt install -y --allow-downgrades ./google-chrome-stable_131.0.6778.69-1_amd64.deb
+        
       - name: Download and Install ChromeDriver
         run: |
           DRIVER_URL="https://storage.googleapis.com/chrome-for-testing-public/131.0.6778.69/linux64/chromedriver-linux64.zip"
