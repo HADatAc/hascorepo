@@ -22,5 +22,7 @@ WORKDIR /opt/setup
 COPY setup.sh .
 
 RUN chmod +x setup.sh
+
 RUN dos2unix setup.sh
+
 CMD ["./setup.sh"]
