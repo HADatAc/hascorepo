@@ -5,11 +5,11 @@ WORKDIR /hascoapi
 RUN git clone --branch hascoapi_docker https://github.com/HADatAc/hascoapi.git .
 
 RUN apt-get update && \
-    apt-get install -y tmux && \
+    apt-get install -y tmux nano && \
     rm -rf /var/lib/apt/lists/*
 
 RUN sbt update
 
-EXPOSE 9000
+EXPOSE 9001
 
 CMD ["tmux", "new-session", "-s", "hascoapi", "sbt run"]

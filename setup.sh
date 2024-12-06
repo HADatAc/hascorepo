@@ -6,7 +6,7 @@ ADMIN_USER="admin"
 ADMIN_PASS="admin"
 COOKIE_FILE="/tmp/drupal_cookie.txt"
 JWT_KEY_VALUE="qwertyuiopasdfghjklzxcvbnm123456"
-API_BASE_URL="http://hascoapi:9000"
+API_BASE_URL="http://hascoapi:9001"
 
 drupal_login() {
     echo "Logging in to Drupal..."
@@ -76,7 +76,7 @@ config_drupal_api() {
         --data-urlencode "repository_domain_url=https://cienciapt.org" \
         --data-urlencode "repository_domain_namespace=cienciapt" \
         --data-urlencode "repository_description=cienciapt" \
-        --data-urlencode "api_url=http://172.17.0.1:9000" \
+        --data-urlencode "api_url=http://172.17.0.1:9001" \
         --data-urlencode "jwt_secret=jwt_key" \
         --data-urlencode "form_build_id=$form_build_id" \
         --data-urlencode "form_token=$form_token" \

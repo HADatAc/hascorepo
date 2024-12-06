@@ -73,7 +73,7 @@ services:
     stdin_open: true    
     tty: true
     ports:
-      - "9000:9000"
+      - "9001:9001"
     environment:
       JAVA_OPTS: "-Xms128m -Xmx12g"
     volumes:
