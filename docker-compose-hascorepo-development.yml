@@ -78,7 +78,6 @@ services:
       JAVA_OPTS: "-Xms128m -Xmx12g"
     volumes:
       - /var/log/hascoapi:/hascoapi/logs
-      - /tmp/sbt:/hascoapi/target
     depends_on:
       - fuseki
     networks:
