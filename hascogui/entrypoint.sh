@@ -80,6 +80,22 @@ else
     echo "Private file path setting not found or already configured in settings.php"
 fi
 
+PRIVATE_DIR="$DRUPAL_ROOT/web/sites/default/hascorepo"
+
+if [ ! -d "$PRIVATE_DIR" ]; then
+    echo "Creating directory: $PRIVATE_DIR"
+    mkdir -p "$PRIVATE_DIR"
+    echo "Directory created: $PRIVATE_DIR"
+fi
+
+# Set ownership to www-data
+chown -R www-data:www-data "$PRIVATE_DIR"
+echo "Ownership of $PRIVATE_DIR set to www-data"
+
+# Set permissions to +rwx
+chmod -R u+rwx "$PRIVATE_DIR"
+echo "Permissions of $PRIVATE_DIR set to +rwx"
+
 # Check if the Drupal site is already installed
 if ! $DRUSH_COMMAND status bootstrap | grep -q 'Successful'; then
     echo "Installing Drupal site..."
