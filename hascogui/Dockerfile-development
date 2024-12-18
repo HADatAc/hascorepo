@@ -30,18 +30,18 @@ RUN mkdir -p /opt/drupal/web/themes/custom/bootstrap_barrio && \
 
 # Clonar o tema `hasco_barrio`
 RUN mkdir -p /opt/drupal/web/themes/custom/hasco_barrio && \
-    git clone --branch DEVELOPMENT_V0.8 https://github.com/HADatAc/hasco_barrio.git /opt/drupal/web/themes/custom/hasco_barrio
+    git clone --branch DEVELOPMENT_V0.9 https://github.com/HADatAc/hasco_barrio.git /opt/drupal/web/themes/custom/hasco_barrio
 
 # Instalar os módulos adicionais com o Composer
 RUN composer require drupal/color drupal/key drupal/devel --prefer-dist --no-interaction --update-with-dependencies
 
 # Clonar módulos específicos a partir do branch `DEVELOPMENT_V0.8`
 RUN mkdir -p /opt/drupal/web/modules/custom
-RUN git clone --branch DEVELOPMENT_V0.8 https://github.com/HADatAc/rep.git /opt/drupal/web/modules/custom/rep
-RUN git clone --branch DEVELOPMENT_V0.8 https://github.com/HADatAc/sir.git /opt/drupal/web/modules/custom/sir
-RUN git clone --branch DEVELOPMENT_V0.8 https://github.com/HADatAc/std.git /opt/drupal/web/modules/custom/std
-RUN git clone --branch DEVELOPMENT_V0.8 https://github.com/HADatAc/sem.git /opt/drupal/web/modules/custom/sem
-RUN git clone --branch DEVELOPMENT_V0.8 https://github.com/HADatAc/dpl.git /opt/drupal/web/modules/custom/dpl
+RUN git clone --branch DEVELOPMENT_V0.9 https://github.com/HADatAc/rep.git /opt/drupal/web/modules/custom/rep
+RUN git clone --branch DEVELOPMENT_V0.9 https://github.com/HADatAc/sir.git /opt/drupal/web/modules/custom/sir
+RUN git clone --branch DEVELOPMENT_V0.9 https://github.com/HADatAc/std.git /opt/drupal/web/modules/custom/std
+RUN git clone --branch DEVELOPMENT_V0.9 https://github.com/HADatAc/sem.git /opt/drupal/web/modules/custom/sem
+RUN git clone --branch DEVELOPMENT_V0.9 https://github.com/HADatAc/dpl.git /opt/drupal/web/modules/custom/dpl
 # Adjust the .htaccess file
 RUN if [ ! -f /opt/drupal/web/.htaccess ]; then \
         cp /opt/drupal/web/example.htaccess /opt/drupal/web/.htaccess; \
