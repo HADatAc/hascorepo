@@ -5,6 +5,8 @@ services:
     build:
       context: ./hascogui
       dockerfile: Dockerfile-development
+      args:
+        BRANCH: ${BRANCH}
     container_name: drupal
     ports:
       - "8081:8081"
