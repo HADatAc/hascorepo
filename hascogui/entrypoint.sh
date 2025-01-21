@@ -15,11 +15,11 @@ DRUSH_COMMAND="drush --root=${DRUPAL_ROOT}"
 
 APACHE_PORT_CONF="/etc/apache2/ports.conf"
 echo "" > $APACHE_PORT_CONF
-echo "Listen 8080" >> $APACHE_PORT_CONF
+echo "Listen 80" >> $APACHE_PORT_CONF
 # Create the Apache configuration file
 APACHE_SITE_CONF="/etc/apache2/sites-available/000-default.conf"
-if ! grep -q "VirtualHost \*:8080" $APACHE_SITE_CONF; then
-  echo "<VirtualHost *:8080>
+if ! grep -q "VirtualHost \*:80" $APACHE_SITE_CONF; then
+  echo "<VirtualHost *:80>
       DocumentRoot ${DRUPAL_ROOT}/web
       <Directory ${DRUPAL_ROOT}/web>
           Options Indexes FollowSymLinks
