@@ -32,6 +32,8 @@ services:
     build:
       context: ./hascoapi
       dockerfile: Dockerfile-hascoapi-development
+      args:
+          BRANCH: ${BRANCH}
     container_name: hascoapi
     tty: true
     ports:
