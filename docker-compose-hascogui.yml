@@ -9,7 +9,7 @@ services:
         BRANCH: ${BRANCH}
     container_name: drupal
     ports:
-      - "443:443"
+      - "80:80"
     volumes:
       - drupal-data:/opt/drupal/web
     environment:
