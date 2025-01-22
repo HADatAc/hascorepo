@@ -47,7 +47,6 @@ RUN git clone --branch $BRANCH https://github.com/HADatAc/sir.git /opt/drupal/we
 RUN git clone --branch $BRANCH https://github.com/HADatAc/std.git /opt/drupal/web/modules/custom/std
 RUN git clone --branch $BRANCH https://github.com/HADatAc/sem.git /opt/drupal/web/modules/custom/sem
 RUN git clone --branch $BRANCH https://github.com/HADatAc/dpl.git /opt/drupal/web/modules/custom/dpl
-RUN git clone --branch $BRANCH https://github.com/HADatAc/pmsrgui.git /opt/drupal/web/modules/custom/pmsr_gui
 
 # Adjust the .htaccess file
 RUN if [ ! -f /opt/drupal/web/.htaccess ]; then \

@@ -31,7 +31,6 @@ RUN composer require hasco/sir --no-interaction --with-all-dependencies --update
 RUN composer require hasco/std --no-interaction --with-all-dependencies --update-with-dependencies
 RUN composer require hasco/sem --no-interaction --with-all-dependencies --update-with-dependencies
 RUN composer require hasco/dpl --no-interaction --with-all-dependencies --update-with-dependencies
-RUN composer require sagres/pmsrgui:@dev --no-interaction --with-all-dependencies --update-with-dependencies
 # Adjust the .htaccess file
 RUN if [ ! -f /opt/drupal/web/.htaccess ]; then \
         cp /opt/drupal/web/example.htaccess /opt/drupal/web/.htaccess; \
