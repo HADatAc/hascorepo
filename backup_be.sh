@@ -46,7 +46,7 @@ rm -rf $BACKUP_DIR/fuseki
 echo -e "Backup consolidado criado em: $FINAL_BACKUP_PATH"
 
 echo -n "Transferindo o backup para o Sagres... "
-scp -i ~/.ssh/graxiom_main.pem -P 22 $FINAL_BACKUP_PATH $SAGRES_HOST:./tmp
+scp -i /home/ubuntu/.ssh/graxiom_main.pem -P 22 $FINAL_BACKUP_PATH $SAGRES_HOST:./tmp
 if [ $? -ne 0 ]; then
   echo -e "\033[40G[ERRO]"
   echo "Erro: Falha ao transferir o backup para o servidor Sagres!"
@@ -55,13 +55,5 @@ fi
 echo -e "\033[40G[OK]"
 echo "Backup transferido com sucesso para a VM Sagres"
 
-echo -n "Copiando o backup para o container do Drupal na VM Sagres... "
-ssh -i ~/.ssh/graxiom_main.pem $SAGRES_HOST "docker cp /tmp/$FINAL_BACKUP_NAME drupal:/opt/drupal/web/sites/default/$NOME_SITE/$NOME_REPOSITORIO/$NOME_INSTANCIA"
-if [ $? -ne 0 ]; then
-  echo -e "\033[40G[ERRO]"
-  echo "Erro: Falha ao copiar o backup para o container do Drupal!"
-  exit 1
-fi
-echo -e "\033[40G[OK]"
 # Finalizando
 exit 0
