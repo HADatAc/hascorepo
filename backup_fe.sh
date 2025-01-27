@@ -88,7 +88,7 @@ echo -e "\033[40G[OK]"
 echo "Backup transferido com sucesso para: $SAGRES_PATH"
 
 echo -n "Copiando o backup para o container do Drupal na VM Sagres... "
-ssh -i ~/.ssh/graxiom_main.pem $SAGRES_HOST "docker cp /tmp/$FINAL_BACKUP_NAME drupal:/opt/drupal/web/sites/default/$NOME_SITE/$NOME_REPOSITORIO/$NOME_INSTANCIA"
+ssh -i home/ubuntu/.ssh/graxiom_main.pem $SAGRES_HOST "docker cp /tmp/$FINAL_BACKUP_NAME drupal:/opt/drupal/web/sites/default/$NOME_SITE/$NOME_REPOSITORIO/$NOME_INSTANCIA"
 if [ $? -ne 0 ]; then
   echo -e "\033[40G[ERRO]"
   echo "Erro: Falha ao copiar o backup para o container do Drupal!"
