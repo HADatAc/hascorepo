@@ -1,16 +1,15 @@
 #!/bin/bash
 
 BACKUP_DIR="$HOME/backups-data/FE"
-DATE=$(date -u +"%Y-%m-%d_%H-%M-%S")
-IP_ADDRESS=$(hostname -I | awk '{print $1}')
-FINAL_BACKUP_NAME="hascorepo_backup_frontend${IP_ADDRESS}_${DATE}.tar.gz"
-FINAL_BACKUP_PATH="$BACKUP_DIR/$FINAL_BACKUP_NAME"
-
-SAGRES_HOST="admin@54.247.233.88"
 NOME_SITE="CienciaPT"
 NOME_REPOSITORIO="CienciaPT"
 NOME_INSTANCIA="Development"
-SAGRES_PATH="/opt/drupal/web/sites/default/$NOME_SITE/$NOME_REPOSITORIO/$NOME_INSTANCIA"
+DATE=$(date -u +"%Y-%m-%d_%H-%M-%S")
+IP_ADDRESS=$(hostname -I | awk '{print $1}')
+FINAL_BACKUP_NAME="hascorepo_backup_frontend${NOME_SITE}_${NOME_REPOSITORIO}_${NOME_INSTANCIA}_${IP_ADDRESS}_${DATE}.tar.gz"
+FINAL_BACKUP_PATH="$BACKUP_DIR/$FINAL_BACKUP_NAME"
+
+SAGRES_HOST="admin@54.247.233.88"
 
 mkdir -p $BACKUP_DIR/drupal $BACKUP_DIR/drupal/composer $BACKUP_DIR/db
 DRUPAL_CONTAINER="drupal"
@@ -79,7 +78,7 @@ rm -rf $BACKUP_DIR/drupal $BACKUP_DIR/db
 echo -e "Backup consolidado criado em: $FINAL_BACKUP_PATH"
 
 echo -n "Transferindo o backup para o Sagres... "
-scp -P 22 $FINAL_BACKUP_PATH $SAGRES_HOST:$SAGRES_PATH
+scp -i ~/.ssh/graxiom_main.pem -P 22 $FINAL_BACKUP_PATH $SAGRES_HOST:./tmp
 if [ $? -ne 0 ]; then
   echo -e "\033[40G[ERRO]"
   echo "Erro: Falha ao transferir o backup para o servidor Sagres!"
@@ -87,6 +86,15 @@ if [ $? -ne 0 ]; then
 fi
 echo -e "\033[40G[OK]"
 echo "Backup transferido com sucesso para: $SAGRES_PATH"
+
+echo -n "Copiando o backup para o container do Drupal na VM Sagres... "
+ssh -i ~/.ssh/graxiom_main.pem $SAGRES_HOST "docker cp /tmp/$FINAL_BACKUP_NAME drupal:/opt/drupal/web/sites/default/$NOME_SITE/$NOME_REPOSITORIO/$NOME_INSTANCIA"
+if [ $? -ne 0 ]; then
+  echo -e "\033[40G[ERRO]"
+  echo "Erro: Falha ao copiar o backup para o container do Drupal!"
+  exit 1
+fi
+echo -e "\033[40G[OK]"
 
 # Finalizando
 exit 0
