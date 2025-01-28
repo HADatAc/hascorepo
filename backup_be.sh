@@ -6,7 +6,7 @@ NOME_REPOSITORIO="CienciaPT"
 NOME_INSTANCIA="Development"
 DATE=$(date -u +"%Y-%m-%d_%H-%M-%S")
 IP_ADDRESS=$(hostname -I | awk '{print $1}')
-FINAL_BACKUP_NAME="hascorepo_backup_backend${NOME_SITE}_${NOME_REPOSITORIO}_${NOME_INSTANCIA}_${IP_ADDRESS}_${DATE}.tar.gz"
+FINAL_BACKUP_NAME="hascorepo_backup_backend_${NOME_SITE}_${NOME_REPOSITORIO}_${NOME_INSTANCIA}_${IP_ADDRESS}_${DATE}.tar.gz"
 FINAL_BACKUP_PATH="$BACKUP_DIR/$FINAL_BACKUP_NAME"
 
 SAGRES_HOST="ubuntu@54.247.233.88"
