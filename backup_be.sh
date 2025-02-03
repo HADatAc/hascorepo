@@ -1,9 +1,14 @@
 #!/bin/bash
+if [ "$#" -ne 3 ]; then
+    echo "Uso: $0 <NOME_SITE> <NOME_REPOSITORIO> <NOME_INSTANCIA>"
+    exit 1
+fi
+
+NOME_SITE="$1"
+NOME_REPOSITORIO="$2"
+NOME_INSTANCIA="$3"
 
 BACKUP_DIR="$HOME/backups-data/BE"
-NOME_SITE="CienciaPT"
-NOME_REPOSITORIO="CienciaPT"
-NOME_INSTANCIA="Development"
 DATE=$(date -u +"%Y-%m-%d_%H-%M-%S")
 IP_ADDRESS=$(hostname -I | awk '{print $1}')
 FINAL_BACKUP_NAME="hascorepo_backup_backend_${NOME_SITE}_${NOME_REPOSITORIO}_${NOME_INSTANCIA}_${IP_ADDRESS}_${DATE}.tar.gz"
