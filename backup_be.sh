@@ -14,7 +14,7 @@ IP_ADDRESS=$(hostname -I | awk '{print $1}')
 FINAL_BACKUP_NAME="hascorepo_backup_backend_${NOME_SITE}_${NOME_REPOSITORIO}_${NOME_INSTANCIA}_${IP_ADDRESS}_${DATE}.tar.gz"
 FINAL_BACKUP_PATH="$BACKUP_DIR/$FINAL_BACKUP_NAME"
 
-SAGRES_HOST="ubuntu@54.247.233.88"
+SAGRES_HOST="ubuntu@108.129.90.121"
 
 mkdir -p $BACKUP_DIR/fuseki
 
