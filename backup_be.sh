@@ -51,7 +51,7 @@ rm -rf $BACKUP_DIR/fuseki
 echo -e "Backup consolidado criado em: $FINAL_BACKUP_PATH"
 
 echo -n "Transferindo o backup para o Sagres... "
-scp -i /home/ubuntu/.ssh/graxiom_main.pem -P 22 $FINAL_BACKUP_PATH $SAGRES_HOST:./tmp
+sudo scp -i /home/ubuntu/.ssh/graxiom_main.pem -P 22 $FINAL_BACKUP_PATH $SAGRES_HOST:./tmp
 if [ $? -ne 0 ]; then
   echo -e "\033[40G[ERRO]"
   echo "Erro: Falha ao transferir o backup para o servidor Sagres!"
