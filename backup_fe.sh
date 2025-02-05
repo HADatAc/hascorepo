@@ -14,7 +14,7 @@ IP_ADDRESS=$(hostname -I | awk '{print $1}')
 FINAL_BACKUP_NAME="hascorepo_backup_frontend_${NOME_SITE}_${NOME_REPOSITORIO}_${NOME_INSTANCIA}_${IP_ADDRESS}_${DATE}.tar.gz"
 FINAL_BACKUP_PATH="$BACKUP_DIR/$FINAL_BACKUP_NAME"
 
-SAGRES_HOST="ubuntu@108.129.90.121"
+SAGRES_HOST="ubuntu@52.214.194.214"
 
 mkdir -p $BACKUP_DIR/drupal $BACKUP_DIR/drupal/composer $BACKUP_DIR/db
 DRUPAL_CONTAINER="drupal"
