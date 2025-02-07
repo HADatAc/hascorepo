@@ -1,16 +1,20 @@
 #!/bin/bash
+if [ "$#" -ne 3 ]; then
+    echo "Uso: $0 <NOME_SITE> <NOME_REPOSITORIO> <NOME_INSTANCIA>"
+    exit 1
+fi
 
-BACKUP_DIR="$HOME/Secretária/backups-data/FE"
+NOME_SITE="$1"
+NOME_REPOSITORIO="$2"
+NOME_INSTANCIA="$3"
+
+BACKUP_DIR="$HOME/backups-data/FE"
 DATE=$(date -u +"%Y-%m-%d_%H-%M-%S")
 IP_ADDRESS=$(hostname -I | awk '{print $1}')
-FINAL_BACKUP_NAME="hascorepo_backup_frontend${IP_ADDRESS}_${DATE}.tar.gz"
+FINAL_BACKUP_NAME="hascorepo_backup_frontend_${NOME_SITE}_${NOME_REPOSITORIO}_${NOME_INSTANCIA}_${IP_ADDRESS}_${DATE}.tar.gz"
 FINAL_BACKUP_PATH="$BACKUP_DIR/$FINAL_BACKUP_NAME"
 
-SAGRES_HOST="admin@localhost:8081"
-NOME_SITE="CienciaPT"
-NOME_REPOSITORIO="CienciaPT"
-NOME_INSTANCIA="Development"
-SAGRES_PATH="/opt/drupal/web/sites/default/$NOME_SITE/$NOME_REPOSITORIO/$NOME_INSTANCIA"
+SAGRES_HOST="ubuntu@52.214.194.214"
 
 mkdir -p $BACKUP_DIR/drupal $BACKUP_DIR/drupal/composer $BACKUP_DIR/db
 DRUPAL_CONTAINER="drupal"
@@ -79,14 +83,15 @@ rm -rf $BACKUP_DIR/drupal $BACKUP_DIR/db
 echo -e "Backup consolidado criado em: $FINAL_BACKUP_PATH"
 
 echo -n "Transferindo o backup para o Sagres... "
-scp -P 22 $FINAL_BACKUP_PATH $SAGRES_HOST:$SAGRES_PATH
+scp -i /home/ubuntu/.ssh/graxiom_main.pem -P 22 $FINAL_BACKUP_PATH $SAGRES_HOST:./tmp
 if [ $? -ne 0 ]; then
   echo -e "\033[40G[ERRO]"
   echo "Erro: Falha ao transferir o backup para o servidor Sagres!"
   exit 1
 fi
 echo -e "\033[40G[OK]"
-echo "Backup transferido com sucesso para: $SAGRES_PATH"
+echo "Backup transferido com sucesso para a VM Sagres"
+
 
 # Finalizando
 exit 0
