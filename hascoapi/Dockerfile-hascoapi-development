@@ -4,7 +4,7 @@ WORKDIR /hascoapi
 
 ARG BRANCH
 
-RUN if [ -z "$BRANCH" ]; then echo "Erro: BRANCH não especificado"; exit 1; fi
+RUN if [ -z "$BRANCH" ]; then echo "Error: You must specify a BRANCH "; exit 1; fi
 
 RUN git clone --branch $BRANCH https://github.com/HADatAc/hascoapi.git .
 

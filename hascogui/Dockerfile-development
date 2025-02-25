@@ -2,8 +2,8 @@ FROM drupal:10.3.0-php8.3
 
 ARG BRANCH
 
-# Falha caso o branch não seja especificado
-RUN if [ -z "$BRANCH" ]; then echo "Erro: BRANCH não especificado"; exit 1; fi
+# Failure for branch not specified
+RUN if [ -z "$BRANCH" ]; then echo "Error: You must specify a BRANCH"; exit 1; fi
 
 # Installation of basic dependencies
 RUN apt-get update && \
@@ -34,11 +34,11 @@ RUN mkdir -p /opt/drupal/web/themes/custom/bootstrap_barrio && \
     git clone --branch 5.5.x https://git.drupalcode.org/project/bootstrap_barrio.git /opt/drupal/web/themes/custom/bootstrap_barrio
 
 
-# Clonar o tema `hasco_barrio`
+# Cloning `hasco_barrio` theme
 RUN mkdir -p /opt/drupal/web/themes/custom/hasco_barrio && \
     git clone --branch $BRANCH https://github.com/HADatAc/hasco_barrio.git /opt/drupal/web/themes/custom/hasco_barrio
 
-# Instalar os módulos adicionais com o Composer
+# Instaling standard modules with composer
 RUN composer require drupal/color drupal/key drupal/devel --prefer-dist --no-interaction --update-with-dependencies
 
 RUN mkdir -p /opt/drupal/web/modules/custom
