@@ -11,7 +11,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - drupal-data:/opt/drupal/web
+      - /var/data/docker/volumes/drupal-data:/opt/drupal/web
     environment:
       DB_HOST: db
       DB_NAME: drupal
@@ -36,15 +36,11 @@ services:
       MYSQL_USER: drupal
       MYSQL_PASSWORD: drupal
     volumes:
-      - db-data:/var/lib/mysql
+      - /var/data/docker/volumes/db-data:/var/lib/mysql
     networks:
       hascoapi:
         aliases:
           - db
-
-volumes:
-  drupal-data:
-  db-data:
-
+          
 networks:
   hascoapi:
