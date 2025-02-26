@@ -7,7 +7,7 @@ services:
     ports:
       - "3030:3030"
     volumes:
-      - /var/data/docker/volumes/hascoapi-fuseki-data:/fuseki/databases
+      - hascoapi-fuseki-data:/fuseki/databases
     networks:
       hascorepo:
         aliases:
@@ -41,7 +41,7 @@ services:
     environment:
       JAVA_OPTS: "-Xms128m -Xmx12g"
     volumes:
-      - /var/data/docker/logs/hascoapi:/hascoapi/logs
+      - hascoapi-logs:/hascoapi/logs
     depends_on:
       - fuseki
     networks:
@@ -52,6 +52,18 @@ services:
 
 volumes:
   hascoapi-fuseki-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /var/data/docker/volumes/hascoapi-fuseki-data
+      o: bind
+
+  hascoapi-logs:
+    driver: local
+    driver_opts:
+      type: none
+      device: /var/data/docker/volumes/hascoapi-logs
+      o: bind
 
 networks:
   hascorepo:
