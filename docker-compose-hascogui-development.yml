@@ -44,17 +44,8 @@ services:
 volumes:
   drupal-data:
     driver: local
-    driver_opts:
-      type: none
-      device: /var/data/docker/volumes/drupal-data
-      o: bind
-
   db-data:
     driver: local
-    driver_opts:
-      type: none
-      device: /var/data/docker/volumes/db-data
-      o: bind
 
 networks:
   hascoapi:
