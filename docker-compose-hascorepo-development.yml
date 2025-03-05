@@ -20,9 +20,11 @@ services:
     build:
       context: ./hascogui
       dockerfile: Dockerfile-development
+      args:
+        BRANCH: ${BRANCH}
     container_name: drupal
     ports:
-      - "8081:8081"
+      - "80:80"
     volumes:
       - drupal-data:/opt/drupal/web
     environment:
@@ -40,7 +42,7 @@ services:
     command: ["apache2-foreground"]
 
   fuseki:
-    image: graxiom/hascoapi-fuseki:latest
+    build: ./fuseki
     container_name: hascoapi_fuseki
     ports:
       - "3030:3030"
@@ -53,7 +55,7 @@ services:
     restart: always
 
   fuseki-yasgui:
-    image: graxiom/hascoapi-fuseki-yasgui:latest
+    build: ./fuseki-yasgui
     container_name: hascoapi_fuseki_yasgui
     ports:
       - "8888:8888"
@@ -68,8 +70,10 @@ services:
 
   hascoapi:
     build:
-        context: .
+        context: ./hascoapi
         dockerfile: Dockerfile-hascoapi-development
+        args:
+          BRANCH: ${BRANCH}
     stdin_open: true    
     tty: true
     ports:

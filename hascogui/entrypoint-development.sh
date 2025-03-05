@@ -15,11 +15,11 @@ DRUSH_COMMAND="drush --root=${DRUPAL_ROOT}"
 
 APACHE_PORT_CONF="/etc/apache2/ports.conf"
 echo "" > $APACHE_PORT_CONF
-echo "Listen 8081" >> $APACHE_PORT_CONF
+echo "Listen 80" >> $APACHE_PORT_CONF
 # Create the Apache configuration file
 APACHE_SITE_CONF="/etc/apache2/sites-available/000-default.conf"
-if ! grep -q "VirtualHost \*:8081" $APACHE_SITE_CONF; then
-  echo "<VirtualHost *:8081>
+if ! grep -q "VirtualHost \*:80" $APACHE_SITE_CONF; then
+  echo "<VirtualHost *:80>
       DocumentRoot ${DRUPAL_ROOT}/web
       <Directory ${DRUPAL_ROOT}/web>
           Options Indexes FollowSymLinks
@@ -120,7 +120,7 @@ fi
 $DRUSH_COMMAND cr
 
 echo "Enabling modules..."
-MODULES=("color" "key" "rep" "sir" "std" "sem" "dpl" "devel")
+MODULES=("color" "key" "rep" "sir" "std" "sem" "dpl" "pmsr" "devel")
 for MODULE in "${MODULES[@]}"; do
     echo "Enabling module: $MODULE"
     $DRUSH_COMMAND en $MODULE -y || echo "Error enabling module: $MODULE"

@@ -1,4 +1,10 @@
 FROM drupal:10.3.0-php8.3
+
+ARG BRANCH
+
+# Failure for branch not specified
+RUN if [ -z "$BRANCH" ]; then echo "Error: You must specify a BRANCH"; exit 1; fi
+
 # Installation of basic dependencies
 RUN apt-get update && \
     apt-get install -y curl netcat-openbsd git unzip mariadb-client\
@@ -28,20 +34,21 @@ RUN mkdir -p /opt/drupal/web/themes/custom/bootstrap_barrio && \
     git clone --branch 5.5.x https://git.drupalcode.org/project/bootstrap_barrio.git /opt/drupal/web/themes/custom/bootstrap_barrio
 
 
-# Clonar o tema `hasco_barrio`
+# Cloning `hasco_barrio` theme
 RUN mkdir -p /opt/drupal/web/themes/custom/hasco_barrio && \
-    git clone --branch DEVELOPMENT_V0.9 https://github.com/HADatAc/hasco_barrio.git /opt/drupal/web/themes/custom/hasco_barrio
+    git clone --branch $BRANCH https://github.com/HADatAc/hasco_barrio.git /opt/drupal/web/themes/custom/hasco_barrio
 
-# Instalar os módulos adicionais com o Composer
+# Instaling standard modules with composer
 RUN composer require drupal/color drupal/key drupal/devel --prefer-dist --no-interaction --update-with-dependencies
 
-# Clonar módulos específicos a partir do branch `DEVELOPMENT_V0.8`
 RUN mkdir -p /opt/drupal/web/modules/custom
-RUN git clone --branch DEVELOPMENT_V0.9 https://github.com/HADatAc/rep.git /opt/drupal/web/modules/custom/rep
-RUN git clone --branch DEVELOPMENT_V0.9 https://github.com/HADatAc/sir.git /opt/drupal/web/modules/custom/sir
-RUN git clone --branch DEVELOPMENT_V0.9 https://github.com/HADatAc/std.git /opt/drupal/web/modules/custom/std
-RUN git clone --branch DEVELOPMENT_V0.9 https://github.com/HADatAc/sem.git /opt/drupal/web/modules/custom/sem
-RUN git clone --branch DEVELOPMENT_V0.9 https://github.com/HADatAc/dpl.git /opt/drupal/web/modules/custom/dpl
+RUN git clone --branch sir_review https://github.com/HADatAc/rep.git /opt/drupal/web/modules/custom/rep
+RUN git clone --branch sir_review https://github.com/HADatAc/sir.git /opt/drupal/web/modules/custom/sir
+RUN git clone --branch $BRANCH https://github.com/HADatAc/std.git /opt/drupal/web/modules/custom/std
+RUN git clone --branch $BRANCH https://github.com/HADatAc/sem.git /opt/drupal/web/modules/custom/sem
+RUN git clone --branch $BRANCH https://github.com/HADatAc/dpl.git /opt/drupal/web/modules/custom/dpl
+RUN git clone --branch $BRANCH https://github.com/HADatAc/pmsrgui.git /opt/drupal/web/modules/custom/pmsr_gui
+
 # Adjust the .htaccess file
 RUN if [ ! -f /opt/drupal/web/.htaccess ]; then \
         cp /opt/drupal/web/example.htaccess /opt/drupal/web/.htaccess; \
