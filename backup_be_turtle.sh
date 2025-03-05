@@ -8,7 +8,7 @@ NOME_SITE="$1"
 NOME_REPOSITORIO="$2"
 NOME_INSTANCIA="$3"
 
-BACKUP_DIR="$HOME/backups-data/BE"
+BACKUP_DIR="/home/ubuntu/backups-data/BE"
 DATE=$(date -u +"%Y-%m-%d_%H-%M-%S")
 IP_ADDRESS=$(hostname -I | awk '{print $1}')
 FINAL_BACKUP_NAME="hascorepo_backup_backend_${NOME_SITE}_${NOME_REPOSITORIO}_${NOME_INSTANCIA}_${IP_ADDRESS}_${DATE}.tar.gz"
@@ -16,31 +16,20 @@ FINAL_BACKUP_PATH="$BACKUP_DIR/$FINAL_BACKUP_NAME"
 
 SAGRES_HOST="ubuntu@52.214.194.214"
 
-mkdir -p "$BACKUP_DIR/fuseki"
+mkdir -p "$BACKUP_DIR"
 
-FUSEKI_DATASET="store"
-FUSEKI_BACKUP_FILE="$BACKUP_DIR/fuseki/fuseki_backup_$DATE.ttl"
-
-echo -n "Starting Fuseki backup (Turtle format)... "
-curl -X GET "http://localhost:3030/$FUSEKI_DATASET/data?default" -H "Accept: text/turtle" -o "$FUSEKI_BACKUP_FILE"
+echo -n "Starting Fuseki Backup... "
+sudo docker run --rm \
+    --volumes-from hascoapi_fuseki \
+    -v "$BACKUP_DIR":/backup \
+    ubuntu bash -c "cd /fuseki/databases && tar -czf /backup/$FINAL_BACKUP_NAME store"
 
 if [ $? -ne 0 ]; then
   echo -e "\033[40G[ERRO]"
-  echo "Erro: Falha ao exportar os dados do Fuseki!"
+  echo "Error: Failure exporting fuseki data!"
   exit 1
 fi
 echo -e "\033[40G[OK]"
-
-echo -n "Compressing all backups in one file... "
-tar czf "$FINAL_BACKUP_PATH" -C "$BACKUP_DIR" fuseki
-if [ $? -ne 0 ]; then
-  echo -e "\033[40G[ERRO]"
-  echo "Error: Failure on compressing backups!"
-  exit 1
-fi
-echo -e "\033[40G[OK]"
-
-rm -rf "$BACKUP_DIR/fuseki"
 
 echo -e "Backup consolidated in: $FINAL_BACKUP_PATH"
 
