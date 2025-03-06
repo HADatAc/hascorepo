@@ -132,6 +132,8 @@ else
 
     # Clear cache
     $DRUSH_COMMAND cr
+    touch $INSTALL_FLAG
+    echo "Flag de instalação criada em $INSTALL_FLAG."
 fi
 # Start Apache in foreground
 apache2-foreground
