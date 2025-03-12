@@ -10,8 +10,12 @@ services:
     container_name: drupal
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - drupal-data:/opt/drupal/web
+      - /etc/letsencrypt/live/sciograph.com:/etc/letsencrypt/live/sciograph.com:ro
+      - /etc/letsencrypt/archive/sciograph.com:/etc/letsencrypt/archive/sciograph.com:ro
+      - /etc/letsencrypt/renewal/sciograph.com:/etc/letsencrypt/renewal/sciograph.com:ro
     environment:
       DB_HOST: db
       DB_NAME: drupal
