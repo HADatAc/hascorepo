@@ -2,7 +2,7 @@ version: '3'
 
 services:
   fuseki:
-    image: graxiom/hascoapi-fuseki:latest
+    build: ./fuseki
     container_name: hascoapi_fuseki
     ports:
       - "3030:3030"
@@ -15,7 +15,7 @@ services:
     restart: always
 
   fuseki-yasgui:
-    image: graxiom/hascoapi-fuseki-yasgui:latest
+    build: ./fuseki-yasgui
     container_name: hascoapi_fuseki_yasgui
     ports:
       - "8888:8888"
@@ -30,8 +30,10 @@ services:
 
   hascoapi:
     build:
-      context: .
+      context: ./hascoapi
       dockerfile: Dockerfile-hascoapi-development
+      args:
+          BRANCH: ${BRANCH}
     container_name: hascoapi
     tty: true
     ports:

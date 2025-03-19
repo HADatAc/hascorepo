@@ -1,10 +1,8 @@
-# Usar uma imagem base com JDK 17
 FROM openjdk:17-slim
 
-# Definir o diretório de trabalho
 WORKDIR /opt/development
 
-# Instalar dependências do sistema
+# Installation of basic dependencies
 RUN apt-get update && \
     apt-get install -y \
     wget \
@@ -25,12 +23,12 @@ RUN apt-get update && \
     libasound2 && \
     rm -rf /var/lib/apt/lists/*
 
-# Baixar e instalar o Google Chrome
+# Download and instalation of Google Chrome
 RUN wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_131.0.6778.69-1_amd64.deb && \
     apt install -y ./google-chrome-stable_131.0.6778.69-1_amd64.deb && \
     rm google-chrome-stable_131.0.6778.69-1_amd64.deb
 
-# Baixar e instalar o ChromeDriver
+# Download and instalation of ChromeDriver
 RUN DRIVER_URL="https://storage.googleapis.com/chrome-for-testing-public/131.0.6778.69/linux64/chromedriver-linux64.zip" && \
     curl -L -o chromedriver.zip "$DRIVER_URL" && \
     mkdir -p /usr/local/chromedriver && \
@@ -39,25 +37,23 @@ RUN DRIVER_URL="https://storage.googleapis.com/chrome-for-testing-public/131.0.6
     mv /usr/local/chromedriver/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver && \
     chmod +x /usr/local/bin/chromedriver
 
-# Baixar e configurar Selenium Standalone
+# Download and instalation of Selenium Standalone
 RUN curl -L -o selenium-server.jar https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-server/latest/selenium-server-latest.jar
 
-# Baixar e configurar JUnit 4.13.2 e Hamcrest
+# Download and instalation of JUnit 4.13.2 e Hamcrest
 RUN mkdir -p /opt/development/junit4 && \
     curl -L -o /opt/development/junit4/junit-4.13.2.jar https://repo1.maven.org/maven2/junit/junit/4.13.2/junit-4.13.2.jar && \
     curl -L -o /opt/development/junit4/hamcrest-core-1.3.jar https://repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
 
-# Copiar os arquivos de teste para o container
+
 COPY ./tests /opt/development/tests/
 
-# Script para executar os testes com Xvfb
+# Script for the execution of the tests with Xvfb
 COPY ./hascogui/run-tests.sh /opt/development/run-tests.sh
 
-# Tornar o script executável
 RUN chmod +x /opt/development/run-tests.sh
 
-# Expor DISPLAY para usar o Xvfb
+# Exposing DISPLAY to use Xvfb
 ENV DISPLAY=:99
 
-# Definir o comando padrão para iniciar o bash
 CMD ["bash"]

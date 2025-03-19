@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-DRUPAL_URL="http://drupal:8081"
+DRUPAL_URL="http://drupal:80"
 ADMIN_USER="admin"
 ADMIN_PASS="admin"
 COOKIE_FILE="/tmp/drupal_cookie.txt"

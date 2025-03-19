@@ -26,11 +26,13 @@ RUN composer global require drush/drush:^11 --prefer-dist --no-progress --no-scr
 RUN composer require drupal/bootstrap_barrio
 RUN composer require hasco/hasco_barrio:@dev --no-interaction
 RUN composer require drupal/color drupal/key drupal/devel --prefer-dist --no-interaction --update-with-dependencies
-RUN composer require hasco/rep:dev-RELEASE_V0.8 --no-interaction --with-all-dependencies --update-with-dependencies
-RUN composer require hasco/sir:dev-RELEASE_V0.8 --no-interaction --with-all-dependencies --update-with-dependencies
-RUN composer require hasco/std:dev-RELEASE_V0.8 --no-interaction --with-all-dependencies --update-with-dependencies
-RUN composer require hasco/sem:dev-RELEASE_V0.8 --no-interaction --with-all-dependencies --update-with-dependencies
-RUN composer require hasco/dpl:dev-RELEASE_V0.8 --no-interaction --with-all-dependencies --update-with-dependencies
+RUN composer require hasco/rep --no-interaction --with-all-dependencies --update-with-dependencies
+RUN composer require hasco/sir --no-interaction --with-all-dependencies --update-with-dependencies
+RUN composer require hasco/std --no-interaction --with-all-dependencies --update-with-dependencies
+RUN composer require hasco/sem --no-interaction --with-all-dependencies --update-with-dependencies
+RUN composer require hasco/dpl --no-interaction --with-all-dependencies --update-with-dependencies
+RUN composer require sagres/pmsrgui:@dev --no-interaction --with-all-dependencies --update-with-dependencies
+
 # Adjust the .htaccess file
 RUN if [ ! -f /opt/drupal/web/.htaccess ]; then \
         cp /opt/drupal/web/example.htaccess /opt/drupal/web/.htaccess; \
