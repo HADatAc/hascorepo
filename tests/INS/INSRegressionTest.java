@@ -1,4 +1,4 @@
-package tests;
+package tests.INS;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 */
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class InstrumentRegressionTest {
+public class INSRegressionTest { //extends BaseTest{
 
     private WebDriver driver;
     private WebDriverWait wait;

@@ -1,26 +1,26 @@
-package tests;
+package tests.INS;
 
 import org.junit.jupiter.api.Test;
 import org.junit.platform.engine.discovery.DiscoverySelectors;
 import org.junit.platform.launcher.*;
 import org.junit.platform.launcher.core.*;
 
-public class InstrumentFullWorkflowTest {
+public class INSFullWorkflowTest {
 
     private final Launcher launcher = LauncherFactory.create();
 
     @Test
     void runAllInstrumentTests() throws InterruptedException {
-        runTestClass(InstrumentInsUploadTest.class);
+        runTestClass(INSUploadTest.class);
         Thread.sleep(2000);
 
-        runTestClass(InstrumentInsIngestTest.class);
+        runTestClass(INSIngestTest.class);
         Thread.sleep(2000);
 
-        runTestClass(InstrumentRegressionTest.class);
+        runTestClass(INSRegressionTest.class);
         Thread.sleep(3000);
 
-        runTestClass(InstrumentInsDeleteTest.class);
+        runTestClass(INSDeleteTest.class);
     }
 
     private void runTestClass(Class<?> testClass) {
