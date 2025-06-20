@@ -22,7 +22,12 @@ import tests.STR.STRRegressionTest;
 
 
 public class FullWorkflowTest {//extends BaseTest{
-
+/*
+1º DSG
+2ª SDD
+3º DP2
+4º STR
+    */
     private final Launcher launcher = LauncherFactory.create();
 
     @Test

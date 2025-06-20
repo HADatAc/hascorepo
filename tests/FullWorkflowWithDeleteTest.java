@@ -23,12 +23,16 @@ import tests.SDD.SDDUploadTest;
 import tests.STR.STRDeleteTest;
 import tests.STR.STRIngestTest;
 import tests.STR.STRRegressionTest;
-import tests.STR.STRUploadTest;
 
 public class FullWorkflowWithDeleteTest {
 
     private final Launcher launcher = LauncherFactory.create();
-
+    /*
+    1º DSG
+    2ª SDD
+    3º DP2
+    4º STR
+        */
     @Test
     void runCompleteWorkflowForAllTypes() throws InterruptedException {
         // INS

@@ -8,11 +8,15 @@ import org.junit.platform.launcher.core.LauncherFactory;
 import tests.DP2.DP2DeleteTest;
 import tests.SDD.SDDDeleteTest;
 import tests.INS.INSDeleteTest;
-import tests.SDD.SDDDeleteTest;
 import tests.STR.STRDeleteTest;
 
 public class FullDeleteTest { //extends BaseTest{
-
+    /*
+    1º DSG
+    2ª SDD
+    3º DP2
+    4º STR
+        */
     private final Launcher launcher = LauncherFactory.create();
 
     @Test

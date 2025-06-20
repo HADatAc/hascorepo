@@ -16,6 +16,7 @@ public abstract class BaseIngest {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
+    public static String ingestMode = "current"; // default
 
     protected final Map<String, Boolean> selectedRows = new HashMap<>();
     protected static final int MAX_ATTEMPTS = 10;
@@ -76,7 +77,8 @@ public abstract class BaseIngest {
         System.out.println("Total selected entries: " + selectedCount);
 
         try {
-            WebElement ingestButton = driver.findElement(By.id("edit-ingest-mt-current"));
+            String buttonId = "edit-ingest-mt-" + ingestMode.toLowerCase();
+            WebElement ingestButton = driver.findElement(By.id(buttonId));
             ingestButton.click();
 
             wait.until(ExpectedConditions.alertIsPresent());
@@ -124,6 +126,14 @@ public abstract class BaseIngest {
 
         assertEquals(selectedCount, processedCount,
                 "Not all selected entries were processed.");
+    }
+
+    public String getIngestMode() {
+        return ingestMode;
+    }
+
+    public void setIngestMode(String ingestMode) {
+        this.ingestMode = ingestMode;
     }
 
     @AfterAll

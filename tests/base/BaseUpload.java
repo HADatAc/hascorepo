@@ -75,6 +75,7 @@ public abstract class BaseUpload {
         assertTrue(confirmationAppeared, "No confirmation message found after upload.");
     }
 
+
     @AfterAll
     void teardown() {
         if (driver != null) {

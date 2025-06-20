@@ -14,7 +14,7 @@ public class INSUploadTest extends BaseUpload {
         fillInputByLabel("Name", "testeINS");
         fillInputByLabel("Version", "1");
 
-        File file = new File("/Users/kael/Desktop/Projeto/hascorepo/tests/testfiles/INS-NHANES-2017-2018-NAMESPACES.xlsx");
+        File file = new File("/Users/kael/Desktop/Projeto/hascorepo/tests/testfiles/INS-NHANES-2017-2018.xlsx");
         uploadFile(file);
 
         submitFormAndVerifySuccess();

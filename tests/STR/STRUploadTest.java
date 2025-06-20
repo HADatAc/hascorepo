@@ -14,7 +14,7 @@ public class STRUploadTest extends BaseUpload {
         fillInputByLabel("Name", "testeSTR");
         fillInputByLabel("Version", "1");
 
-        File file = new File("/EXAMPLE/PATH/TO/STR.xlsx");
+        File file = new File("/Users/kael/Desktop/Projeto/hascorepo/tests/testfiles/STR-NHANES-2017-2018.xlsx");
         uploadFile(file);
 
         submitFormAndVerifySuccess();
