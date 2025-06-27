@@ -47,7 +47,16 @@ public class RepositoryFormAutomationTest {
         Select jwtDropdown = new Select(driver.findElement(By.cssSelector("select[name='jwt_secret']")));
         jwtDropdown.selectByVisibleText("jwt");
 
+        Thread.sleep(2000);
+
         wait.until(driver -> findInputByLabel("Repository Short Name (ex. \"ChildFIRST\")") != null);
+        WebElement checkbox = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("edit-sagres-conf")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", checkbox);
+        Thread.sleep(500);  // garante que o scroll terminou
+
+        if (!checkbox.isSelected()) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkbox);
+        }
 
         fillInput("Repository Short Name (ex. \"ChildFIRST\")", "PMSR");
         fillInput("Repository Full Name (ex. \"ChildFIRST: Focus on Innovation\")", "Portuguese Medical Social Repository");

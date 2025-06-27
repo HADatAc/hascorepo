@@ -9,6 +9,8 @@ public class SDDDeleteTest extends BaseDelete {
     @Test
     @DisplayName("Delete SDD file by name")
     void shouldDeleteSDDByName() throws InterruptedException {
-        deleteFile("sdd", "testeSDD");
+        // Uningest the file first if it exists
+        deleteAllFiles("sdd");
+        quit();
     }
 }

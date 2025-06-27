@@ -7,8 +7,9 @@ import tests.base.BaseDelete;
 public class INSDeleteTest extends BaseDelete {
 
     @Test
-    @DisplayName("Delete INS file by name")
-    void shouldDeleteDP2ByName() throws InterruptedException {
-        deleteFile("ins", "testeINS");
+    @DisplayName("Delete all INS files")
+    void shouldDeleteAllINSFiles() throws InterruptedException {
+        deleteAllFiles("ins");
+        quit();
     }
 }

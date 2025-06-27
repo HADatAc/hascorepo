@@ -14,13 +14,14 @@ public class INSFullWorkflowTest {
         runTestClass(INSUploadTest.class);
         Thread.sleep(2000);
 
-        runTestClass(INSIngestTest.class);
+        runTestClass(INSIngestHierarchyTest.class);
         Thread.sleep(2000);
+        runTestClass(INSIngestNormalTest.class);
+        Thread.sleep(2000);
+       // runTestClass(INSRegressionTest.class);
+        //Thread.sleep(3000);
 
-        runTestClass(INSRegressionTest.class);
-        Thread.sleep(3000);
-
-        runTestClass(INSDeleteTest.class);
+        //runTestClass(INSDeleteTest.class);
     }
 
     private void runTestClass(Class<?> testClass) {

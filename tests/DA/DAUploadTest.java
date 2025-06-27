@@ -17,7 +17,7 @@ public class DAUploadTest extends BaseUpload {
         fillInputByLabel("Name", "testeDA");
         fillInputByLabel("Version", "1");
 
-        File file = new File("/Users/kael/Desktop/Projeto/hascorepo/tests/testfiles/DA-NHANES-2017-2018-" + sddType + "_J.csv");
+        File file = new File("tests/testfiles/DA-NHANES-2017-2018-" + sddType + "_J.csv");
         uploadFile(file);
 
         submitFormAndVerifySuccess();

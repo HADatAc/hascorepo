@@ -9,6 +9,8 @@ public class DP2DeleteTest extends BaseDelete {
     @Test
     @DisplayName("Delete DP2 file by name")
     void shouldDeleteDP2ByName() throws InterruptedException {
+
         deleteFile("dp2", "testeDP2");
+        quit();
     }
 }

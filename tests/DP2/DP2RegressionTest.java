@@ -11,18 +11,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/*
- This test suite logs into Drupal, goes to the instrument selection page,
- and verifies instrument listings with more precise checks:
- - table load
- - non-empty rows
- - first cell text presence
- - checking a specific column value
- - verifying navigation to instrument details
-*/
-
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class DP2RegressionTest {//extends BaseTest{
+public class DP2RegressionTest {
 
     private WebDriver driver;
     private WebDriverWait wait;
@@ -33,72 +23,64 @@ public class DP2RegressionTest {//extends BaseTest{
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        driver.get("http://localhost:80/user/login");
+        // Log in before all tests
+        driver.get("http://localhost/user/login");
         driver.findElement(By.id("edit-name")).sendKeys("admin");
         driver.findElement(By.id("edit-pass")).sendKeys("admin");
         driver.findElement(By.id("edit-submit")).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toolbar-item-user")));
     }
 
-    private void goToInstrumentPage() {
-        driver.get("http://localhost:80/sir/select/instrument/1/9");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("table")));
+    private void goToDP2Page() {
+        // Go to the DP2 listing page
+        driver.get("http://localhost/dpl/select/platform/1/9");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("table#edit-element-table")));
     }
 
     @Test
-    @DisplayName("Basic table load and first-row content")
-    void testTableLoadedAndFirstRow() {
-        goToInstrumentPage();
-        List<WebElement> rows = driver.findElements(By.cssSelector("table tbody tr"));
-        assertTrue(rows.size() > 0, "Expected at least one instrument row");
-        WebElement firstCell = rows.get(0).findElements(By.tagName("td")).get(0);
-        assertFalse(firstCell.getText().isBlank(), "First cell should contain text");
+    @DisplayName("DP2: Table loads and has rows with names")
+    void testTableLoadedAndNamePresent() {
+        goToDP2Page();
+        List<WebElement> rows = driver.findElements(By.cssSelector("table#edit-element-table tbody tr"));
+        assertFalse(rows.isEmpty(), "Expected at least one DP2 row");
+
+        WebElement firstRow = rows.get(0);
+        List<WebElement> cells = firstRow.findElements(By.tagName("td"));
+        assertFalse(cells.get(2).getText().isBlank(), "Name column should not be blank");
     }
 
     @Test
-    @DisplayName("List all instrument names for logging")
-    void testLogAllInstrumentNames() {
-        goToInstrumentPage();
-        List<WebElement> rows = driver.findElements(By.cssSelector("table tbody tr"));
-        System.out.println("Listed instruments:");
-        for (WebElement row : rows) {
-            String rowText = row.getText().trim();
-            if (!rowText.isEmpty()) {
-                System.out.println("- " + rowText);
+    @DisplayName("DP2: Click URI and verify redirected page")
+    void testNavigateToDP2ViewPage() {
+        goToDP2Page();
+
+        // Find the first URI link in the table
+        WebElement uriLink = driver.findElement(By.cssSelector("table#edit-element-table tbody tr:first-child td:nth-child(2) a"));
+        String originalWindow = driver.getWindowHandle();
+
+        System.out.println("Clicking URI link: " + uriLink.getText());
+        uriLink.click();
+
+        // Wait for new window/tab to open
+        wait.until(driver -> driver.getWindowHandles().size() > 1);
+        System.out.println("New tab detected.");
+
+        // Switch to the newly opened tab
+        for (String windowHandle : driver.getWindowHandles()) {
+            if (!windowHandle.equals(originalWindow)) {
+                driver.switchTo().window(windowHandle);
+                System.out.println("Switched to new tab with URL: " + driver.getCurrentUrl());
+                break;
             }
         }
-        assertTrue(rows.size() > 0, "Should have printed at least one instrument row");
+
+        // Wait for the new page to load with "/rep/uri/"
+        wait.until(ExpectedConditions.urlContains("/rep/uri/"));
+        String currentUrl = driver.getCurrentUrl();
+        System.out.println("Landed on: " + currentUrl);
+
+        assertTrue(currentUrl.contains("/rep/uri/"), "Should have navigated to a detailed URI view page");
     }
-
-    @Test
-    @DisplayName("Check instrument contains expected column value")
-    void testColumnSpecificValue() {
-        goToInstrumentPage();
-        List<WebElement> rows = driver.findElements(By.cssSelector("table tbody tr"));
-        WebElement firstRow = rows.get(0);
-        WebElement expectedColumn = firstRow.findElements(By.tagName("td")).get(1); // second column
-        String colValue = expectedColumn.getText().trim();
-        assertFalse(colValue.isEmpty(), "Column 2 should not be empty");
-    }
-
-    @Test
-    @DisplayName("Click first instrument to see detail page")
-    void testNavigateToInstrumentDetail() {
-        goToInstrumentPage();
-
-        WebElement firstLink = driver.findElement(By.cssSelector("table tbody tr:first-child td a"));
-        String instrumentText = firstLink.getText().trim();
-        firstLink.click();
-
-        wait.until(ExpectedConditions.or(
-                ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h1.page-title")),
-                ExpectedConditions.urlContains("/instrument/")
-        ));
-
-        assertTrue(driver.getPageSource().contains(instrumentText),
-                "Instrument detail page should show the instrument name");
-    }
-
 
     @AfterAll
     void teardown() {

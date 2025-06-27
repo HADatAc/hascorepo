@@ -75,6 +75,18 @@ public abstract class BaseUpload {
         assertTrue(confirmationAppeared, "No confirmation message found after upload.");
     }
 
+    /**
+     * Navega para a página do Semantic Data Dictionary e extrai o URI do primeiro checkbox na tabela.
+     * @return String com o URI extraído.
+     */
+    protected String extractUriFromSDD() {
+        driver.get("http://localhost/sem/select/semanticdatadictionary/1/9");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("edit-element-table")));
+        WebElement checkbox = driver.findElement(By.cssSelector("input.form-checkbox.form-check-input"));
+        String uri = checkbox.getAttribute("value");
+        System.out.println("URI extracted: " + uri);
+        return uri;
+    }
 
     @AfterAll
     void teardown() {

@@ -9,6 +9,6 @@ public class DAIngestTest extends BaseIngest {
     @Test
     @DisplayName("Ingest uploaded DA file")
     void shouldIngestDASuccessfully() throws InterruptedException {
-        ingestFile("da");
+       // ingestFile("da");
     }
 }

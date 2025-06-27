@@ -14,7 +14,7 @@ public class DP2UploadTest extends BaseUpload {
         fillInputByLabel("Name", "testeDP2");
         fillInputByLabel("Version", "1");
 
-        File file = new File("/Users/kael/Desktop/Projeto/hascorepo/tests/testfiles/DP2-NHANES-2017-2018.xlsx");
+        File file = new File("tests/testfiles/DP2-NHANES-2017-2018.xlsx");
         uploadFile(file);
 
         submitFormAndVerifySuccess();

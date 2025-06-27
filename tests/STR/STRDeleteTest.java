@@ -9,6 +9,9 @@ public class STRDeleteTest extends BaseDelete {
     @Test
     @DisplayName("Delete STR file by name")
     void shouldDeleteSTRByName() throws InterruptedException {
+        // Uningest the file first if it exists
         deleteFile("str", "testeSTR");
+        quit();
     }
+
 }

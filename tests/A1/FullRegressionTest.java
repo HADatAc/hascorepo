@@ -1,44 +1,49 @@
-package tests;
+package tests.A1;
 
 import org.junit.jupiter.api.Test;
 import org.junit.platform.engine.discovery.DiscoverySelectors;
 import org.junit.platform.launcher.*;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
-import tests.DP2.DP2DeleteTest;
-import tests.SDD.SDDDeleteTest;
-import tests.INS.INSDeleteTest;
-import tests.STR.STRDeleteTest;
 
-public class FullDeleteTest { //extends BaseTest{
-    /*
-    1º DSG
-    2ª SDD
-    3º DP2
-    4º STR
-        */
+import tests.DP2.DP2RegressionTest;
+import tests.DSG.DSGRegressionTest;
+import tests.INS.INSRegressionTest;
+import tests.SDD.SDDRegressionTest;
+import tests.STR.STRRegressionTest;
+
+public class FullRegressionTest {
+
     private final Launcher launcher = LauncherFactory.create();
 
-    @Test
-    void runAllDeleteTests() throws InterruptedException {
-        // INS
-        runTestClass(INSDeleteTest.class);
-        Thread.sleep(2000);
 
-        // DP2
-        runTestClass(DP2DeleteTest.class);
+    @Test
+    void runRegressionTests() throws InterruptedException {
+        // INS
+        runTestClass(INSRegressionTest.class);
         Thread.sleep(2000);
 
         // DSG
-        runTestClass(SDDDeleteTest.class);
+        runTestClass(DSGRegressionTest.class);
         Thread.sleep(2000);
 
+        // DA
+        /* Waiting DA Ingest Implementation
+        runTestClass(DARegressionTest.class);
+        Thread.sleep(2000);
+
+         */
+
         // SDD
-        runTestClass(SDDDeleteTest.class);
+        runTestClass(SDDRegressionTest.class);
+        Thread.sleep(2000);
+
+        // DP2
+        runTestClass(DP2RegressionTest.class);
         Thread.sleep(2000);
 
         // STR
-        runTestClass(STRDeleteTest.class);
+        runTestClass(STRRegressionTest.class);
     }
 
     private void runTestClass(Class<?> testClass) {

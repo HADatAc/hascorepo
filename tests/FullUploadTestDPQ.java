@@ -1,45 +1,56 @@
 package tests;
 
-import org.junit.jupiter.api.*;
-
-import tests.DSG.DSGUploadTest;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.engine.discovery.DiscoverySelectors;
+import org.junit.platform.launcher.*;
+import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
+import org.junit.platform.launcher.core.LauncherFactory;
 import tests.DA.DAUploadTest;
-import tests.SDD.SDDUploadTest;
 import tests.DP2.DP2UploadTest;
+import tests.DSG.DSGUploadTest;
+import tests.INS.INSUploadTest;
+import tests.SDD.SDDUploadTest;
 import tests.STR.STRUploadTest;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FullUploadTestDPQ {
 
-    @Test
-    @Order(1)
-    void uploadDSG() {
-        new DSGUploadTest();
-    }
+    private final Launcher launcher = LauncherFactory.create();
 
     @Test
-    @Order(2)
-    void uploadDA() {
+    void runOnlyUploadsForDPQ() throws InterruptedException {
+        // INS
+        runTestClass(INSUploadTest.class);
+        Thread.sleep(2000);
+        // DSG
+        runTestClass(DSGUploadTest.class);
+        Thread.sleep(2000);
+
+        // DA (DPQ)
         System.setProperty("daType", "DPQ");
-        new DAUploadTest();
-    }
+        runTestClass(DAUploadTest.class);
+        Thread.sleep(2000);
 
-    @Test
-    @Order(3)
-    void uploadSDD() {
+        // SDD (DPQ)
         System.setProperty("sddType", "DPQ");
-        new SDDUploadTest();
+        runTestClass(SDDUploadTest.class);
+        Thread.sleep(2000);
+
+        // DP2
+        runTestClass(DP2UploadTest.class);
+        Thread.sleep(2000);
+
+        // STR
+        runTestClass(STRUploadTest.class);
+        Thread.sleep(2000);
     }
 
-    @Test
-    @Order(4)
-    void uploadDP2() {
-        new DP2UploadTest();
-    }
+    private void runTestClass(Class<?> testClass) {
+        System.out.println("===> Running: " + testClass.getSimpleName());
 
-    @Test
-    @Order(5)
-    void uploadSTR() {
-        new STRUploadTest();
+        launcher.execute(
+                LauncherDiscoveryRequestBuilder.request()
+                        .selectors(DiscoverySelectors.selectClass(testClass))
+                        .build()
+        );
     }
 }
