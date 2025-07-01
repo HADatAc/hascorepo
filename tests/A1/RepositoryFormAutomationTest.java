@@ -68,7 +68,8 @@ public class RepositoryFormAutomationTest {
         fillInput("description for the repository that appears in the rep APIs GUI", "pmsr123");
         fillInput("Sagres Base URL", "https://52.214.194.214/");
 
-        String ip = "127.0.0.1";
+        //String ip = "127.0.0.1";
+        String ip = "108.129.120.74"; // IP do servidor de testes
         try {
             ip = InetAddress.getLocalHost().getHostAddress();
             System.out.printf("Local IP detected: %s%n", ip);
