@@ -1,4 +1,4 @@
-package tests.A1;
+package tests.repository;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
@@ -58,14 +58,15 @@ public class RepositoryFormAutomationTest {
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkbox);
         }
 
-        fillInput("Repository Short Name (ex. \"ChildFIRST\")", "PMSR");
-        fillInput("Repository Full Name (ex. \"ChildFIRST: Focus on Innovation\")", "Portuguese Medical Social Repository");
-        fillInput("Repository URL (ex: http://childfirst.ucla.edu, http://tw.rpi.edu, etc.)", "https://pmsr.net");
-        fillInput("Prefix for Base Namespace (ex: ufmg, ucla, rpi, etc.)", "psmr");
-        fillInput("URL for Base Namespace", "https://pmsr.net");
-        fillInput("Mime for Base Namespace", "text/turtle");
-        fillInput("Source for Base Namespace", "hadatac");
-        fillInput("description for the repository that appears in the rep APIs GUI", "pmsr123");
+        // Preenchimento dos campos obrigatórios com logs
+        fillInput("Repository Short Name (ex. \"ChildFIRST\")", "HADATAC");
+        fillInput("Repository Full Name (ex. \"ChildFIRST: Focus on Innovation\")", "HADATAC");
+        fillInput("Repository URL (ex: http://childfirst.ucla.edu, http://tw.rpi.edu, etc.)", "https://hadatac.org");
+        fillInput("Prefix for Base Namespace (ex: ufmg, ucla, rpi, etc.)", "hadatac");
+        fillInput("URL for Base Namespace", "https://hadatac.org/ont/hadatac#");
+        fillInput("Mime for Base Namespace", "");
+        fillInput("Source for Base Namespace", "");
+        fillInput("description for the repository that appears in the rep APIs GUI", "HADATAC");
         fillInput("Sagres Base URL", "https://52.214.194.214/");
 
         //String ip = "127.0.0.1";
@@ -80,7 +81,7 @@ public class RepositoryFormAutomationTest {
         String apiUrl = "http://" + ip + ":9000";
         fillInput("rep API Base URL", apiUrl);
 
-        String expectedFullName = "Portuguese Medical Social Repository";
+        String expectedFullName = "HADATAC";
         boolean formConfirmed = false;
 
         while (!formConfirmed) {

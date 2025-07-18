@@ -9,6 +9,7 @@ import tests.DA.DADeleteTest;
 import tests.DP2.DP2DeleteTest;
 import tests.DSG.DSGDeleteTest;
 import tests.INS.INSDeleteTest;
+import tests.repository.RepositoryFormAutomationTest;
 
 public class RegressionTEST {
     private final Launcher launcher = LauncherFactory.create();

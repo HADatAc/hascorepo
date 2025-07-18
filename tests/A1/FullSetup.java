@@ -5,6 +5,7 @@ import org.junit.platform.engine.discovery.DiscoverySelectors;
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
+import tests.repository.RepositoryFormAutomationTest;
 
 public class FullSetup {
     private final Launcher launcher = LauncherFactory.create();

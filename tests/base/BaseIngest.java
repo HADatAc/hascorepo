@@ -19,8 +19,8 @@ public abstract class BaseIngest {
     public static String ingestMode = "current"; // default
     String buttonName = "ingest_mt_" + ingestMode;
     protected final Map<String, Boolean> selectedRows = new HashMap<>();
-    protected static final int MAX_ATTEMPTS = 10;
-    protected static final int WAIT_INTERVAL_MS = 30000;
+    protected static final int MAX_ATTEMPTS = 60;
+    protected static final int WAIT_INTERVAL_MS = 5000;
 
     @BeforeAll
     void setup() {
