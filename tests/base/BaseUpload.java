@@ -9,6 +9,7 @@ import java.io.File;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static tests.Config.EnvConfig.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class BaseUpload {
@@ -22,9 +23,9 @@ public abstract class BaseUpload {
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        driver.get("http://localhost/user/login");
-        driver.findElement(By.id("edit-name")).sendKeys("admin");
-        driver.findElement(By.id("edit-pass")).sendKeys("admin");
+        driver.get(LOGIN_URL);
+        driver.findElement(By.id("edit-name")).sendKeys(USERNAME);
+        driver.findElement(By.id("edit-pass")).sendKeys(PASSWORD);
         driver.findElement(By.id("edit-submit")).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -32,7 +33,7 @@ public abstract class BaseUpload {
     }
 
     protected void navigateToUploadPage(String type) {
-        String url = "http://localhost/rep/manage/addmt/" + type + "/none/F";
+        String url = UPLOAD_URL + type + "/none/F";
         driver.get(url);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("form")));
     }
@@ -78,15 +79,17 @@ public abstract class BaseUpload {
     /**
      * Navega para a página do Semantic Data Dictionary e extrai o URI do primeiro checkbox na tabela.
      * @return String com o URI extraído.
-     */
+
     protected String extractUriFromSDD() {
-        driver.get("http://localhost/sem/select/semanticdatadictionary/1/9");
+        driver.get("http://34.245.157.211/sem/select/semanticdatadictionary/1/9");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("edit-element-table")));
         WebElement checkbox = driver.findElement(By.cssSelector("input.form-checkbox.form-check-input"));
         String uri = checkbox.getAttribute("value");
         System.out.println("URI extracted: " + uri);
+
         return uri;
     }
+     */
 
     @AfterAll
     void teardown() {

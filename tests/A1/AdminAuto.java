@@ -9,6 +9,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static tests.Config.EnvConfig.*;
+
+import tests.Config.EnvConfig;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AdminAuto {
@@ -23,9 +26,9 @@ public class AdminAuto {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         // Login step
-        driver.get("http://localhost/user/login");
-        driver.findElement(By.id("edit-name")).sendKeys("admin");
-        driver.findElement(By.id("edit-pass")).sendKeys("admin");
+        driver.get(LOGIN_URL);
+        driver.findElement(By.id("edit-name")).sendKeys(USERNAME);
+        driver.findElement(By.id("edit-pass")).sendKeys(PASSWORD);
         driver.findElement(By.id("edit-submit")).click();
 
         // Wait for login to complete by checking toolbar visibility
@@ -36,7 +39,7 @@ public class AdminAuto {
     @DisplayName("Verify Content editor and Administrator checkboxes are loaded and visible")
     void testCheckboxesLoaded() {
         // Navigate to user edit page
-        driver.get("http://localhost/user/1/edit");
+        driver.get(BASE_URL + "/user/1/edit");
 
         // Wait for the checkboxes to be present
         WebElement contentEditorCheckbox = wait.until(
@@ -58,7 +61,7 @@ public class AdminAuto {
     @Test
     @DisplayName("Ensure Content editor and Administrator checkboxes are checked and saved")
     void testEnsureCheckboxesCheckedAndSaved() {
-        driver.get("http://localhost/user/1/edit");
+        driver.get(BASE_URL + "/user/1/edit");
 
         WebElement contentEditorCheckbox = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.id("edit-roles-content-editor"))
@@ -89,7 +92,7 @@ public class AdminAuto {
         assertTrue(successMessage.getText().toLowerCase().contains("saved"), "Expected success message to contain 'saved'.");
 
         // Recarrega a página e verifica se os checkboxes continuam marcados
-        driver.get("http://localhost/user/1/edit");
+        driver.get(BASE_URL + "/user/1/edit");
 
         contentEditorCheckbox = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.id("edit-roles-content-editor"))

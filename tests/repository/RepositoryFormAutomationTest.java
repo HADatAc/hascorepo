@@ -4,12 +4,16 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.*;
+import tests.base.BaseRep;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.Duration;
 import java.util.List;
 
-public class RepositoryFormAutomationTest {
+import static tests.Config.EnvConfig.*;
+
+public class RepositoryFormAutomationTest extends BaseRep {
 
     WebDriver driver;
     WebDriverWait wait;
@@ -20,27 +24,19 @@ public class RepositoryFormAutomationTest {
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
-        driver.get("http://localhost/user/login");
+        driver.get(LOGIN_URL);
 
-        driver.findElement(By.id("edit-name")).sendKeys("admin");
-        driver.findElement(By.id("edit-pass")).sendKeys("admin");
+        driver.findElement(By.id("edit-name")).sendKeys(USERNAME);
+        driver.findElement(By.id("edit-pass")).sendKeys(PASSWORD);
         driver.findElement(By.id("edit-submit")).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.cssSelector("#toolbar-item-user")));
     }
 
-    @AfterEach
-    void teardown() {
-        // Uncomment this block to close the browser after each test
-        // if (driver != null) {
-        //     driver.quit();
-        // }
-    }
-
     @Test
     void testFillRepositoryForm() throws InterruptedException {
-        driver.get("http://localhost/admin/config/rep");
+        driver.get(BASE_URL + "/admin/config/rep");
 
         ensureJwtKeyExists();
 
@@ -99,7 +95,7 @@ public class RepositoryFormAutomationTest {
                 formConfirmed = true;
             } else {
                 // Return to configuration form
-                driver.get("http://localhost/admin/config/rep");
+                driver.get(BASE_URL + "/admin/config/rep");
 
                 // Refill Repository Full Name if it's empty
                 WebElement fullNameField = findInputByLabel("Repository Full Name (ex. \"ChildFIRST: Focus on Innovation\")");
@@ -127,7 +123,7 @@ public class RepositoryFormAutomationTest {
         if (!jwtExists) {
             System.out.println("JWT key 'jwt' not found, creating...");
 
-            driver.get("http://localhost/admin/config/system/keys/add");
+            driver.get(BASE_URL +"/admin/config/system/keys/add");
 
             wait.until(ExpectedConditions.urlContains("/admin/config/system/keys/add"));
             Thread.sleep(1000); // Ensure rendering
@@ -160,7 +156,7 @@ public class RepositoryFormAutomationTest {
             System.out.println("JWT key created successfully.");
 
             // Return to configuration form
-            driver.get("http://localhost/admin/config/rep");
+            driver.get(BASE_URL +"admin/config/rep");
         } else {
             System.out.println("JWT key 'jwt' already exists.");
         }
@@ -189,5 +185,12 @@ public class RepositoryFormAutomationTest {
             }
         }
         return null;
+    }
+    @AfterEach
+    void teardown() {
+        // Uncomment this block to close the browser after each test
+        // if (driver != null) {
+        //     driver.quit();
+        // }
     }
 }

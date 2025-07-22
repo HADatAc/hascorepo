@@ -28,7 +28,7 @@ public abstract class BaseTest {
     }
 
     private void login() throws InterruptedException {
-        driver.get("http://localhost/user/login");
+        driver.get("http://34.245.157.211/user/login");
 
         WebElement usernameInput = driver.findElement(By.id("edit-name"));
         WebElement passwordInput = driver.findElement(By.id("edit-pass"));

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.*;
+import tests.base.BaseRep;
 
 import java.time.Duration;
 import java.util.*;
@@ -11,7 +12,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class NamespaceTableVerificationTest {
+public class NamespaceTableVerificationTest extends BaseRep {
 
     private WebDriver driver;
     private WebDriverWait wait;

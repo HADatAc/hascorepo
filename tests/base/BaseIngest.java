@@ -10,6 +10,7 @@ import java.time.Duration;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static tests.Config.EnvConfig.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class BaseIngest {
@@ -28,16 +29,16 @@ public abstract class BaseIngest {
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
-        driver.get("http://localhost/user/login");
-        driver.findElement(By.id("edit-name")).sendKeys("admin");
-        driver.findElement(By.id("edit-pass")).sendKeys("admin");
+        driver.get(LOGIN_URL);
+        driver.findElement(By.id("edit-name")).sendKeys(USERNAME);
+        driver.findElement(By.id("edit-pass")).sendKeys(PASSWORD);
         driver.findElement(By.id("edit-submit")).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toolbar-item-user")));
     }
 
     protected void ingestFile(String type) throws InterruptedException {
-        driver.get("http://localhost/rep/select/mt/" + type + "/table/1/9/none");
+        driver.get(FILES_URL + type + "/table/1/9/none");
         Thread.sleep(2000); // Wait for UI to update
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("table")));
@@ -138,7 +139,7 @@ public abstract class BaseIngest {
     }
     protected void ingestSpecificINS(String fileName) throws InterruptedException {
         String type = "ins";
-        driver.get("http://localhost/rep/select/mt/" + type + "/table/1/9/none");
+        driver.get(FILES_URL + type + "/table/1/9/none");
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("edit-element-table")));
 
@@ -227,7 +228,7 @@ public abstract class BaseIngest {
     }
     protected void ingestSpecificSDD(String fileName) throws InterruptedException {
         String type = "sdd";
-        driver.get("http://localhost/rep/select/mt/" + type + "/table/1/9/none");
+        driver.get(FILES_URL + type + "/table/1/9/none");
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("edit-element-table")));
 

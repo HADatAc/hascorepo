@@ -16,9 +16,12 @@ public class RegressionTEST {
 
     @Test
     void runsetupanddeletetests() throws InterruptedException {
-        // Setup of rep configuration
+
+        /*// Setup of rep configuration
         runTestClass(RepositoryFormAutomationTest.class);
         Thread.sleep(5000);
+
+         */
 
         //Admin Status and Data conf permission
         runTestClass(AdminAuto.class);

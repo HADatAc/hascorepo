@@ -1,5 +1,7 @@
 package tests.base;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.TestInstance;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.*;
@@ -11,34 +13,31 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
-
+import static tests.Config.EnvConfig.*;
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class BaseDelete {
-
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected final Map<String, Boolean> selectedRows = new HashMap<>();
     protected static final int MAX_ATTEMPTS = 10;
     protected static final int WAIT_INTERVAL_MS = 10000;
-
-    public BaseDelete() {
+    
+    @BeforeAll
+    void setup() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
-        login();
-    }
-
-    protected void login() {
-        driver.get("http://localhost/user/login");
-        driver.findElement(By.id("edit-name")).sendKeys("admin");
-        driver.findElement(By.id("edit-pass")).sendKeys("admin");
+        driver.get(LOGIN_URL);
+        driver.findElement(By.id("edit-name")).sendKeys(USERNAME);
+        driver.findElement(By.id("edit-pass")).sendKeys(PASSWORD);
         driver.findElement(By.id("edit-submit")).click();
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toolbar-item-user")));
-        System.out.println("Logged in successfully.");
     }
 
     protected void deleteFile(String type, String fileName) throws InterruptedException {
-        driver.get("http://localhost/rep/select/mt/" + type + "/table/1/9/none");
+        driver.get(FILES_URL + type + "/table/1/9/none");
 
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("table")));
@@ -128,7 +127,7 @@ public abstract class BaseDelete {
         assertEquals(false, stillExists, "File '" + fileName + "' was not deleted.");
     }
     protected void deleteAllFiles(String type) throws InterruptedException {
-        driver.get("http://localhost/rep/select/mt/" + type + "/table/1/9/none");
+        driver.get(FILES_URL + type + "/table/1/9/none");
 
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("table")));
