@@ -14,6 +14,7 @@ import static tests.Config.EnvConfig.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class BaseRep {
+
     protected WebDriver driver;
     protected WebDriverWait wait;
 

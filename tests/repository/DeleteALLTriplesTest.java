@@ -9,16 +9,14 @@ import tests.base.BaseRep;
 import java.time.Duration;
 import java.util.List;
 
+import static tests.Config.EnvConfig.NAMESPACES_URL;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DeleteALLTriplesTest extends BaseRep {
 
-
-    private WebDriver driver;
-    private WebDriverWait wait;
-
     @Test
     void testDeleteALLTriplesAndCheckValues() throws InterruptedException {
-        driver.get("http://localhost/rep/manage/namespaces");
+        driver.get(NAMESPACES_URL);
 
         WebElement reloadButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("edit-delete-triples-submit")));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", reloadButton);

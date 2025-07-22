@@ -12,8 +12,6 @@ import java.util.List;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ReloadALLTriplesTest extends BaseRep {
 
-    private WebDriver driver;
-    private WebDriverWait wait;
 
     @BeforeAll
     void setup() {

@@ -14,9 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class NamespaceTableVerificationTest extends BaseRep {
 
-    private WebDriver driver;
-    private WebDriverWait wait;
-
     @BeforeAll
     void setup() {
         driver = new ChromeDriver();
