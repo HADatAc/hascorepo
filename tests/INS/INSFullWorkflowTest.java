@@ -16,7 +16,7 @@ public class INSFullWorkflowTest {
 
         runTestClass(INSIngestHierarchyTest.class);
         Thread.sleep(2000);
-        runTestClass(INSIngestNormalTest.class);
+        runTestClass(INSNHANESIngestTest.class);
         Thread.sleep(2000);
        // runTestClass(INSRegressionTest.class);
         //Thread.sleep(3000);

@@ -1,4 +1,4 @@
-package tests.A1;
+package tests.Config;
 
 import org.junit.jupiter.api.Test;
 import org.junit.platform.engine.discovery.DiscoverySelectors;

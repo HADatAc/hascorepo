@@ -14,7 +14,7 @@ import tests.DSG.DSGIngestTest;
 import tests.DSG.DSGRegressionTest;
 import tests.STR.STRUploadTest;
 import tests.INS.INSDeleteTest;
-import tests.INS.INSIngestNormalTest;
+import tests.INS.INSNHANESIngestTest;
 import tests.INS.INSRegressionTest;
 import tests.INS.INSUploadTest;
 import tests.SDD.SDDIngestDPQTest;
@@ -38,7 +38,7 @@ public class FullWorkflowWithDeleteTest {
         // INS
         runFullCycle(
                 INSUploadTest.class,
-                INSIngestNormalTest.class,
+                INSNHANESIngestTest.class,
                 INSRegressionTest.class,
                 INSDeleteTest.class
         );

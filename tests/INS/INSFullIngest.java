@@ -14,7 +14,7 @@ public class INSFullIngest {
         Thread.sleep(5000);
         runTestClass(INSIngestHierarchyTest.class);
         Thread.sleep(2000);
-        runTestClass(INSIngestNormalTest.class);
+        runTestClass(INSNHANESIngestTest.class);
         Thread.sleep(2000);
     }
 

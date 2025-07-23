@@ -11,7 +11,7 @@ import tests.DP2.DP2UploadTest;
 import tests.DSG.DSGIngestTest;
 import tests.DSG.DSGRegressionTest;
 import tests.STR.STRUploadTest;
-import tests.INS.INSIngestNormalTest;
+import tests.INS.INSNHANESIngestTest;
 import tests.INS.INSRegressionTest;
 import tests.INS.INSUploadTest;
 import tests.SDD.SDDIngestDPQTest;
@@ -35,7 +35,7 @@ public class FullWorkflowTest {//extends BaseTest{
         // INS
         runTestClass(INSUploadTest.class);
         Thread.sleep(2000);
-        runTestClass(INSIngestNormalTest.class);
+        runTestClass(INSNHANESIngestTest.class);
         Thread.sleep(3000);
         runTestClass(INSRegressionTest.class);
         Thread.sleep(3000);

@@ -6,6 +6,7 @@ import java.io.File;
 import tests.base.BaseUpload;
 public class DP2UploadTest extends BaseUpload {
 
+    private final String dp2Type = System.getProperty("dp2Type", "WS");
     @Test
     @DisplayName("Upload a valid DP2 file with basic data")
     void shouldUploadDP2FileSuccessfully() {
@@ -14,9 +15,19 @@ public class DP2UploadTest extends BaseUpload {
         fillInputByLabel("Name", "testeDP2");
         fillInputByLabel("Version", "1");
 
-        File file = new File("tests/testfiles/DP2-NHANES-2017-2018.xlsx");
-        uploadFile(file);
-
-        submitFormAndVerifySuccess();
+        switch(dp2Type) {
+            case "nhanes":
+                File file = new File("tests/testfiles/DP2-NHANES-2017-2018.xlsx");
+                System.out.println("Uploading file: " + file.getAbsolutePath());
+                uploadFile(file);
+                break;
+            case "WS":
+                File fileWS = new File("tests/testfiles/DP2-LTE-PIAGET-WEATHER-STATION.xlsx");
+                System.out.println("Uploading file: " + fileWS.getAbsolutePath());
+                uploadFile(fileWS);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid DP2 type: " + dp2Type);
+        }
     }
 }

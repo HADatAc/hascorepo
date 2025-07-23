@@ -1,4 +1,4 @@
-package tests.A1;
+package tests.Config;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
@@ -10,8 +10,6 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static tests.Config.EnvConfig.*;
-
-import tests.Config.EnvConfig;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AdminAuto {

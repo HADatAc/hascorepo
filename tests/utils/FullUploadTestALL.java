@@ -1,4 +1,4 @@
-package tests.A1;
+package tests.utils;
 
 import org.junit.jupiter.api.Test;
 import org.junit.platform.engine.discovery.DiscoverySelectors;
@@ -9,8 +9,6 @@ import tests.DA.DAUploadTest;
 import tests.DP2.DP2UploadTest;
 import tests.DSG.DSGUploadTest;
 import tests.INS.INSUploadTest;
-import tests.SDD.SDDUploadTest;
-import tests.STR.STRUploadTest;
 
 public class FullUploadTestALL {
 

@@ -1,4 +1,4 @@
-package tests.A1;
+package tests.utils;
 
 import org.junit.jupiter.api.Test;
 import org.junit.platform.engine.discovery.DiscoverySelectors;
@@ -8,9 +8,7 @@ import org.junit.platform.launcher.core.LauncherFactory;
 import tests.DA.DADeleteTest;
 import tests.DP2.DP2DeleteTest;
 import tests.DSG.DSGDeleteTest;
-import tests.SDD.SDDDeleteTest;
 import tests.INS.INSDeleteTest;
-import tests.STR.STRDeleteTest;
 
 public class FullDeleteTest { //extends BaseTest{
     /*
