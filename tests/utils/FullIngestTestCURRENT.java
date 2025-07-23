@@ -1,4 +1,4 @@
-package tests.A1;
+package tests.utils;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

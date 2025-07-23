@@ -11,7 +11,7 @@ import static tests.Config.EnvConfig.NAMESPACES_URL;
 
 /*
     * Test to update each ontology individually and report the number of triples
-    * AINDA NÃO IMPLEMENTADO O BOTÃO "Reload Selected Ontology"
+    * AINDA NÃO IMPLEMENTADO O BOTÃO "Reload Selected Ontology" na API
     * UTILIZANDO O UPDATE POR ENQUANTO
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -43,7 +43,7 @@ public class ReloadSelectedTest extends BaseRep {
             }
 
             // Clicar no botão "Update Selected Ontology"
-            WebElement updateBtn = wait.until(ExpectedConditions.elementToBeClickable(By.id("edit-update-namespace")));
+            WebElement updateBtn = wait.until(ExpectedConditions.elementToBeClickable(By.id("edit-reload-triples-selected-submit")));
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", updateBtn);
 
             // Esperar e atualizar até os triples mudarem

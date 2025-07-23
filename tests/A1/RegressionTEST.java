@@ -5,11 +5,14 @@ import org.junit.platform.engine.discovery.DiscoverySelectors;
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
+import tests.Config.AdminAuto;
+import tests.Config.AttachPDFINST;
 import tests.DA.DADeleteTest;
 import tests.DP2.DP2DeleteTest;
 import tests.DSG.DSGDeleteTest;
 import tests.INS.INSDeleteTest;
-import tests.repository.RepositoryFormAutomationTest;
+import tests.utils.FullIngestTestDRAFT;
+import tests.utils.FullUploadTestALL;
 
 public class RegressionTEST {
     private final Launcher launcher = LauncherFactory.create();

@@ -19,6 +19,7 @@ public class RepositoryFormAutomationTest extends BaseRep {
     @Test
     void testFillRepositoryForm() throws InterruptedException {
         driver.get(BASE_URL + "/admin/config/rep");
+        Thread.sleep(2000);
 
         ensureJwtKeyExists();
 
@@ -35,6 +36,7 @@ public class RepositoryFormAutomationTest extends BaseRep {
         if (!checkbox.isSelected()) {
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkbox);
         }
+        Thread.sleep(500);
 
         // Preenchimento dos campos obrigatórios com logs
         fillInput("Repository Short Name (ex. \"ChildFIRST\")", "HADATAC");
