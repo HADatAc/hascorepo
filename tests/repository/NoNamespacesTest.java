@@ -18,7 +18,7 @@ public class NoNamespacesTest extends BaseRep {
 
     @Test
     public void verifyNamespaceTableIsEmpty() {
-        driver.get(NAMESPACES_URL);
+        driver.get(NAMESPACES_URL );
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("edit-element-table")));
 

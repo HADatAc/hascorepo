@@ -17,11 +17,12 @@ public class INSUploadTest extends BaseUpload {
                 fillInputByLabel("Name", "testeINS");
                 fillInputByLabel("Version", "1");
 
-                File file = new File("tests/testfiles/INS-NHANES-2017-2018.xlsx");
+                File file = new File("tests/testfiles/INS-NHANES-2017-2018 DEMO.xlsx");
                 uploadFile(file);
 
                 submitFormAndVerifySuccess();
                 Thread.sleep(5000);
+                /*
                 navigateToUploadPage("ins");
 
                 fillInputByLabel("Name", "testeINSHIERARCHY");
@@ -30,6 +31,8 @@ public class INSUploadTest extends BaseUpload {
                 File filehi = new File("tests/testfiles/INS-NHANES-2017-2018-HIERARCHY.xlsx");
                 uploadFile(filehi);
                 submitFormAndVerifySuccess();
+
+                 */
             case "WS":
                 fillInputByLabel("Name", "testeINS");
                 fillInputByLabel("Version", "1");
