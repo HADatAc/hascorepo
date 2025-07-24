@@ -105,7 +105,7 @@ public class RepositoryFormAutomationTest extends BaseRep {
         if (!jwtExists) {
             System.out.println("JWT key 'jwt' not found, creating...");
 
-            driver.get(FRONTEND_URL +"/admin/config/system/keys/add");
+            driver.get(FRONTEND_URL + "/admin/config/system/keys/add");
 
             wait.until(ExpectedConditions.urlContains("/admin/config/system/keys/add"));
             Thread.sleep(1000); // Ensure rendering
@@ -138,7 +138,7 @@ public class RepositoryFormAutomationTest extends BaseRep {
             System.out.println("JWT key created successfully.");
 
             // Return to configuration form
-            driver.get(FRONTEND_URL +"admin/config/rep");
+            driver.get(FRONTEND_URL + "/admin/config/rep");
         } else {
             System.out.println("JWT key 'jwt' already exists.");
         }

@@ -11,6 +11,7 @@ import tests.config.UninstallPmsrModuleTest;
 import tests.INS.INSDeleteTest;
 import tests.INS.INSNHANESIngestTest;
 import tests.INS.INSUploadTest;
+import tests.docker.ResetDockerTest;
 import tests.repository.*;
 /*
         *Teste de Regressão para as ontologias do repositório testando:
@@ -31,10 +32,10 @@ public class RegressionOntologiesTest {
     void runsetupanddeletetests() throws InterruptedException {
 
 
-       /* runTestClass(ResetDockerTest.class);
+        runTestClass(ResetDockerTest.class);
         Thread.sleep(5000);
 
-        */
+
 
         runTestClass(BackendUPTest.class);
         Thread.sleep(5000);

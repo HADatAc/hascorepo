@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.*;
 
 import java.time.Duration;
 
+import static tests.config.EnvConfig.FRONTEND_URL;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UninstallPmsrModuleTest {
 
@@ -20,7 +22,7 @@ public class UninstallPmsrModuleTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         // Login
-        driver.get("http://localhost/user/login");
+        driver.get(FRONTEND_URL + "/user/login");
         driver.findElement(By.id("edit-name")).sendKeys("admin");
         driver.findElement(By.id("edit-pass")).sendKeys("admin");
         driver.findElement(By.id("edit-submit")).click();
