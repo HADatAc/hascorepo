@@ -5,12 +5,12 @@ import org.junit.platform.engine.discovery.DiscoverySelectors;
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
-import tests.Config.AdminAuto;
-import tests.Config.UninstallPmsrModuleTest;
+import tests.config.AdminAuto;
+import tests.config.BackendUPTest;
+import tests.config.UninstallPmsrModuleTest;
 import tests.INS.INSDeleteTest;
 import tests.INS.INSNHANESIngestTest;
 import tests.INS.INSUploadTest;
-import tests.docker.ResetDockerTest;
 import tests.repository.*;
 /*
         *Teste de Regressão para as ontologias do repositório testando:
@@ -36,7 +36,13 @@ public class RegressionOntologiesTest {
 
         */
 
+        runTestClass(BackendUPTest.class);
+        Thread.sleep(5000);
+
         runTestClass(UninstallPmsrModuleTest.class);
+        Thread.sleep(5000);
+
+        runTestClass(NoNamespacesTest.class);
         Thread.sleep(5000);
 
         runTestClass(RepositoryFormAutomationTest.class);

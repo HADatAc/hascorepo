@@ -1,4 +1,4 @@
-package tests.Config;
+package tests.config;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;

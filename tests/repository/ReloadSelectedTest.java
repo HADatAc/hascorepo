@@ -7,7 +7,7 @@ import tests.base.BaseRep;
 
 import java.util.List;
 
-import static tests.Config.EnvConfig.NAMESPACES_URL;
+import static tests.config.EnvConfig.NAMESPACES_URL;
 
 /*
     * Test to update each ontology individually and report the number of triples

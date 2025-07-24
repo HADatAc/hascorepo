@@ -13,7 +13,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
-import static tests.Config.EnvConfig.*;
+import static tests.config.EnvConfig.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class BaseDelete {
     protected WebDriver driver;

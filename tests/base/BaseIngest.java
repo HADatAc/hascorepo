@@ -10,7 +10,7 @@ import java.time.Duration;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static tests.Config.EnvConfig.*;
+import static tests.config.EnvConfig.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class BaseIngest {

@@ -1,4 +1,4 @@
-package tests.Config;
+package tests.config;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static tests.Config.EnvConfig.*;
+import static tests.config.EnvConfig.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AdminAuto {
@@ -37,7 +37,7 @@ public class AdminAuto {
     @DisplayName("Verify Content editor and Administrator checkboxes are loaded and visible")
     void testCheckboxesLoaded() {
         // Navigate to user edit page
-        driver.get(BASE_URL + "/user/1/edit");
+        driver.get(FRONTEND_URL + "/user/1/edit");
 
         // Wait for the checkboxes to be present
         WebElement contentEditorCheckbox = wait.until(
@@ -59,7 +59,7 @@ public class AdminAuto {
     @Test
     @DisplayName("Ensure Content editor and Administrator checkboxes are checked and saved")
     void testEnsureCheckboxesCheckedAndSaved() {
-        driver.get(BASE_URL + "/user/1/edit");
+        driver.get(FRONTEND_URL + "/user/1/edit");
 
         WebElement contentEditorCheckbox = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.id("edit-roles-content-editor"))
@@ -90,7 +90,7 @@ public class AdminAuto {
         assertTrue(successMessage.getText().toLowerCase().contains("saved"), "Expected success message to contain 'saved'.");
 
         // Recarrega a página e verifica se os checkboxes continuam marcados
-        driver.get(BASE_URL + "/user/1/edit");
+        driver.get(FRONTEND_URL + "/user/1/edit");
 
         contentEditorCheckbox = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.id("edit-roles-content-editor"))

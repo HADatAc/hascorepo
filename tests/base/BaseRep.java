@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static tests.Config.EnvConfig.*;
+import static tests.config.EnvConfig.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class BaseRep {

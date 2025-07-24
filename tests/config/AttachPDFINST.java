@@ -1,11 +1,12 @@
-package tests.Config;
+package tests.config;
 
 import org.junit.jupiter.api.Test;
 import org.junit.platform.engine.discovery.DiscoverySelectors;
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
-import tests.*;
+import tests.utils.InstrumentAddPdfDemoTest;
+import tests.utils.InstrumentAddPdfTest;
 
 public class AttachPDFINST {
     private final Launcher launcher = LauncherFactory.create();
