@@ -17,7 +17,7 @@ public class INSUploadTest extends BaseUpload {
                 fillInputByLabel("Name", "testeINS");
                 fillInputByLabel("Version", "1");
 
-                File file = new File("tests/testfiles/INS-NHANES-2017-2018 DEMO.xlsx");
+                File file = new File("tests/testfiles/INS-NHANES-2017-2018-DEMO.xlsx");
                 uploadFile(file);
 
                 submitFormAndVerifySuccess();

@@ -36,7 +36,6 @@ public class RegressionOntologiesTest {
         Thread.sleep(5000);
 
 
-
         runTestClass(BackendUPTest.class);
         Thread.sleep(5000);
 
