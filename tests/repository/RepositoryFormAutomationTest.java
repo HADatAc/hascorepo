@@ -5,8 +5,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
 import tests.base.BaseRep;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.net.*;
+import java.util.Enumeration;
 import java.util.List;
 
 import static tests.config.EnvConfig.*;
@@ -27,14 +27,16 @@ public class RepositoryFormAutomationTest extends BaseRep {
         Thread.sleep(2000);
 
         wait.until(driver -> findInputByLabel("Repository Short Name (ex. \"ChildFIRST\")") != null);
-        WebElement checkbox = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("edit-sagres-conf")));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", checkbox);
+      //  WebElement checkbox = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("edit-sagres-conf")));
+      //  ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", checkbox);
         Thread.sleep(500);  // garante que o scroll terminou
 
-        if (!checkbox.isSelected()) {
+     /*   if (!checkbox.isSelected()) {
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkbox);
         }
         Thread.sleep(500);
+
+      */
 
         // Preenchimento dos campos obrigatórios com logs
         fillInput("Repository Short Name (ex. \"ChildFIRST\")", "HADATAC");
@@ -45,16 +47,41 @@ public class RepositoryFormAutomationTest extends BaseRep {
         fillInput("Mime for Base Namespace", "");
         fillInput("Source for Base Namespace", "");
         fillInput("description for the repository that appears in the rep APIs GUI", "HADATAC");
-        fillInput("Sagres Base URL", "https://52.214.194.214/");
+        //fillInput("Sagres Base URL", "https://52.214.194.214/");
 
-        //String ip = "127.0.0.1";
-        String ip = "108.129.120.74"; // IP do servidor de testes
+
+
+
+
+        String ip = "127.0.0.1"; // fallback
         try {
-            ip = InetAddress.getLocalHost().getHostAddress();
-            System.out.printf("Local IP detected: %s%n", ip);
-        } catch (UnknownHostException e) {
-            System.out.println("Could not retrieve local IP. Using localhost as fallback.");
+            Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
+            while (nets.hasMoreElements()) {
+                NetworkInterface netIf = nets.nextElement();
+                if (netIf.isUp() && !netIf.isLoopback() && !netIf.isVirtual()) {
+                    Enumeration<InetAddress> addresses = netIf.getInetAddresses();
+                    while (addresses.hasMoreElements()) {
+                        InetAddress addr = addresses.nextElement();
+                        if (addr instanceof Inet4Address && !addr.isLoopbackAddress()) {
+                            String candidate = addr.getHostAddress();
+                            // Prioriza 192.168.x.x
+                            if (candidate.startsWith("192.168.")) {
+                                ip = candidate;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (!ip.equals("127.0.0.1")) {
+                    break;
+                }
+            }
+            System.out.printf("IPv4 detected: %s%n", ip);
+        } catch (SocketException e) {
+            System.out.println("Could not retrieve IPv4 address. Using localhost as fallback.");
         }
+
+
 
         String apiUrl = "http://" + ip + ":9000";
         fillInput("rep API Base URL", apiUrl);

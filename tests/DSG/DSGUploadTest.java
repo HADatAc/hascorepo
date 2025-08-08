@@ -17,7 +17,7 @@ public class DSGUploadTest extends BaseUpload {
 
         switch(dsgType) {
             case "nhanes":
-                File file = new File("tests/testfiles/DSG-NHANES-2017-2018.xlsx");
+                File file = new File("tests/testfiles/DSG-NHANES-2017-2018_13.xlsx");
                 uploadFile(file);
                 submitFormAndVerifySuccess();
                 break;

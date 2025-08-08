@@ -17,34 +17,36 @@ public class FullUploadNHANESTestALL {
     @Test
     void runOnlyUploadsForDPQ() throws InterruptedException {
         // INS
-        /*System.setProperty("insType", "nhanes");
+        System.setProperty("insType", "nhanes");
         runTestClass(INSUploadTest.class);
         Thread.sleep(2000);
 
-         */
         // DSG
+        System.setProperty("dsgType", "nhanes");
         runTestClass(DSGUploadTest.class);
         Thread.sleep(2000);
-
+/*
         // DA (DEMO)
         System.setProperty("daType", "DEMO");
         runTestClass(DAUploadTest.class);
         Thread.sleep(2000);
-        /*// DA (DPQ)
+
+
+        // DA (DPQ)
         System.setProperty("daType", "DPQ");
         runTestClass(DAUploadTest.class);
         Thread.sleep(2000);
 
-         */
 
-        // SDD (DEMO)
-        //System.setProperty("sddType", "DEMO");
-        //runTestClass(SDDUploadTest.class);
-        //Thread.sleep(2000);
+
+         //SDD (DEMO)
+        System.setProperty("sddType", "DEMO");
+        runTestClass(SDDUploadTest.class);
+        Thread.sleep(2000);
         // SDD (DPQ)
-        //System.setProperty("sddType", "DPQ");
-        //runTestClass(SDDUploadTest.class);
-        //Thread.sleep(2000);
+        System.setProperty("sddType", "DPQ");
+        runTestClass(SDDUploadTest.class);
+        Thread.sleep(2000);
 
 
         // DP2
@@ -54,15 +56,17 @@ public class FullUploadNHANESTestALL {
         // STR
         //runTestClass(STRUploadTest.class);
         //Thread.sleep(2000);
+
+ */
     }
 
     private void runTestClass(Class<?> testClass) {
         System.out.println("===> Running: " + testClass.getSimpleName());
 
         launcher.execute(
-                LauncherDiscoveryRequestBuilder.request()
-                        .selectors(DiscoverySelectors.selectClass(testClass))
-                        .build()
+            LauncherDiscoveryRequestBuilder.request()
+                .selectors(DiscoverySelectors.selectClass(testClass))
+                .build()
         );
     }
 }

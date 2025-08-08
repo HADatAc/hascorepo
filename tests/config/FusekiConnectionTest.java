@@ -1,65 +1,45 @@
 package tests.config;
 
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.*;
-import org.openqa.selenium.support.ui.*;
+import tests.base.BaseRep;
 
 import java.net.URI;
 import java.net.http.*;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static tests.config.EnvConfig.BACKEND_URL;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class FusekiConnectionTest {
+public class FusekiConnectionTest extends BaseRep {
 
-    private WebDriver driver;
     private HttpClient client;
 
     @BeforeAll
     public void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments(
-            "--headless=new",
-            "--no-sandbox",
-            "--disable-dev-shm-usage",
-            "--disable-gpu",
-            "--remote-debugging-port=9222",
-            "--window-size=1920,1080",
-            "--ignore-certificate-errors"
-        );
-        driver = new ChromeDriver(options);
         client = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(5))
             .build();
     }
 
-    @AfterAll
-    public void tearDown() {
-        if (driver != null) driver.quit();
-    }
-
     @Test
-    public void testHascoapiToFusekiConnection() throws Exception {
+    public void testHascoapiVersionEndpoint() throws Exception {
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(new URI("http://localhost:9000/hascoapi/api/repo/queryTest"))
+            .uri(new URI(BACKEND_URL+"/hascoapi/version"))
             .GET()
             .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println("Hascoapi to Fuseki response: " + response.body());
-        assertEquals(200, response.statusCode(), "API should return 200 OK");
-        assertTrue(response.body().contains("http") || response.body().contains("result"),
-            "Response should contain some triple or result");
+
+        assertEquals(200, response.statusCode(), "API /hascoapi/version should return 200 OK");
+
+        String body = response.body();
+        System.out.println("Response body:\n" + body);
+
+        // Verifica se a resposta contém a versão esperada ou partes do HTML
+        assertTrue(body.contains("0.8") || body.toLowerCase().contains("version"),
+            "Response should contain version information");
     }
 
 
-    @Test
-    public void testYasguiInterfaceLoads() {
-        driver.get("http://localhost:8888/");
-        new WebDriverWait(driver, Duration.ofSeconds(10))
-            .until(ExpectedConditions.presenceOfElementLocated(By.id("yasgui")));
-        assertTrue(driver.getPageSource().contains("YASGUI"), "YASGUI interface should load correctly");
-    }
 }

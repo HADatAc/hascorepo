@@ -10,7 +10,7 @@ public class EnvConfig {
     public static final String FRONTEND_URL = "http://localhost:80";
     public static final String BACKEND_URL = "http://localhost:9000";
     public static final String BACKEND_API_URL = BACKEND_URL + "/api";
-    public static final String FUSEKI_ENDPOINT = "http://localhost:3030";
+    public static final String FUSEKI_URL = "http://localhost:3030";
     public static final String YASGUI_ENDPOINT = "http://localhost:8888";
     //Path URL
     public static final String LOGIN_URL = FRONTEND_URL + "/user/login";

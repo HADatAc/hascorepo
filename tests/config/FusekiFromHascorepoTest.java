@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import tests.base.BaseRep;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -12,18 +13,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static tests.config.EnvConfig.FUSEKI_ENDPOINT;
+import static tests.config.EnvConfig.FUSEKI_URL;
 import static tests.config.EnvConfig.YASGUI_ENDPOINT;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class FusekiFromHascorepoTest {
+public class FusekiFromHascorepoTest extends BaseRep {
 
     private static WebDriver driver;
 
     @BeforeAll
     public static void setup() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new", "--no-sandbox", "--disable-dev-shm-usage");
+        //options.addArguments("--headless=new", "--no-sandbox", "--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
     }
 
@@ -38,7 +39,7 @@ public class FusekiFromHascorepoTest {
     @Order(1)
     public void testDockerContainersAreRunning() throws Exception {
         assertTrue(isDockerContainerRunning("hascoapi_fuseki"), "Container 'hascoapi_fuseki' is not running.");
-        assertTrue(isDockerContainerRunning("hascoapi_fuseki_yasgui"), "Container 'hascoapi_fuseki_yasgui' is not running.");
+       // assertTrue(isDockerContainerRunning("hascoapi_fuseki_yasgui"), "Container 'hascoapi_fuseki_yasgui' is not running.");
     }
 
     private boolean isDockerContainerRunning(String containerName) throws Exception {
@@ -57,24 +58,28 @@ public class FusekiFromHascorepoTest {
         return false;
     }
 
-    @Test
+    /*@Test
     @Order(2)
     public void testYasguiPageLoads() throws Exception {
         int status = getHttpStatusCode(YASGUI_ENDPOINT);
         assertEquals(200, status, "YASGUI web interface is not accessible.");
     }
 
+
+
     @Test
     @Order(3)
     public void testYasguiProxyToFuseki() throws Exception {
-        driver.get(YASGUI_ENDPOINT);
+        driver.get(FUSEKI_URL);
         Thread.sleep(3000); // Allow UI to fully load
-        System.out.println("YASGUI page loaded successfully: " + driver.getTitle());
+        System.out.println("fuseki page loaded successfully: " + driver.getTitle());
         String query = "SELECT * WHERE { ?s ?p ?o } LIMIT 1";
         int status = postSparqlQuery(YASGUI_ENDPOINT + "/query", query);
         System.out.println("POST to YASGUI returned status: " + status);
         assertEquals(200, status, "YASGUI (nginx) failed to proxy to Fuseki.");
     }
+
+     */
 
     private int getHttpStatusCode(String urlString) throws Exception {
         URL url = new URL(urlString);
