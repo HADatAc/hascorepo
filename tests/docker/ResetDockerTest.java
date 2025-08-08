@@ -44,6 +44,7 @@ public class ResetDockerTest {
         System.out.println("Docker environment reset completed successfully.");
     }
 
+
     private int runCommand(String command, String stepName) throws Exception {
         ProcessBuilder builder;
 

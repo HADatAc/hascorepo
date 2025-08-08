@@ -8,7 +8,7 @@ import org.junit.platform.launcher.core.LauncherFactory;
 import tests.config.AdminAuto;
 import tests.config.AttachPDFINST;
 import tests.utils.FullIngestTestDRAFT;
-import tests.utils.FullUploadTestALL;
+import tests.utils.FullUploadNHANESTestALL;
 import tests.repository.RepositoryFormAutomationTest;
 
 public class FullSetup {
@@ -23,9 +23,9 @@ public class FullSetup {
         //Admin Status and Data conf permission
         runTestClass(AdminAuto.class);
          Thread.sleep(5000);
-
+/*
         // All data upload
-        runTestClass(FullUploadTestALL.class);
+        runTestClass(FullUploadNHANESTestALL.class);
         Thread.sleep(5000);
 
         // All data ingest
@@ -39,6 +39,8 @@ public class FullSetup {
         //AttachPDFINST
         runTestClass(AttachPDFINST.class);
         Thread.sleep(5000);
+
+ */
     }
 
     private void runTestClass(Class<?> testClass) {

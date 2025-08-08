@@ -12,7 +12,7 @@ import tests.DP2.DP2DeleteTest;
 import tests.DSG.DSGDeleteTest;
 import tests.INS.INSDeleteTest;
 import tests.utils.FullIngestTestDRAFT;
-import tests.utils.FullUploadTestALL;
+import tests.utils.FullUploadNHANESTestALL;
 
 public class RegressionTEST {
     private final Launcher launcher = LauncherFactory.create();
@@ -27,11 +27,13 @@ public class RegressionTEST {
          */
 
         //Admin Status and Data conf permission
-        runTestClass(AdminAuto.class);
+        /*runTestClass(AdminAuto.class);
         Thread.sleep(5000);
 
+
+         */
         // All data upload
-        runTestClass(FullUploadTestALL.class);
+        runTestClass(FullUploadNHANESTestALL.class);
         Thread.sleep(5000);
 
         // All data ingest

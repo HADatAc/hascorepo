@@ -21,7 +21,7 @@ public abstract class BaseDelete {
     protected final Map<String, Boolean> selectedRows = new HashMap<>();
     protected static final int MAX_ATTEMPTS = 10;
     protected static final int WAIT_INTERVAL_MS = 10000;
-    
+
     @BeforeAll
     void setup() {
         driver = new ChromeDriver();

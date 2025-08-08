@@ -7,7 +7,7 @@ import java.io.File;
 
 public class SDDUploadTest extends BaseUpload {
 
-    private final String sddType = System.getProperty("sddType", "DPQ"); // default to DPQ
+    private final String sddType = System.getProperty("sddType", "DEMO"); // default to DPQ
 
 
 

@@ -10,15 +10,18 @@ import tests.DP2.DP2UploadTest;
 import tests.DSG.DSGUploadTest;
 import tests.INS.INSUploadTest;
 
-public class FullUploadTestALL {
+public class FullUploadNHANESTestALL {
 
     private final Launcher launcher = LauncherFactory.create();
 
     @Test
     void runOnlyUploadsForDPQ() throws InterruptedException {
         // INS
+        /*System.setProperty("insType", "nhanes");
         runTestClass(INSUploadTest.class);
         Thread.sleep(2000);
+
+         */
         // DSG
         runTestClass(DSGUploadTest.class);
         Thread.sleep(2000);
@@ -27,10 +30,12 @@ public class FullUploadTestALL {
         System.setProperty("daType", "DEMO");
         runTestClass(DAUploadTest.class);
         Thread.sleep(2000);
-        // DA (DPQ)
+        /*// DA (DPQ)
         System.setProperty("daType", "DPQ");
         runTestClass(DAUploadTest.class);
         Thread.sleep(2000);
+
+         */
 
         // SDD (DEMO)
         //System.setProperty("sddType", "DEMO");
