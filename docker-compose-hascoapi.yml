@@ -15,19 +15,6 @@ services:
           - fuseki
     restart: always
 
-  fuseki-yasgui:
-    build: ./fuseki-yasgui
-    container_name: hascoapi_fuseki_yasgui
-    ports:
-      - "8888:8888"
-    environment:
-      DEFAULT_SPARQL_ENDPOINT: "http://fuseki:3030/dataset/sparql"
-    depends_on:
-      - fuseki
-    networks:
-      hascorepo:
-        aliases:
-          - fuseki-yasgui
 
   hascoapi:
     build:
