@@ -6,6 +6,7 @@ import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
 import tests.config.*;
+import tests.config.BEViaFEStatusSimpleCheck;
 import tests.repository.ConfigurationValidationTest;
 import tests.utils.*;
 import tests.repository.RepositoryFormAutomationTest;

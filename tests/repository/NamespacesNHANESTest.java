@@ -46,10 +46,10 @@ public class NamespacesNHANESTest extends BaseRep {
             .collect(Collectors.toList());
 
         if (!missing.isEmpty()) {
-            System.out.println("❌ Missing prefixes: " + String.join(", ", missing));
+            System.out.println("Missing prefixes: " + String.join(", ", missing));
             Assertions.fail("Some expected prefixes are missing from the table.");
         } else {
-            System.out.println("✔ All expected NHANES prefixes are present.");
+            System.out.println("All expected NHANES prefixes are present.");
         }
     }
 
@@ -128,11 +128,11 @@ public class NamespacesNHANESTest extends BaseRep {
                 String namespace = cells.get(2).getText().trim();
                 String triples = cells.get(6).getText().trim();
                 System.out.println("Namespace: " + namespace + " | Triples: '" + triples + "'");
-                Assertions.assertTrue(triples.isBlank(), "❌ Triples should be empty for: " + namespace);
+                Assertions.assertTrue(triples.isBlank(), "Triples should be empty for: " + namespace);
             }
         }
 
-        System.out.println("✔ All triples have been successfully deleted.");
+        System.out.println("All triples have been successfully deleted.");
     }
 
     @AfterAll

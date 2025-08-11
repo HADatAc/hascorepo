@@ -71,7 +71,7 @@ public class NamespaceTableVerificationTest extends BaseRep {
         // Pega todas as linhas, ignorando o cabeçalho (thead)
         List<WebElement> rows = table.findElements(By.cssSelector("tbody tr"));
 
-        // Índice da coluna "Triples" (exemplo: 6)
+        // ndice da coluna "Triples" (exemplo: 6)
         int triplesColumnIndex = 6;
 
         for (WebElement row : rows) {

@@ -15,7 +15,7 @@ public class SDDUploadTest extends BaseUpload {
     @DisplayName("Upload a valid SDD file with type DPQ or DEMO")
       void shouldUploadSDDFileSuccessfully() throws InterruptedException {
         switch(sddType){
-            case "DPQ", "DEMO" :
+            case "nhanes" :
         navigateToUploadPage("sdd");
         fillInputByLabel("Name", "testeSDD" + sddType);
         fillInputByLabel("Version", "1");

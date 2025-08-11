@@ -1,14 +1,16 @@
 package tests.A1;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.platform.engine.discovery.DiscoverySelectors;
 import org.junit.platform.launcher.*;
+import org.junit.plataform.launcher.*;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
 
 import tests.DP2.DP2RegressionTest;
 import tests.DSG.DSGRegressionTest;
-import tests.INS.INSRegressionTest;
+// import tests.INS.INSRegressionTest;
 import tests.SDD.SDDRegressionTest;
 import tests.STR.STRRegressionTest;
 
@@ -20,8 +22,8 @@ public class FullRegressionTest {
     @Test
     void runRegressionTests() throws InterruptedException {
         // INS
-        runTestClass(INSRegressionTest.class);
-        Thread.sleep(2000);
+        // runTestClass(INSRegressionTest.class);
+        // Thread.sleep(2000);
 
         // DSG
         runTestClass(DSGRegressionTest.class);

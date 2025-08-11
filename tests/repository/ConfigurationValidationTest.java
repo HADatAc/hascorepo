@@ -128,7 +128,7 @@ public class ConfigurationValidationTest extends BaseRep {
     @AfterEach
     void showPopupIfErrorsExist() {
         if (!issues.isEmpty()) {
-            StringBuilder msg = new StringBuilder("⚠️ Configuration issues found:\n");
+            StringBuilder msg = new StringBuilder("Configuration issues found:\n");
             for (String issue : issues.keySet()) {
                 msg.append("- ").append(issue).append("\n");
             }
@@ -136,7 +136,7 @@ public class ConfigurationValidationTest extends BaseRep {
             ((JavascriptExecutor) driver).executeScript("alert(arguments[0]);", msg.toString());
             System.out.println(msg.toString());
         } else {
-            System.out.println("✅ Configuration and namespaces are valid.");
+            System.out.println("Configuration and namespaces are valid.");
         }
     }
 }

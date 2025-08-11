@@ -37,7 +37,7 @@ public class BackendUPTest {
             Assertions.assertTrue(statusCode == 200, "Expected HTTP 200 OK status from backend");
 
         } catch (WebDriverException e) {
-            Assertions.fail("❌ Backend is not reachable at " + EnvConfig.BACKEND_URL + ": " + e.getMessage());
+            Assertions.fail("Backend is not reachable at " + EnvConfig.BACKEND_URL + ": " + e.getMessage());
         }
     }
 

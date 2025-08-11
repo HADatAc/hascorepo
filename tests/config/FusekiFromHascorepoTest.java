@@ -50,11 +50,11 @@ public class FusekiFromHascorepoTest extends BaseRep {
         System.out.println("Checking running Docker containers for: " + containerName);
         while ((line = reader.readLine()) != null) {
             if (line.trim().equals(containerName)) {
-                System.out.println("✅ " + containerName + " is running.");
+                System.out.println("" + containerName + " is running.");
                 return true;
             }
         }
-        System.out.println("❌ " + containerName + " is NOT running.");
+        System.out.println(containerName + " is NOT running.");
         return false;
     }
 
