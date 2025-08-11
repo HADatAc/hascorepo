@@ -1,0 +1,10 @@
+{
+    "java.project.sourcePaths": [
+        ".",
+        "tests"
+    ],
+    "java.project.referencedLibraries": [
+        "tests\\libs\\junit-platform-console-standalone-1.8.2.jar"
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
+}
