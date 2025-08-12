@@ -1,16 +1,31 @@
 package tests.base;
 
-import org.junit.jupiter.api.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.*;
-
 import java.time.Duration;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static tests.config.EnvConfig.*;
+import org.junit.jupiter.api.AfterAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.TestInstance;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static tests.config.EnvConfig.FILES_URL;
+import static tests.config.EnvConfig.LOGIN_URL;
+import static tests.config.EnvConfig.PASSWORD;
+import static tests.config.EnvConfig.USERNAME;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class BaseIngest {
@@ -39,17 +54,18 @@ public abstract class BaseIngest {
 
     protected void ingestFile(String type) throws InterruptedException {
         driver.get(FILES_URL + type + "/table/1/9/none");
-        Thread.sleep(2000); // Wait for UI to update
+        Thread.sleep(3000); // Wait for UI to update
+        System.out.println("Ingesting files of type: " + type);
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("table")));
         } catch (TimeoutException e) {
             fail("Table for type '" + type + "' not found.");
         }
-
+        Thread.sleep(2000);
         List<WebElement> rows = driver.findElements(By.xpath("//table//tbody//tr"));
         int selectedCount = 0;
         System.out.println("Total table rows found: " + rows.size());
-
+        Thread.sleep(1000);
         for (WebElement row : rows) {
             List<WebElement> cells = row.findElements(By.tagName("td"));
             if (cells.size() >= 5) {
@@ -77,7 +93,7 @@ public abstract class BaseIngest {
 
         System.out.println("Total selected entries: " + selectedCount);
 
-        Thread.sleep(2000); // Wait for UI to update
+        Thread.sleep(3000); // Wait for UI to update
 
         try {
             WebElement ingestButton = wait.until(ExpectedConditions.elementToBeClickable(By.name(buttonName)));
@@ -108,7 +124,8 @@ public abstract class BaseIngest {
         while (attempts < MAX_ATTEMPTS) {
             Thread.sleep(WAIT_INTERVAL_MS);
             driver.navigate().refresh();
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("table")));
+            Thread.sleep(3000); // Wait for UI to update
+            //wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("table")));
 
             List<WebElement> updatedRows = driver.findElements(By.xpath("//table//tbody//tr"));
             processedCount = 0;

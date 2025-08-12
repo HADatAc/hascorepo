@@ -18,8 +18,9 @@ public class SDDUploadTest extends BaseUpload {
       void shouldUploadSDDFileSuccessfully() throws InterruptedException {
         switch(sddType){
             case "nhanes" :
+        System.out.println("Uploading SDD file with type NHANES: " + sddType);
         navigateToUploadPage("sdd");
-        fillInputByLabel("Name", "testeSDD" + sddType);
+        fillInputByLabel("Name", "testeSDDNHANES");
         fillInputByLabel("Version", "1");
         File filenhanes = new File("src/test/java/tests/testfiles/SDD-NHANES-2017-2018-" + sddType + ".xlsx");
         uploadFile(filenhanes);
@@ -27,8 +28,9 @@ public class SDDUploadTest extends BaseUpload {
         break;
         case "WS" :
             navigateToUploadPage("sdd");
+            System.out.println("Uploading SDD file with type WS" + sddType);
 
-            fillInputByLabel("Name", "testeSDD");
+            fillInputByLabel("Name", "testeSDDWS");
             fillInputByLabel("Version", "1");
 
             File filews = new File("src/test/java/tests/testfiles/SDD-WS.xlsx");;

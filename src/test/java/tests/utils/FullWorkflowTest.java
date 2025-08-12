@@ -2,23 +2,24 @@ package tests.utils;
 
 import org.junit.jupiter.api.Test;
 import org.junit.platform.engine.discovery.DiscoverySelectors;
-import org.junit.platform.launcher.*;
+import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
+
 import tests.DP2.DP2IngestTest;
 import tests.DP2.DP2RegressionTest;
 import tests.DP2.DP2UploadTest;
 import tests.DSG.DSGIngestTest;
 import tests.DSG.DSGRegressionTest;
-import tests.STR.STRUploadTest;
 import tests.INS.INSNHANESIngestTest;
 import tests.INS.INSRegressionTest;
 import tests.INS.INSUploadTest;
-import tests.SDD.SDDIngestDPQTest;
+import tests.SDD.SDDIngestWSTest;
 import tests.SDD.SDDRegressionTest;
 import tests.SDD.SDDUploadTest;
 import tests.STR.STRIngestTest;
 import tests.STR.STRRegressionTest;
+import tests.STR.STRUploadTest;
 
 
 public class FullWorkflowTest {//extends BaseTest{
@@ -59,7 +60,7 @@ public class FullWorkflowTest {//extends BaseTest{
         // SDD
         runTestClass(SDDUploadTest.class);
         Thread.sleep(2000);
-        runTestClass(SDDIngestDPQTest.class);
+        runTestClass(SDDIngestWSTest.class);
         Thread.sleep(3000);
         runTestClass(SDDRegressionTest.class);
         Thread.sleep(3000);

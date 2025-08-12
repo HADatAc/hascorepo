@@ -17,6 +17,7 @@ import tests.utils.FullIngestWSTestDRAFT;
 import tests.utils.FullUploadNHANESTestALL;
 import tests.utils.FullUploadWS;
 
+
 public class FullSetupWSandNHANES {
     private final Launcher launcher = LauncherFactory.create();
 
@@ -30,9 +31,9 @@ public class FullSetupWSandNHANES {
         //Admin Status and Data conf permission
         runTestClass(AdminAuto.class);
         Thread.sleep(5000);
+*/
 
-
-         */
+         
         // All data upload
 
         runTestClass(BEViaFEStatusSimpleCheck.class);
@@ -57,7 +58,7 @@ public class FullSetupWSandNHANES {
         // All data ingest
         runTestClass(FullIngestWSTestDRAFT.class);
         Thread.sleep(5000);
-
+ 
         // All data upload
         runTestClass(FullUploadNHANESTestALL.class);
         Thread.sleep(5000);
