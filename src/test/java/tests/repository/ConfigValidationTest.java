@@ -8,12 +8,11 @@ import tests.base.BaseRep;
 
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static tests.config.EnvConfig.FRONTEND_URL;
 import static tests.config.EnvConfig.NAMESPACES_URL;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class ConfigurationValidationTest extends BaseRep {
+public class ConfigValidationTest extends BaseRep {
 
     private final Map<String, Boolean> issues = new LinkedHashMap<>();
 

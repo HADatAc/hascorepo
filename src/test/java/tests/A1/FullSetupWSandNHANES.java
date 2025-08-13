@@ -1,17 +1,19 @@
 package tests.A1;
 
 import org.junit.jupiter.api.Test;
+import org.junit.platform.engine.DiscoverySelector;
 import org.junit.platform.engine.discovery.DiscoverySelectors;
 import org.junit.platform.launcher.Launcher;
+import org.junit.platform.launcher.TestExecutionListener;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
 
+import org.junit.platform.launcher.listeners.SummaryGeneratingListener;
 import tests.config.AttachPDFINST;
 import tests.config.BEViaFEStatusSimpleCheck;
 import tests.config.BEViaFEStatusTest;
 import tests.config.FusekiConnectionTest;
-import tests.config.FusekiFromHascorepoTest;
-import tests.repository.ConfigurationValidationTest;
+import tests.repository.ConfigValidationTest;
 import tests.utils.FullIngestNHANESTestDRAFT;
 import tests.utils.FullIngestWSTestDRAFT;
 import tests.utils.FullUploadNHANESTestALL;
@@ -25,55 +27,52 @@ public class FullSetupWSandNHANES {
     void runOnlyIngestsForCurrentMode() throws InterruptedException {
         // Setup of rep configuration
         /*
-        runTestClass(RepositoryFormAutomationTest.class);
+        runTestClassAndAbortOnFailure(RepositoryFormAutomationTest.class);
         Thread.sleep(5000);
 
         //Admin Status and Data conf permission
-        runTestClass(AdminAuto.class);
+        runTestClassAndAbortOnFailure(AdminAuto.class);
         Thread.sleep(5000);
 */
 
-         
+
         // All data upload
-
-        runTestClass(BEViaFEStatusSimpleCheck.class);
+        runTestClassAndAbortOnFailure(FusekiConnectionTest.class);
         Thread.sleep(5000);
 
-        runTestClass(BEViaFEStatusTest.class);
+        runTestClassAndAbortOnFailure(BEViaFEStatusSimpleCheck.class);
         Thread.sleep(5000);
 
-        runTestClass(FusekiConnectionTest.class);
+        runTestClassAndAbortOnFailure(BEViaFEStatusTest.class);
         Thread.sleep(5000);
 
-        runTestClass(FusekiFromHascorepoTest.class);
-        Thread.sleep(5000);
 
-        runTestClass(ConfigurationValidationTest.class);
+        runTestClassAndAbortOnFailure(ConfigValidationTest.class);
         Thread.sleep(5000);
 
         // All data upload
-        runTestClass(FullUploadWS.class);
+        runTestClassAndAbortOnFailure(FullUploadWS.class);
         Thread.sleep(5000);
 
         // All data ingest
-        runTestClass(FullIngestWSTestDRAFT.class);
+        runTestClassAndAbortOnFailure(FullIngestWSTestDRAFT.class);
         Thread.sleep(5000);
- 
+
         // All data upload
-        runTestClass(FullUploadNHANESTestALL.class);
+        runTestClassAndAbortOnFailure(FullUploadNHANESTestALL.class);
         Thread.sleep(5000);
 
         // All data ingest
-        runTestClass(FullIngestNHANESTestDRAFT.class);
+        runTestClassAndAbortOnFailure(FullIngestNHANESTestDRAFT.class);
         Thread.sleep(5000);
 
 
         // All data Regression Test
-        runTestClass(FullRegressionTest.class);
+        runTestClassAndAbortOnFailure(FullRegressionTest.class);
         Thread.sleep(5000);
 
         //AttachPDFINST
-        runTestClass(AttachPDFINST.class);
+        runTestClassAndAbortOnFailure(AttachPDFINST.class);
         Thread.sleep(5000);
 
         /*//Delete
@@ -83,13 +82,20 @@ public class FullSetupWSandNHANES {
          */
     }
 
-    private void runTestClass(Class<?> testClass) {
+    private void runTestClassAndAbortOnFailure(Class<?> testClass) {
         System.out.println("===> Running: " + testClass.getSimpleName());
 
+        TestExecutionListener listener = new SummaryGeneratingListener();
         launcher.execute(
             LauncherDiscoveryRequestBuilder.request()
-                .selectors(DiscoverySelectors.selectClass(testClass))
-                .build()
+                .selectors(new DiscoverySelector[]{DiscoverySelectors.selectClass(testClass)})
+                .build(),
+            listener
         );
+
+        long failures = ((SummaryGeneratingListener) listener).getSummary().getFailures().size();
+        if (failures > 0) {
+            throw new RuntimeException("Test failed in " + testClass.getSimpleName() + ". Aborting remaining tests.");
+        }
     }
 }

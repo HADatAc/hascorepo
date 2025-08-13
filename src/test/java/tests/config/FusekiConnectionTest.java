@@ -8,7 +8,7 @@ import java.net.http.*;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static tests.config.EnvConfig.BACKEND_URL;
+import static tests.config.EnvConfig.FUSEKI_URL;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class FusekiConnectionTest extends BaseRep {
@@ -23,23 +23,26 @@ public class FusekiConnectionTest extends BaseRep {
     }
 
     @Test
-    public void testHascoapiVersionEndpoint() throws Exception {
+    public void testFusekiSparqlConnection() throws Exception {
+        // Simple SPARQL query to check if Fuseki responds
+        String sparqlQuery = "ASK { ?s ?p ?o }";
+
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(new URI(BACKEND_URL+"/hascoapi/version"))
-            .GET()
+            .uri(new URI(FUSEKI_URL + "/store/sparql"))
+            .header("Content-Type", "application/sparql-query")
+            .POST(HttpRequest.BodyPublishers.ofString(sparqlQuery))
             .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        assertEquals(200, response.statusCode(), "API /hascoapi/version should return 200 OK");
+        // Check that the endpoint is reachable and returns success
+        assertEquals(200, response.statusCode(), "Fuseki SPARQL endpoint should return 200 OK");
 
         String body = response.body();
-        System.out.println("Response body:\n" + body);
+        System.out.println("Fuseki response body:\n" + body);
 
-        // Verifica se a resposta contém a versão esperada ou partes do HTML
-        assertTrue(body.contains("0.8") || body.toLowerCase().contains("version"),
-            "Response should contain version information");
+        // Verify that the response contains a valid SPARQL boolean result
+        assertTrue(body.toLowerCase().contains("true") || body.toLowerCase().contains("false"),
+            "Response should contain a boolean ASK result");
     }
-
-
 }
