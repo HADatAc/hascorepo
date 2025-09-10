@@ -21,6 +21,7 @@ C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\DA\DADe
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\DA\DAIngestTest.java
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\DA\DARegressionTest.java
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\DA\DAUploadTest.java
+C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\docker\DockerAllUpTest.java
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\docker\ResetDockerTest.java
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\DP2\DP2DeleteTest.java
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\DP2\DP2IngestTest.java
@@ -37,7 +38,7 @@ C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\INS\INS
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\INS\INSNHANESIngestTest.java
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\INS\INSRegressionTest.java
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\INS\INSUploadTest.java
-C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\repository\ConfigurationValidationTest.java
+C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\repository\ConfigValidationTest.java
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\repository\DeleteALLTriplesTest.java
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\repository\NamespacesNHANESTest.java
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\repository\NamespaceTableVerificationTest.java
@@ -46,8 +47,8 @@ C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\reposit
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\repository\ReloadSelectedTest.java
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\repository\RepositoryFormAutomationTest.java
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\SDD\SDDDeleteTest.java
-C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\SDD\SDDIngestDEMOTest.java
-C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\SDD\SDDIngestDPQTest.java
+C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\SDD\SDDIngestNHANESTest.java
+C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\SDD\SDDIngestWSTest.java
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\SDD\SDDRegressionTest.java
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\SDD\SDDUploadTest.java
 C:\Users\kaell\Desktop\Trabalho\hascorepo2\hascorepo\src\test\java\tests\STR\STRDeleteTest.java

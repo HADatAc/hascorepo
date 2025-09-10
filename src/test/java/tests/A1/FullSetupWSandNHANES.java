@@ -14,10 +14,7 @@ import tests.config.BEViaFEStatusSimpleCheck;
 import tests.config.BEViaFEStatusTest;
 import tests.config.FusekiConnectionTest;
 import tests.repository.ConfigValidationTest;
-import tests.utils.FullIngestNHANESTestDRAFT;
-import tests.utils.FullIngestWSTestDRAFT;
-import tests.utils.FullUploadNHANESTestALL;
-import tests.utils.FullUploadWS;
+import tests.utils.*;
 
 
 public class FullSetupWSandNHANES {
@@ -33,7 +30,10 @@ public class FullSetupWSandNHANES {
         //Admin Status and Data conf permission
         runTestClassAndAbortOnFailure(AdminAuto.class);
         Thread.sleep(5000);
-*/
+
+
+
+
 
 
         // All data upload
@@ -57,7 +57,7 @@ public class FullSetupWSandNHANES {
         // All data ingest
         runTestClassAndAbortOnFailure(FullIngestWSTestDRAFT.class);
         Thread.sleep(5000);
-
+*/
         // All data upload
         runTestClassAndAbortOnFailure(FullUploadNHANESTestALL.class);
         Thread.sleep(5000);
@@ -71,15 +71,19 @@ public class FullSetupWSandNHANES {
         runTestClassAndAbortOnFailure(FullRegressionTest.class);
         Thread.sleep(5000);
 
-        //AttachPDFINST
+        /*//AttachPDFINST
         runTestClassAndAbortOnFailure(AttachPDFINST.class);
         Thread.sleep(5000);
 
-        /*//Delete
-        runTestClass(FullDeleteTest.class);
+         */
+
+       /* //Delete
+        runTestClassAndAbortOnFailure(FullDeleteTest.class);
         Thread.sleep(5000);
 
-         */
+        */
+
+
     }
 
     private void runTestClassAndAbortOnFailure(Class<?> testClass) {

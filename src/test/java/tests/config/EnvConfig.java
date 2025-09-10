@@ -7,8 +7,8 @@ package tests.config;
 public class EnvConfig {
 
     // Base URLs
-    public static final String FRONTEND_URL = "http://localhost:80";
-    public static final String BACKEND_URL = "http://localhost:9000";
+    public static final String FRONTEND_URL = "https://health.graxiom.com/";
+    public static final String BACKEND_URL = "54.171.66.208";
     public static final String BACKEND_API_URL = BACKEND_URL + "/api";
     public static final String FUSEKI_URL = "http://localhost:3030";
     public static final String YASGUI_ENDPOINT = "http://localhost:8888";
@@ -18,8 +18,8 @@ public class EnvConfig {
     public static final String FILES_URL = FRONTEND_URL + "/rep/select/mt/";
     public static final String UPLOAD_URL = FRONTEND_URL + "/rep/manage/addmt/";
     // Credentials
-    public static final String USERNAME = "admin";
-    public static final String PASSWORD = "admin";
+    public static final String USERNAME = "kael";
+    public static final String PASSWORD = "fbFnEsCKvan6Tuq";
 
     // Timeout settings
     public static final int DEFAULT_WAIT_SECONDS = 15;

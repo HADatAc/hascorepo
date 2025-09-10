@@ -15,6 +15,7 @@ tests\INS\INSIngestHierarchyTest.class
 tests\repository\RepositoryFormAutomationTest.class
 tests\INS\INSUploadTest.class
 tests\DSG\DSGRegressionTest.class
+tests\SDD\SDDIngestWSTest.class
 tests\repository\NoNamespacesTest.class
 tests\STR\STRDeleteTest.class
 tests\utils\FullUploadTestDPQ.class
@@ -27,6 +28,7 @@ tests\A1\RegressionOntologiesTest.class
 tests\utils\FullUploadWS.class
 tests\repository\ReloadALLTriplesTest.class
 tests\STR\STRUploadTest.class
+tests\docker\DockerAllUpTest.class
 tests\config\UninstallPmsrModuleTest.class
 tests\DP2\DP2IngestTest.class
 tests\base\BaseRep.class
@@ -34,7 +36,6 @@ tests\repository\NamespacesNHANESTest.class
 tests\config\FusekiConnectionTest.class
 tests\utils\InstrumentAddPdfTest.class
 tests\repository\ReloadSelectedTest.class
-tests\SDD\SDDIngestDEMOTest.class
 tests\utils\FullWorkflowTest.class
 tests\base\BaseIngest.class
 tests\SDD\SDDRegressionTest.class
@@ -52,9 +53,8 @@ tests\A1\FullSetup.class
 tests\base\BaseUpload.class
 tests\DA\DAUploadTest.class
 tests\INS\INSFullIngest.class
-tests\repository\ConfigurationValidationTest.class
+tests\SDD\SDDIngestNHANESTest.class
 tests\A1\FullSetupWSandNHANES.class
-tests\SDD\SDDIngestDPQTest.class
 tests\config\AttachPDFINST.class
 tests\DSG\DSGUploadTest.class
 tests\repository\DeleteALLTriplesTest.class
@@ -62,6 +62,7 @@ tests\utils\FullDeleteTest.class
 tests\config\AdminAuto.class
 tests\config\BEViaFEStatusSimpleCheck.class
 tests\config\FusekiFromHascorepoTest.class
+tests\repository\ConfigValidationTest.class
 tests\DSG\DSGDeleteTest.class
 tests\docker\ResetDockerTest.class
 tests\STR\STRRegressionTest.class

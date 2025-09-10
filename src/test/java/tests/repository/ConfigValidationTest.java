@@ -1,6 +1,10 @@
 package tests.repository;
 
 import org.junit.jupiter.api.*;
+import org.junit.platform.engine.discovery.DiscoverySelectors;
+import org.junit.platform.launcher.*;
+import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
+import org.junit.platform.launcher.core.LauncherFactory;
 import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.*;
@@ -18,11 +22,36 @@ public class ConfigValidationTest extends BaseRep {
 
     @Test
     void testConfigurationAndNamespaces() throws InterruptedException {
-        validateRepositoryConfiguration();
+        boolean configOk = validateRepositoryConfiguration();
+
+        // If repository configuration is invalid, run RepositoryFormAutomationTest as a test
+        if (!configOk) {
+            System.out.println("⚠ Repository configuration invalid. Running RepositoryFormAutomationTest via JUnit launcher...");
+            runJUnitTest(RepositoryFormAutomationTest.class);
+            // After fixing, clear issues and re-validate
+            issues.clear();
+            validateRepositoryConfiguration();
+        }
+
         validateAndReloadNamespacesIfNeeded();
     }
 
-    private void validateRepositoryConfiguration() {
+    /**
+     * Runs another JUnit test class programmatically.
+     */
+    private void runJUnitTest(Class<?> testClass) {
+        LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()
+            .selectors(DiscoverySelectors.selectClass(testClass))
+            .build();
+        Launcher launcher = LauncherFactory.create();
+        launcher.execute(request);
+    }
+
+    /**
+     * Validates the repository configuration fields.
+     * @return true if all required fields are filled, false otherwise.
+     */
+    private boolean validateRepositoryConfiguration() {
         driver.get(FRONTEND_URL + "/admin/config/rep");
 
         String[] requiredFields = {
@@ -36,14 +65,22 @@ public class ConfigValidationTest extends BaseRep {
             "rep API Base URL"
         };
 
+        boolean allFieldsFilled = true;
+
         for (String label : requiredFields) {
             WebElement input = findInputByLabel(label);
             if (input == null || input.getAttribute("value").trim().isEmpty()) {
                 issues.put("Missing or empty field: " + label, false);
+                allFieldsFilled = false;
             }
         }
+
+        return allFieldsFilled;
     }
 
+    /**
+     * Validates namespaces and reloads triples if necessary.
+     */
     private void validateAndReloadNamespacesIfNeeded() {
         driver.get(NAMESPACES_URL);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("edit-element-table")));
@@ -73,18 +110,20 @@ public class ConfigValidationTest extends BaseRep {
 
         if (reloadNeeded) {
             reloadTriples();
-            // Recheck after reload
             validateTriplesAgain();
         }
     }
 
+    /**
+     * Clicks the button to reload triples and waits for the process to complete.
+     */
     private void reloadTriples() {
         try {
             WebElement reloadButton = driver.findElement(By.xpath("//input[@value='Reload Triples from All Ontologies with URL']"));
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", reloadButton);
             Thread.sleep(1000);
             reloadButton.click();
-            Thread.sleep(5000); // Aguarda o processamento
+            Thread.sleep(5000); // Wait for processing to complete
             driver.navigate().refresh();
             wait.until(ExpectedConditions.presenceOfElementLocated(By.id("edit-element-table")));
         } catch (Exception e) {
@@ -92,6 +131,9 @@ public class ConfigValidationTest extends BaseRep {
         }
     }
 
+    /**
+     * Checks triples again after reload to confirm that they are now present.
+     */
     private void validateTriplesAgain() {
         WebElement table = driver.findElement(By.id("edit-element-table"));
         List<WebElement> rows = table.findElements(By.cssSelector("tbody > tr"));
@@ -109,6 +151,11 @@ public class ConfigValidationTest extends BaseRep {
         }
     }
 
+    /**
+     * Finds an input field associated with a label by matching label text.
+     * @param labelText The text of the label.
+     * @return The WebElement of the associated input, or null if not found.
+     */
     private WebElement findInputByLabel(String labelText) {
         List<WebElement> labels = driver.findElements(By.tagName("label"));
         for (WebElement label : labels) {
@@ -124,6 +171,9 @@ public class ConfigValidationTest extends BaseRep {
         return null;
     }
 
+    /**
+     * Shows a browser alert and console log if issues are found after a test.
+     */
     @AfterEach
     void showPopupIfErrorsExist() {
         if (!issues.isEmpty()) {
