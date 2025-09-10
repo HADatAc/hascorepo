@@ -1,11 +1,5 @@
 package tests.base;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.TestInstance;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.*;
-
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +7,24 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
-import static tests.config.EnvConfig.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.TestInstance;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static tests.config.EnvConfig.FILES_URL;
+import static tests.config.EnvConfig.LOGIN_URL;
+import static tests.config.EnvConfig.PASSWORD;
+import static tests.config.EnvConfig.USERNAME;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class BaseDelete {
     protected WebDriver driver;
@@ -24,7 +35,17 @@ public abstract class BaseDelete {
 
     @BeforeAll
     void setup() {
-        driver = new ChromeDriver();
+        System.setProperty("webdriver.chrome.driver", "/var/data/chromedriver/chromedriver");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-gpu");
+        options.setAcceptInsecureCerts(true);
+        options.addArguments("--ignore-certificate-errors");
+
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 

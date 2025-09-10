@@ -1,23 +1,48 @@
 package tests.base;
 
+import java.time.Duration;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInstance;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static tests.config.EnvConfig.LOGIN_URL;
+import static tests.config.EnvConfig.PASSWORD;
+import static tests.config.EnvConfig.USERNAME;
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class BaseTest {
 
     protected WebDriver driver;
+    protected WebDriverWait wait;
 
     @BeforeEach
     public void setUp() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver"); // ajuste o caminho se necessário
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-gpu");
+        options.setAcceptInsecureCerts(true);
+        options.addArguments("--ignore-certificate-errors");
 
-        login();
+        driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+
+        driver.get(LOGIN_URL);
+        driver.findElement(By.id("edit-name")).sendKeys(USERNAME);
+        driver.findElement(By.id("edit-pass")).sendKeys(PASSWORD);
+        driver.findElement(By.id("edit-submit")).click();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toolbar-item-user")));
     }
 
     @AfterEach
@@ -25,19 +50,5 @@ public abstract class BaseTest {
         if (driver != null) {
             driver.quit();
         }
-    }
-
-    private void login() throws InterruptedException {
-        driver.get("http://34.245.157.211/user/login");
-
-        WebElement usernameInput = driver.findElement(By.id("edit-name"));
-        WebElement passwordInput = driver.findElement(By.id("edit-pass"));
-        WebElement loginButton = driver.findElement(By.id("edit-submit"));
-
-        usernameInput.sendKeys("admin");  // ajuste se necessário
-        passwordInput.sendKeys("admin");  // ajuste se necessário
-        loginButton.click();
-
-        Thread.sleep(2000); // espera o login completar
     }
 }

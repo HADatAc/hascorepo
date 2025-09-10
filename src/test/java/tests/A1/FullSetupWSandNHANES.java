@@ -7,14 +7,19 @@ import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.TestExecutionListener;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
-
 import org.junit.platform.launcher.listeners.SummaryGeneratingListener;
-import tests.config.AttachPDFINST;
+
+import tests.config.AdminAuto;
 import tests.config.BEViaFEStatusSimpleCheck;
 import tests.config.BEViaFEStatusTest;
 import tests.config.FusekiConnectionTest;
 import tests.repository.ConfigValidationTest;
-import tests.utils.*;
+import tests.repository.RepositoryFormAutomationTest;
+import tests.utils.FullDeleteTest;
+import tests.utils.FullIngestNHANESTestDRAFT;
+import tests.utils.FullIngestWSTestDRAFT;
+import tests.utils.FullUploadNHANESTestALL;
+import tests.utils.FullUploadWS;
 
 
 public class FullSetupWSandNHANES {
@@ -23,18 +28,13 @@ public class FullSetupWSandNHANES {
     @Test
     void runOnlyIngestsForCurrentMode() throws InterruptedException {
         // Setup of rep configuration
-        /*
+        
         runTestClassAndAbortOnFailure(RepositoryFormAutomationTest.class);
         Thread.sleep(5000);
 
         //Admin Status and Data conf permission
         runTestClassAndAbortOnFailure(AdminAuto.class);
         Thread.sleep(5000);
-
-
-
-
-
 
         // All data upload
         runTestClassAndAbortOnFailure(FusekiConnectionTest.class);
@@ -57,7 +57,7 @@ public class FullSetupWSandNHANES {
         // All data ingest
         runTestClassAndAbortOnFailure(FullIngestWSTestDRAFT.class);
         Thread.sleep(5000);
-*/
+
         // All data upload
         runTestClassAndAbortOnFailure(FullUploadNHANESTestALL.class);
         Thread.sleep(5000);
@@ -77,11 +77,11 @@ public class FullSetupWSandNHANES {
 
          */
 
-       /* //Delete
+        //Delete
         runTestClassAndAbortOnFailure(FullDeleteTest.class);
         Thread.sleep(5000);
 
-        */
+        
 
 
     }
