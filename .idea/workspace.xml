@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="34c22379-cc50-4d70-bfd9-f69b1a02863e" name="Changes" comment="Maven Added&#10;scripts added and moved tests to src/test/java/tests">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/surefire-reports/2025-08-13T11-05-03_500-jvmRun1.dump" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDIngestNHANESTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDIngestWSTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/tests/docker/DockerAllUpTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/A1/FullSetupWSandNHANES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/A1/FullSetupWSandNHANES.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/repository/ConfigValidationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/repository/ConfigValidationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/2025-08-11T14-03-49_618-jvmRun1-commands.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/2025-08-11T14-03-49_618-jvmRun1-events.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/2025-08-11T14-03-49_618-jvmRun1.dump" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/2025-08-11T14-03-49_618-jvmRun1.dumpstream" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/2025-08-13T11-05-03_500-jvmRun1.dumpstream" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/A1/FullSetupWSandNHANES.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/A1/FullSetupWSandNHANES.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDIngestDEMOTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDIngestDPQTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDUploadTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDUploadTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/base/BaseIngest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/base/BaseIngest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/config/BEViaFEStatusSimpleCheck.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/config/BEViaFEStatusSimpleCheck.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/config/FusekiConnectionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/config/FusekiConnectionTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/repository/ConfigurationValidationTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/utils/FullIngestTestCURRENT.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/utils/FullIngestTestCURRENT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/utils/FullIngestWSTestDRAFT.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/utils/FullIngestWSTestDRAFT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/utils/FullWorkflowTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/utils/FullWorkflowTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/utils/FullWorkflowWithDeleteTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/utils/FullWorkflowWithDeleteTest.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="tests_kael_WS" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="318u7f67qWXlNZxjuPI31mvGsH5" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.ConfigValidationTest.executor": "Run",
+    "JUnit.FullSetupWSandNHANES.executor": "Run",
+    "JUnit.ResetDockerTest.executor": "Run",
+    "Maven.hascorepo [-Dtest=tests.A1.FullSetupWSandNHANES...].executor": "Run",
+    "Maven.hascorepo [-Dtest=tests.config.AdminAuto...].executor": "Run",
+    "Maven.hascorepo [-Dtest=tests.config.UninstallPmsrModuleTest...].executor": "Run",
+    "Maven.hascorepo [-Dtest=tests.docker.ResetDockerTest...].executor": "Run",
+    "Maven.hascorepo [-Dtest=tests.repository.ConfigValidationTest...].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "DEV__V0.9.3",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/kaell/Desktop/Trabalho/hascorepo2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="34c22379-cc50-4d70-bfd9-f69b1a02863e" name="Changes" comment="" />
+      <created>1754917855001</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1754917855001</updated>
+      <workItem from="1754917856104" duration="3056000" />
+      <workItem from="1754993477193" duration="1189000" />
+      <workItem from="1755013712275" duration="4676000" />
+      <workItem from="1755077322306" duration="4887000" />
+      <workItem from="1755166577740" duration="944000" />
+      <workItem from="1755175277327" duration="17000" />
+      <workItem from="1755179459748" duration="970000" />
+      <workItem from="1755181206725" duration="14000" />
+      <workItem from="1755181233431" duration="5127000" />
+      <workItem from="1755191921244" duration="3691000" />
+      <workItem from="1755699837192" duration="40000" />
+    </task>
+    <task id="LOCAL-00001" summary="Maven Added&#10;scripts added and moved tests to src/test/java/tests">
+      <option name="closed" value="true" />
+      <created>1754918067527</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1754918067527</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Maven Added&#10;scripts added and moved tests to src/test/java/tests">
+      <option name="closed" value="true" />
+      <created>1754918116301</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1754918116301</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Maven Added&#10;scripts added and moved tests to src/test/java/tests">
+      <option name="closed" value="true" />
+      <created>1754918158683</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1754918158683</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Maven Added&#10;scripts added and moved tests to src/test/java/tests">
+      <option name="closed" value="true" />
+      <created>1754918215034</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1754918215034</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Maven Added&#10;scripts added and moved tests to src/test/java/tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Maven Added&#10;scripts added and moved tests to src/test/java/tests" />
+  </component>
+</project>
