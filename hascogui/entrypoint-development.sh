@@ -135,5 +135,25 @@ else
     touch $INSTALL_FLAG
     echo "Flag de instalação criada em $INSTALL_FLAG."
 fi
+
+# --- Simple OAuth keys ---
+KEY_DIR="/var/keys/simple_oauth"
+PRIVATE_KEY="$KEY_DIR/private.key"
+PUBLIC_KEY="$KEY_DIR/public.key"
+
+mkdir -p "$KEY_DIR"
+chown www-data:www-data "$KEY_DIR"
+chmod 700 "$KEY_DIR"
+
+if [ ! -f "$PRIVATE_KEY" ] || [ ! -f "$PUBLIC_KEY" ]; then
+    echo "Generating new RSA keys for Simple OAuth..."
+    openssl genrsa -out "$PRIVATE_KEY" 2048
+    openssl rsa -in "$PRIVATE_KEY" -pubout -out "$PUBLIC_KEY"
+    chmod 400 "$PRIVATE_KEY"
+    chmod 444 "$PUBLIC_KEY"
+    chown www-data:www-data "$PRIVATE_KEY" "$PUBLIC_KEY"
+else
+    echo "RSA keys already exist, skipping generation."
+fi
 # Start Apache in foreground
 apache2-foreground
