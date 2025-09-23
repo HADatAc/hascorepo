@@ -21,9 +21,14 @@ public class DAUploadTest extends BaseUpload {
         fillInputByLabel("Name", "testeDA");
         fillInputByLabel("Version", "1");
         switch (daType) {
-            case "DPQ", "DEMO":
+            case "DPQ":
                 File filedemo = new File("src/test/java/tests/testfiles/DA-NHANES-2017-2018-" + daType + "_J.csv");
                 uploadFile(filedemo);
+                submitFormAndVerifySuccess();
+                break;
+            case "DEMO":
+                File filedemo3 = new File("src/test/java/tests/testfiles/DA-NHANES-2017-2018-" + daType + "_J.csv");
+                uploadFile(filedemo3);
                 submitFormAndVerifySuccess();
                 break;
             case "WS":

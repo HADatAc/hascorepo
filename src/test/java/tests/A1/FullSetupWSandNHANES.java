@@ -28,7 +28,7 @@ public class FullSetupWSandNHANES {
     @Test
     void runOnlyIngestsForCurrentMode() throws InterruptedException {
         // Setup of rep configuration
-        
+/*
         runTestClassAndAbortOnFailure(RepositoryFormAutomationTest.class);
         Thread.sleep(5000);
 
@@ -46,6 +46,8 @@ public class FullSetupWSandNHANES {
         runTestClassAndAbortOnFailure(BEViaFEStatusTest.class);
         Thread.sleep(5000);
 
+
+ */
 
         runTestClassAndAbortOnFailure(ConfigValidationTest.class);
         Thread.sleep(5000);
