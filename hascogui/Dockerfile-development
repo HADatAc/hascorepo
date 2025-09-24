@@ -40,6 +40,8 @@ RUN mkdir -p /opt/drupal/web/themes/custom/hasco_barrio && \
 
 # Instaling standard modules with composer
 RUN composer require drupal/color drupal/key drupal/devel --prefer-dist --no-interaction --update-with-dependencies
+RUN composer require drupal/simple_oauth symfony/psr-http-message-bridge nyholm/psr7 --prefer-dist --no-interaction --update-with-dependencies
+RUN composer require drupal/smtp phpmailer/phpmailer --prefer-dist --no-interaction --update-with-dependencies
 
 RUN mkdir -p /opt/drupal/web/modules/custom
 RUN git clone --branch $BRANCH https://github.com/HADatAc/rep.git /opt/drupal/web/modules/custom/rep
@@ -47,7 +49,6 @@ RUN git clone --branch $BRANCH https://github.com/HADatAc/sir.git /opt/drupal/we
 RUN git clone --branch $BRANCH https://github.com/HADatAc/std.git /opt/drupal/web/modules/custom/std
 RUN git clone --branch $BRANCH https://github.com/HADatAc/sem.git /opt/drupal/web/modules/custom/sem
 RUN git clone --branch $BRANCH https://github.com/HADatAc/dpl.git /opt/drupal/web/modules/custom/dpl
-RUN git clone --branch $BRANCH https://github.com/HADatAc/pmsrgui.git /opt/drupal/web/modules/custom/pmsr_gui
 
 # Adjust the .htaccess file
 RUN if [ ! -f /opt/drupal/web/.htaccess ]; then \
