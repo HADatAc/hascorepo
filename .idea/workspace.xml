@@ -5,33 +5,190 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="34c22379-cc50-4d70-bfd9-f69b1a02863e" name="Changes" comment="Maven Added&#10;scripts added and moved tests to src/test/java/tests">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/surefire-reports/2025-08-13T11-05-03_500-jvmRun1.dump" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDIngestNHANESTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDIngestWSTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/tests/docker/DockerAllUpTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/A1/FullSetupWSandNHANES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/A1/FullSetupWSandNHANES.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/repository/ConfigValidationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/repository/ConfigValidationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/repository/RepositoryFormAutomationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/repository/RepositoryFormAutomationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/2025-08-11T14-03-49_618-jvmRun1-commands.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/2025-08-11T14-03-49_618-jvmRun1-events.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/2025-08-11T14-03-49_618-jvmRun1.dump" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/2025-08-11T14-03-49_618-jvmRun1.dumpstream" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/2025-08-13T11-05-03_500-jvmRun1.dumpstream" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/2025-09-03T15-38-06_898-jvmRun1.dump" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/2025-09-03T15-38-06_898-jvmRun1.dumpstream" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/A1/FullRegressionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/A1/FullRegressionTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/A1/FullSetup.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/A1/FullSetup.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/tests/A1/FullSetupWSandNHANES.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/A1/FullSetupWSandNHANES.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/A1/RegressionOntologiesTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/A1/RegressionOntologiesTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/A1/RegressionTEST.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/A1/RegressionTEST.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/DA/DADeleteTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/DA/DADeleteTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/DA/DAIngestTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/DA/DAIngestTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/DA/DARegressionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/DA/DARegressionTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/DA/DAUploadTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/DA/DAUploadTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/DP2/DP2DeleteTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/DP2/DP2DeleteTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/DP2/DP2IngestTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/DP2/DP2IngestTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/DP2/DP2RegressionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/DP2/DP2RegressionTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/DP2/DP2UploadTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/DP2/DP2UploadTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/DSG/DSGDeleteTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/DSG/DSGDeleteTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/DSG/DSGIngestTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/DSG/DSGIngestTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/DSG/DSGRegressionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/DSG/DSGRegressionTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/DSG/DSGUploadTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/DSG/DSGUploadTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/INS/INSDeleteTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/INS/INSDeleteTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/INS/INSFullIngest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/INS/INSFullIngest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/INS/INSFullWorkflowTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/INS/INSFullWorkflowTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/INS/INSIngestHierarchyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/INS/INSIngestHierarchyTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/INS/INSNHANESIngestTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/INS/INSNHANESIngestTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/INS/INSRegressionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/INS/INSRegressionTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/INS/INSUploadTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/INS/INSUploadTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/tests/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDIngestDEMOTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDIngestDPQTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDDeleteTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDDeleteTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDIngestNHANESTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDIngestNHANESTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDIngestWSTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDIngestWSTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDRegressionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDRegressionTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDUploadTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/SDD/SDDUploadTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/STR/STRDeleteTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/STR/STRDeleteTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/STR/STRIngestTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/STR/STRIngestTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/STR/STRRegressionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/STR/STRRegressionTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/STR/STRUploadTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/STR/STRUploadTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/base/BaseDelete.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/base/BaseDelete.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/tests/base/BaseIngest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/base/BaseIngest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/base/BaseRep.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/base/BaseRep.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/base/BaseTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/base/BaseTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/base/BaseUpload.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/base/BaseUpload.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/config/AdminAuto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/config/AdminAuto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/config/AttachPDFINST.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/config/AttachPDFINST.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/tests/config/BEViaFEStatusSimpleCheck.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/config/BEViaFEStatusSimpleCheck.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/config/BEViaFEStatusTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/config/BEViaFEStatusTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/config/BackendUPTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/config/BackendUPTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/config/EnvConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/config/EnvConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/tests/config/FusekiConnectionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/config/FusekiConnectionTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/repository/ConfigurationValidationTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/config/FusekiFromHascorepoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/config/FusekiFromHascorepoTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/config/UninstallPmsrModuleTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/config/UninstallPmsrModuleTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/docker/DockerAllUpTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/docker/DockerAllUpTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/docker/ResetDockerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/docker/ResetDockerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/junit-platform-console-standalone-1.8.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/CHANGELOG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/NOTICE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/auto-service-annotations-1.1.1-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/auto-service-annotations-1.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/byte-buddy-1.15.7-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/byte-buddy-1.15.7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/checker-qual-3.43.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/checker-qual-3.43.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/commons-exec-1.4.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/commons-exec-1.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/error_prone_annotations-2.28.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/error_prone_annotations-2.28.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/failsafe-3.3.2-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/failsafe-3.3.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/failureaccess-1.0.2-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/failureaccess-1.0.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/guava-33.3.1-jre-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/guava-33.3.1-jre.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/j2objc-annotations-3.0.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/j2objc-annotations-3.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/jspecify-1.0.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/jspecify-1.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/jsr305-3.0.2-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/jsr305-3.0.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-api-1.43.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-api-1.43.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-api-incubator-1.43.0-alpha-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-api-incubator-1.43.0-alpha.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-context-1.43.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-context-1.43.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-exporter-logging-1.43.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-exporter-logging-1.43.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-sdk-1.43.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-sdk-1.43.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-sdk-common-1.43.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-sdk-common-1.43.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-sdk-extension-autoconfigure-1.43.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-sdk-extension-autoconfigure-1.43.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-sdk-extension-autoconfigure-spi-1.43.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-sdk-extension-autoconfigure-spi-1.43.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-sdk-logs-1.43.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-sdk-logs-1.43.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-sdk-metrics-1.43.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-sdk-metrics-1.43.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-sdk-trace-1.43.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-sdk-trace-1.43.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-semconv-1.25.0-alpha-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/opentelemetry-semconv-1.25.0-alpha.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-api-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-api-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-chrome-driver-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-chrome-driver-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-chromium-driver-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-chromium-driver-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-devtools-v128-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-devtools-v128-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-devtools-v129-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-devtools-v129-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-devtools-v130-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-devtools-v130-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-devtools-v85-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-devtools-v85-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-edge-driver-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-edge-driver-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-firefox-driver-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-firefox-driver-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-http-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-http-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-ie-driver-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-ie-driver-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-java-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-java-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-json-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-json-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-manager-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-manager-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-os-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-os-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-remote-driver-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-remote-driver-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-safari-driver-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-safari-driver-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-support-4.26.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/libs/selenium-java-4.26.0/selenium-support-4.26.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/repository/ConfigValidationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/repository/ConfigValidationTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/repository/DeleteALLTriplesTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/repository/DeleteALLTriplesTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/repository/NamespaceTableVerificationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/repository/NamespaceTableVerificationTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/repository/NamespacesNHANESTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/repository/NamespacesNHANESTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/repository/NoNamespacesTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/repository/NoNamespacesTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/repository/ReloadALLTriplesTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/repository/ReloadALLTriplesTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/repository/ReloadSelectedTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/repository/ReloadSelectedTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/repository/RepositoryFormAutomationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/repository/RepositoryFormAutomationTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/DA-NHANES-2017-2018-DEMO_J.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/DA-NHANES-2017-2018-DPQ_J.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/DEMO_Demographic.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/DP2-NHANES-2017-2018.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/DPQ_Depression_Screen.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/DSG-LTE-PIAGET-WEATHER-STATION.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/DSG-NHANES-2017-2018.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/DSG-NHANES-2017-2018_13.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/INS-NAMESPACES.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/INS-NEW-PHQ9.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/INS-NHANES-2017-2018-HIERARCHY.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/INS-NHANES-2017-2018-NAMESPACES.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/INS-NHANES-2017-2018.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/SDD-NHANES-2017-2018-DEMO.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/SDD-NHANES-2017-2018-DPQ.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/SDD-WS.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/STR-NHANES-2017-2018(FILESTREAM).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/STR-NHANES-2017-2018.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/testfiles/STR-NHANES-2017-2018converted.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/utils/FullDeleteTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/utils/FullDeleteTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/utils/FullIngestNHANESTestDRAFT.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/utils/FullIngestNHANESTestDRAFT.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/tests/utils/FullIngestTestCURRENT.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/utils/FullIngestTestCURRENT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/utils/FullIngestTestDRAFT.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/utils/FullIngestTestDRAFT.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/tests/utils/FullIngestWSTestDRAFT.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/utils/FullIngestWSTestDRAFT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/utils/FullUploadNHANESTestALL.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/utils/FullUploadNHANESTestALL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/utils/FullUploadTestDPQ.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/utils/FullUploadTestDPQ.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/utils/FullUploadWS.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/utils/FullUploadWS.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/tests/utils/FullWorkflowTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/utils/FullWorkflowTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/tests/utils/FullWorkflowWithDeleteTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/utils/FullWorkflowWithDeleteTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/utils/InstrumentAddPdfDemoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/utils/InstrumentAddPdfDemoTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/tests/utils/InstrumentAddPdfTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/tests/utils/InstrumentAddPdfTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,35 +225,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.ConfigValidationTest.executor": "Run",
-    "JUnit.FullSetupWSandNHANES.executor": "Run",
-    "JUnit.ResetDockerTest.executor": "Run",
-    "Maven.hascorepo [-Dtest=tests.A1.FullSetupWSandNHANES...].executor": "Run",
-    "Maven.hascorepo [-Dtest=tests.config.AdminAuto...].executor": "Run",
-    "Maven.hascorepo [-Dtest=tests.config.UninstallPmsrModuleTest...].executor": "Run",
-    "Maven.hascorepo [-Dtest=tests.docker.ResetDockerTest...].executor": "Run",
-    "Maven.hascorepo [-Dtest=tests.repository.ConfigValidationTest...].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "DEV__V0.9.3",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/kaell/Desktop/Trabalho/hascorepo2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.ConfigValidationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FullSetupWSandNHANES.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ResetDockerTest.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.hascorepo [-Dtest=tests.A1.FullSetupWSandNHANES...].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.hascorepo [-Dtest=tests.config.AdminAuto...].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.hascorepo [-Dtest=tests.config.UninstallPmsrModuleTest...].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.hascorepo [-Dtest=tests.docker.ResetDockerTest...].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.hascorepo [-Dtest=tests.repository.ConfigValidationTest...].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;DEV__V0.9.3&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/admin/Secretária/Projeto/hascorepo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26199.169" />
+        <option value="bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-IU-252.26199.169" />
       </set>
     </attachedChunks>
   </component>
@@ -119,6 +288,11 @@
       <workItem from="1755181233431" duration="5127000" />
       <workItem from="1755191921244" duration="3691000" />
       <workItem from="1755699837192" duration="40000" />
+      <workItem from="1758726784777" duration="3679000" />
+      <workItem from="1758791620837" duration="1816000" />
+      <workItem from="1758814270723" duration="1672000" />
+      <workItem from="1759140086952" duration="2419000" />
+      <workItem from="1759229146657" duration="1055000" />
     </task>
     <task id="LOCAL-00001" summary="Maven Added&#10;scripts added and moved tests to src/test/java/tests">
       <option name="closed" value="true" />

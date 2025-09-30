@@ -119,7 +119,7 @@ public class ConfigValidationTest extends BaseRep {
      */
     private void reloadTriples() {
         try {
-            WebElement reloadButton = driver.findElement(By.xpath("//input[@value='Reload Triples from All Ontologies with URL']"));
+            WebElement reloadButton = driver.findElement(By.xpath("//input[@value='Reload with URL']"));
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", reloadButton);
             Thread.sleep(1000);
             reloadButton.click();

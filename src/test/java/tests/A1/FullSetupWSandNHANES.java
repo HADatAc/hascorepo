@@ -9,6 +9,7 @@ import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
 import org.junit.platform.launcher.listeners.SummaryGeneratingListener;
 
+import org.openqa.selenium.WebDriver;
 import tests.config.AdminAuto;
 import tests.config.BEViaFEStatusSimpleCheck;
 import tests.config.BEViaFEStatusTest;
@@ -21,87 +22,134 @@ import tests.utils.FullIngestWSTestDRAFT;
 import tests.utils.FullUploadNHANESTestALL;
 import tests.utils.FullUploadWS;
 
-
 public class FullSetupWSandNHANES {
     private final Launcher launcher = LauncherFactory.create();
 
     @Test
     void runOnlyIngestsForCurrentMode() throws InterruptedException {
-        // Setup of rep configuration
+
+        // Example: global WebDriver instance
+        WebDriver driver;
+
+        try {
+            // Setup of rep configuration
 /*
-        runTestClassAndAbortOnFailure(RepositoryFormAutomationTest.class);
-        Thread.sleep(5000);
-
-        //Admin Status and Data conf permission
-        runTestClassAndAbortOnFailure(AdminAuto.class);
-        Thread.sleep(5000);
-
-        // All data upload
-        runTestClassAndAbortOnFailure(FusekiConnectionTest.class);
-        Thread.sleep(5000);
-
-        runTestClassAndAbortOnFailure(BEViaFEStatusSimpleCheck.class);
-        Thread.sleep(5000);
-
-        runTestClassAndAbortOnFailure(BEViaFEStatusTest.class);
-        Thread.sleep(5000);
+            runTestClassAndAbortOnFailure(RepositoryFormAutomationTest.class);
+            cleanupTestResources();
+            Thread.sleep(5000);
 
 
- */
-
-        runTestClassAndAbortOnFailure(ConfigValidationTest.class);
-        Thread.sleep(5000);
-
-        // All data upload
-        runTestClassAndAbortOnFailure(FullUploadWS.class);
-        Thread.sleep(5000);
-
-        // All data ingest
-        runTestClassAndAbortOnFailure(FullIngestWSTestDRAFT.class);
-        Thread.sleep(5000);
-
-        // All data upload
-        runTestClassAndAbortOnFailure(FullUploadNHANESTestALL.class);
-        Thread.sleep(5000);
-
-        // All data ingest
-        runTestClassAndAbortOnFailure(FullIngestNHANESTestDRAFT.class);
-        Thread.sleep(5000);
+            //Admin Status and Data conf permission
+            runTestClassAndAbortOnFailure(AdminAuto.class);
+            cleanupTestResources();
+            Thread.sleep(5000);
 
 
-        // All data Regression Test
-        runTestClassAndAbortOnFailure(FullRegressionTest.class);
-        Thread.sleep(5000);
+            // Run Fuseki connection test
+            runTestClassAndAbortOnFailure(FusekiConnectionTest.class);
+            cleanupTestResources();
+            Thread.sleep(5000);
 
-        /*//AttachPDFINST
-        runTestClassAndAbortOnFailure(AttachPDFINST.class);
-        Thread.sleep(5000);
-
-         */
-
-        //Delete
-        runTestClassAndAbortOnFailure(FullDeleteTest.class);
-        Thread.sleep(5000);
-
-        
+            // Run BE via FE status simple check
+            runTestClassAndAbortOnFailure(BEViaFEStatusSimpleCheck.class);
+            cleanupTestResources();
+            Thread.sleep(5000);
 
 
+            runTestClassAndAbortOnFailure(BEViaFEStatusTest.class);
+            cleanupTestResources();
+             Thread.sleep(5000);
+
+*/
+            // Run repository configuration validation
+            runTestClassAndAbortOnFailure(ConfigValidationTest.class);
+            cleanupTestResources();
+            Thread.sleep(5000);
+
+
+            // Upload WS files
+            runTestClassAndAbortOnFailure(FullUploadWS.class);
+            cleanupTestResources();
+            Thread.sleep(5000);
+
+            // Ingest WS files
+            runTestClassAndAbortOnFailure(FullIngestWSTestDRAFT.class);
+            cleanupTestResources();
+            Thread.sleep(5000);
+
+
+
+            // Upload NHANES files
+            runTestClassAndAbortOnFailure(FullUploadNHANESTestALL.class);
+            cleanupTestResources();
+            Thread.sleep(5000);
+
+            // Ingest NHANES files
+            runTestClassAndAbortOnFailure(FullIngestNHANESTestDRAFT.class);
+            cleanupTestResources();
+            Thread.sleep(5000);
+
+            // Run regression tests
+            runTestClassAndAbortOnFailure(FullRegressionTest.class);
+            cleanupTestResources();
+            Thread.sleep(5000);
+
+            /*
+            //AttachPDFINST
+            runTestClassAndAbortOnFailure(AttachPDFINST.class);
+            cleanupTestResources();
+            Thread.sleep(5000);
+            */
+
+
+
+
+
+        } catch (Exception e) {
+            System.err.println("⚠️ Test sequence aborted due to failure: " + e.getMessage());
+        } finally {
+            // Ensure cleanup always runs at the end
+            try {
+                System.out.println("===> Running cleanup: FullDeleteTest");
+                runTestClassAndAbortOnFailure(FullDeleteTest.class);
+                Thread.sleep(5000);
+            } catch (Exception cleanupError) {
+                System.err.println("⚠️ Cleanup (FullDeleteTest) also failed: " + cleanupError.getMessage());
+            }
+        }
     }
 
     private void runTestClassAndAbortOnFailure(Class<?> testClass) {
-        System.out.println("===> Running: " + testClass.getSimpleName());
+        System.out.println("============> Running: " + testClass.getSimpleName());
 
-        TestExecutionListener listener = new SummaryGeneratingListener();
+        SummaryGeneratingListener listener = new SummaryGeneratingListener();
         launcher.execute(
-            LauncherDiscoveryRequestBuilder.request()
-                .selectors(new DiscoverySelector[]{DiscoverySelectors.selectClass(testClass)})
-                .build(),
-            listener
+                LauncherDiscoveryRequestBuilder.request()
+                        .selectors(new DiscoverySelector[]{DiscoverySelectors.selectClass(testClass)})
+                        .build(),
+                listener
         );
 
-        long failures = ((SummaryGeneratingListener) listener).getSummary().getFailures().size();
+        long failures = listener.getSummary().getFailures().size();
         if (failures > 0) {
-            throw new RuntimeException("Test failed in " + testClass.getSimpleName() + ". Aborting remaining tests.");
+            throw new RuntimeException("Test failed in " + testClass.getSimpleName());
+        }
+    }
+    /**
+     * Cleans up Selenium WebDriver and other heavy resources, then suggests garbage collection.
+     */
+    private void cleanupTestResources() {
+
+        // Add here cleanup for other heavy objects if necessary (files, DB connections, temp data)
+
+        // Suggest garbage collection
+        System.gc();
+
+        // Small pause to give GC a chance to run
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
     }
 }

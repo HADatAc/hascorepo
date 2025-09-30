@@ -61,33 +61,28 @@ public class RepositoryFormAutomationTest extends BaseRep {
 
 
 
-        String ip = "10.100.120.32"; // fallback
+        String ip = "127.0.0.1"; // fallback
         try {
             Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
             while (nets.hasMoreElements()) {
                 NetworkInterface netIf = nets.nextElement();
-                if (netIf.isUp() && !netIf.isLoopback() && !netIf.isVirtual()) {
+                if (netIf.isUp() && !netIf.isLoopback()) {
                     Enumeration<InetAddress> addresses = netIf.getInetAddresses();
                     while (addresses.hasMoreElements()) {
                         InetAddress addr = addresses.nextElement();
                         if (addr instanceof Inet4Address && !addr.isLoopbackAddress()) {
-                            String candidate = addr.getHostAddress();
-                            // Prioriza 192.168.x.x
-                            if (candidate.startsWith("192.168.")) {
-                                ip = candidate;
-                                break;
-                            }
+                            ip = addr.getHostAddress();
+                            break; // gets the first available ip
                         }
                     }
                 }
-                if (!ip.equals("127.0.0.1")) {
-                    break;
-                }
+                if (!ip.equals("127.0.0.1")) break;
             }
-            System.out.printf("IPv4 detected: %s%n", ip);
+            System.out.printf("Detected IPv4: %s%n", ip);
         } catch (SocketException e) {
             System.out.println("Could not retrieve IPv4 address. Using localhost as fallback.");
         }
+
 
 
 
