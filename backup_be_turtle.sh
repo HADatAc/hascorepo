@@ -43,4 +43,13 @@ fi
 echo -e "\033[40G[OK]"
 echo "Backup transfered with Success to Sagres!"
 
+if [ -f "$FINAL_BACKUP_PATH" ]; then
+    rm -f "$FINAL_BACKUP_PATH"
+    if [ $? -eq 0 ]; then
+        echo "Local backup file removed: $FINAL_BACKUP_PATH"
+    else
+        echo "Warning: could not remove local backup file $FINAL_BACKUP_PATH"
+    fi
+fi
+
 exit 0
