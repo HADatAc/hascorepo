@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  fuseki:
+    build: ./fuseki
+    container_name: hascoapi_fuseki
+    ports:
+      - "3030:3030"
+    volumes:
+      - hascoapi-fuseki-data:/fuseki/databases
+    networks:
+      hascorepo:
+        aliases:
+          - fuseki
+    restart: always
+
+volumes:
+  hascoapi-fuseki-data:
+
+networks:
+  hascorepo:

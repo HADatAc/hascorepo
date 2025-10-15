@@ -8,7 +8,7 @@ NOME_SITE="$1"
 NOME_REPOSITORIO="$2"
 NOME_INSTANCIA="$3"
 
-BACKUP_DIR="$HOME/backups-data/FE"
+BACKUP_DIR="/var/data/backups-data/FE"
 DATE=$(date -u +"%Y-%m-%d_%H-%M-%S")
 IP_ADDRESS=$(hostname -I | awk '{print $1}')
 FINAL_BACKUP_NAME="hascorepo_backup_frontend_${NOME_SITE}_${NOME_REPOSITORIO}_${NOME_INSTANCIA}_${IP_ADDRESS}_${DATE}.tar.gz"
@@ -87,5 +87,14 @@ if [ $? -ne 0 ]; then
 fi
 echo -e "\033[40G[OK]"
 echo "Backup successfully transferred to Sagres VM"
+
+if [ -f "$FINAL_BACKUP_PATH" ]; then
+    rm -f "$FINAL_BACKUP_PATH"
+    if [ $? -eq 0 ]; then
+        echo "Local backup file removed: $FINAL_BACKUP_PATH"
+    else
+        echo "Warning: could not remove local backup file $FINAL_BACKUP_PATH"
+    fi
+fi
 
 exit 0

@@ -13,6 +13,7 @@ services:
       - "443:443"      
     volumes:
       - drupal-data:/opt/drupal/web
+      - /var/keys/simple_oauth:/var/keys/simple_oauth
     environment:
       DB_HOST: db
       DB_NAME: drupal
