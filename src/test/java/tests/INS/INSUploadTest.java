@@ -39,7 +39,7 @@ public class INSUploadTest extends BaseUpload {
                 fillInputByLabel("Name", "testeINS");
                 fillInputByLabel("Version", "1");
 
-                File fileWS = new File("src/test/java/tests/testfiles/INS-LTE-PIAGET-WEATHER-STATION.xlsx");
+                File fileWS = new File("src/test/java/tests/testfiles/INS-WS.xlsx");
                 uploadFile(fileWS);
 
                 submitFormAndVerifySuccess();

@@ -61,7 +61,7 @@ public class RepositoryFormAutomationTest extends BaseRep {
 
 
 
-        String ip = "10.100.120.32"; // fallback
+        String ip = "127.0.0.1"; // fallback
         try {
             Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
             while (nets.hasMoreElements()) {
