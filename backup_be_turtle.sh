@@ -34,7 +34,9 @@ echo -e "\033[40G[OK]"
 
 echo -n "Starting HASCO API Backup... "
 # Copia a pasta /var/hascoapi do container
-sudo docker cp hascoapi:/var/hascoapi "$TEMP_DIR/hascoapi_var"
+mkdir -p "$TEMP_DIR/hascoapi_var"
+sudo docker cp hascoapi:/var/hascoapi/. "$TEMP_DIR/hascoapi_var"
+
 if [ $? -ne 0 ]; then
   echo -e "\033[40G[ERRO]"
   echo "Error copying /var/hascoapi from hascoapi container!"
