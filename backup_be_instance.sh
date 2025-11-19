@@ -68,7 +68,9 @@ echo -e "Backup consolidated in: $FINAL_BACKUP_PATH"
 
 # Transfere para o servidor Sagres
 echo -n "Transfering the backup file to Sagres... "
-scp -i /home/ubuntu/.ssh/graxiom_main.pem -P 22 "$FINAL_BACKUP_PATH" "$SAGRES_HOST:./tmp"
+
+sha256sum "$FINAL_BACKUP_PATH" > "$FINAL_BACKUP_PATH.sha256"
+scp -i /home/ubuntu/.ssh/graxiom_main.pem -P 22 $FINAL_BACKUP_PATH $FINAL_BACKUP_PATH.sha256 $SAGRES_HOST:./tmp
 if [ $? -ne 0 ]; then
   echo -e "\033[40G[ERRO]"
   echo "Error: Failure in transfering the backup file to Sagres!"

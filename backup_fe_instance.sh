@@ -80,8 +80,6 @@ echo -e "Consolidated backup created at: $FINAL_BACKUP_PATH"
 
 sha256sum "$FINAL_BACKUP_PATH" > "$FINAL_BACKUP_PATH.sha256"
 
-scp -i /home/ubuntu/.ssh/graxiom_main.pem -P 22 $FINAL_BACKUP_PATH $SAGRES_HOST:./tmp
-
 echo -n "Transferring the backup to Sagres..."
 
 scp -i /home/ubuntu/.ssh/graxiom_main.pem -P 22 $FINAL_BACKUP_PATH $FINAL_BACKUP_PATH.sha256 $SAGRES_HOST:./tmp
