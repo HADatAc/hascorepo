@@ -110,15 +110,15 @@ else
         echo "Drupal is already installed."
     fi
 
-    echo "Enabling hasco_barrio..."
-    $DRUSH_COMMAND -v theme:enable hasco_barrio -y
+    # echo "Enabling hasco_barrio..."
+    # $DRUSH_COMMAND -v theme:enable hasco_barrio -y
 
-    if $DRUSH_COMMAND pml --type=theme --status=enabled | grep -q 'hasco_barrio'; then
-        $DRUSH_COMMAND config-set system.theme default hasco_barrio -y
-        echo "hasco_barrio theme set as default successfully."
-    else
-        echo "Error enabling hasco_barrio theme."
-    fi
+    # if $DRUSH_COMMAND pml --type=theme --status=enabled | grep -q 'hasco_barrio'; then
+    #     $DRUSH_COMMAND config-set system.theme default hasco_barrio -y
+    #     echo "hasco_barrio theme set as default successfully."
+    # else
+    #     echo "Error enabling hasco_barrio theme."
+    # fi
 
     # Clear cache again after setting the theme
     $DRUSH_COMMAND cr
