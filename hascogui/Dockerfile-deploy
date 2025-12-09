@@ -1,0 +1,67 @@
+FROM drupal:10.3.0-php8.3
+
+ARG BRANCH
+
+RUN if [ -z "$BRANCH" ]; then echo "Error: You must specify a BRANCH"; exit 1; fi
+
+RUN apt-get update && \
+    apt-get install -y curl netcat-openbsd git unzip mariadb-client dos2unix jq && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN curl -sS https://getcomposer.org/installer | \
+    php -- --install-dir=/usr/local/bin --filename=composer
+
+WORKDIR /opt/drupal
+RUN rm -rf /opt/drupal.* /opt/drupal* || true
+
+RUN composer create-project drupal/recommended-project:^10 . --no-interaction
+
+RUN find /opt/drupal -type d -exec 'chmod 755 {} && chown www-data:www-data {}' \;
+RUN find /opt/drupal -type f -exec 'chmod 644 {} && chown www-data:www-data {}' \;
+RUN a2enmod rewrite
+
+RUN composer global require drush/drush:^11 --prefer-dist --no-progress --no-scripts --with-all-dependencies && \
+    ln -s ~/.composer/vendor/bin/drush /usr/local/bin/drush
+
+RUN mkdir -p /opt/drupal/web/themes/custom/bootstrap_barrio && \
+    git clone --branch 5.5.x https://git.drupalcode.org/project/bootstrap_barrio.git /opt/drupal/web/themes/custom/bootstrap_barrio
+
+RUN mkdir -p /opt/drupal/web/themes/custom/hasco_barrio && \
+    git clone --branch $BRANCH https://github.com/HADatAc/hasco_barrio.git /opt/drupal/web/themes/custom/hasco_barrio
+
+RUN composer require drupal/color drupal/key drupal/devel --prefer-dist --no-interaction --update-with-dependencies
+RUN composer require drupal/simple_oauth symfony/psr-http-message-bridge nyholm/psr7 --prefer-dist --no-interaction --update-with-dependencies
+RUN composer require drupal/smtp phpmailer/phpmailer --prefer-dist --no-interaction --update-with-dependencies
+
+RUN mkdir -p /opt/drupal/web/modules/custom
+
+# Ajuste .htaccess
+RUN if [ ! -f /opt/drupal/web/.htaccess ]; then \
+        cp /opt/drupal/web/example.htaccess /opt/drupal/web/.htaccess; \
+    fi && \
+    chmod 644 /opt/drupal/web/.htaccess && \
+    chown www-data:www-data /opt/drupal/web/.htaccess
+
+COPY entrypoint-deploy.sh /usr/local/bin/entrypoint-deploy.sh
+RUN dos2unix /usr/local/bin/entrypoint-deploy.sh && chmod +x /usr/local/bin/entrypoint-deploy.sh
+
+# Opcional: se você quiser ter um modules.json padrão na build (pode ser sobrescrito via volume)
+# COPY modules.json /opt/drupal/modules.json
+
+RUN chmod 644 /opt/drupal/web/sites/default/default.settings.php && \
+    chmod 644 /opt/drupal/web/sites/default/default.services.yml && \
+    chown www-data:www-data /opt/drupal/web/sites/default/default.settings.php && \
+    chown www-data:www-data /opt/drupal/web/sites/default/default.services.yml
+
+RUN cp web/sites/default/default.settings.php web/sites/default/settings.php && \
+    cp web/sites/default/default.services.yml web/sites/default/services.yml && \
+    chmod 644 web/sites/default/settings.php && \
+    chmod 644 web/sites/default/services.yml && \
+    chown -R www-data:www-data web/sites/default
+
+RUN mkdir -p /opt/drupal/web/sites/default/files && \
+    chmod 755 /opt/drupal/web/sites/default/files && \
+    chown -R www-data:www-data /opt/drupal/web/sites/default/files
+
+ENTRYPOINT ["/usr/local/bin/entrypoint-deploy.sh"]
+CMD ["apache2-foreground"]
