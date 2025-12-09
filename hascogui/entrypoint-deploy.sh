@@ -3,7 +3,7 @@ set -e
 
 MODULES_FILE="${MODULES_FILE:-/opt/drupal/modules.json}"
 
-until nc -z -v -w30 $DB_HOST 3306
+until nc -z -v -w30 "$DB_HOST" 3306
 do
   echo "Waiting for database connection..."
   sleep 5
@@ -40,12 +40,12 @@ enable_modules() {
 
 if [ ! -f "$INSTALL_FLAG" ]; then
     APACHE_PORT_CONF="/etc/apache2/ports.conf"
-    echo "" > $APACHE_PORT_CONF
-    echo "Listen 80" >> $APACHE_PORT_CONF
+    echo "" > "$APACHE_PORT_CONF"
+    echo "Listen 80" >> "$APACHE_PORT_CONF"
 
     APACHE_SITE_CONF="/etc/apache2/sites-available/000-default.conf"
-    if ! grep -q "VirtualHost \*:80" $APACHE_SITE_CONF; then
-    cat > $APACHE_SITE_CONF <<EOF
+    if ! grep -q "VirtualHost \*:80" "$APACHE_SITE_CONF"; then
+    cat > "$APACHE_SITE_CONF" <<EOF
 <VirtualHost *:80>
     DocumentRoot ${DRUPAL_ROOT}/web
     <Directory ${DRUPAL_ROOT}/web>
@@ -64,12 +64,12 @@ EOF
 
     if [ ! -f "$DRUPAL_ROOT/web/sites/default/settings.php" ]; then
         echo "Creating settings.php and services.yml..."
-        cp $DRUPAL_ROOT/web/sites/default/default.settings.php $DRUPAL_ROOT/web/sites/default/settings.php
-        cp $DRUPAL_ROOT/web/sites/default/default.services.yml $DRUPAL_ROOT/web/sites/default/services.yml
-        chmod 644 $DRUPAL_ROOT/web/sites/default/settings.php
-        chmod 644 $DRUPAL_ROOT/web/sites/default/services.yml
-        chown www-data:www-data $DRUPAL_ROOT/web/sites/default/settings.php
-        chown www-data:www-data $DRUPAL_ROOT/web/sites/default/services.yml
+        cp "$DRUPAL_ROOT/web/sites/default/default.settings.php" "$DRUPAL_ROOT/web/sites/default/settings.php"
+        cp "$DRUPAL_ROOT/web/sites/default/default.services.yml" "$DRUPAL_ROOT/web/sites/default/services.yml"
+        chmod 644 "$DRUPAL_ROOT/web/sites/default/settings.php"
+        chmod 644 "$DRUPAL_ROOT/web/sites/default/services.yml"
+        chown www-data:www-data "$DRUPAL_ROOT/web/sites/default/settings.php"
+        chown www-data:www-data "$DRUPAL_ROOT/web/sites/default/services.yml"
     fi
 
     sed -i "s/\$databases = \[\];/\$databases['default']['default'] = array( \
@@ -79,10 +79,10 @@ EOF
     'host' => '${DB_HOST}', \
     'driver' => 'mysql', \
     'prefix' => '', \
-    );/" $DRUPAL_ROOT/web/sites/default/settings.php
+    );/" "$DRUPAL_ROOT/web/sites/default/settings.php"
 
-    if grep -q "# \$settings\['file_private_path'\] = '';" $DRUPAL_ROOT/web/sites/default/settings.php; then
-        sed -i "s|# \$settings\['file_private_path'\] = '';|\$settings['file_private_path'] = 'sites/default/hascorepo/';|" $DRUPAL_ROOT/web/sites/default/settings.php
+    if grep -q "# \$settings\['file_private_path'\] = '';" "$DRUPAL_ROOT/web/sites/default/settings.php"; then
+        sed -i "s|# \$settings\['file_private_path'\] = '';|\$settings['file_private_path'] = 'sites/default/hascorepo/';|" "$DRUPAL_ROOT/web/sites/default/settings.php"
     fi
 
     PRIVATE_DIR="$DRUPAL_ROOT/web/sites/default/hascorepo"
@@ -98,35 +98,34 @@ EOF
     fi
 
     $DRUSH_COMMAND cr
-
-    # Clonar e habilitar módulos selecionados
-    MODULE_NAMES=()
-    if [ -f "$MODULES_FILE" ]; then
-      echo "Parsing $MODULES_FILE"
-      COUNT=$(jq length "$MODULES_FILE")
-      if [ "$COUNT" -gt 0 ]; then
-        for row in $(jq -c '.[]' "$MODULES_FILE"); do
-          NAME=$(echo "$row" | jq -r '.name')
-          BRANCH=$(echo "$row" | jq -r '.branch')
-          [ -z "$NAME" ] && continue
-          [ -z "$BRANCH" ] && BRANCH="main"
-          clone_module "$NAME" "$BRANCH"
-          MODULE_NAMES+=("$NAME")
-        done
-      fi
-    else
-      echo "No modules.json found; no custom modules will be cloned."
-    fi
-
-    # Módulos core/básicos
-    BASE_MODULES=("color" "key")
-    MODULES_TO_ENABLE=("${BASE_MODULES[@]}" "${MODULE_NAMES[@]}")
-    enable_modules "${MODULES_TO_ENABLE[@]}"
-
-    $DRUSH_COMMAND cr
-    touch $INSTALL_FLAG
+    touch "$INSTALL_FLAG"
     echo "Flag de instalação criada em $INSTALL_FLAG."
 fi
+
+# Sincronizar módulos selecionados (roda em todo start)
+MODULE_NAMES=()
+if [ -f "$MODULES_FILE" ]; then
+  echo "Parsing $MODULES_FILE"
+  COUNT=$(jq length "$MODULES_FILE")
+  if [ "$COUNT" -gt 0 ]; then
+    while IFS= read -r row; do
+      NAME=$(echo "$row" | jq -r '.name')
+      BRANCH=$(echo "$row" | jq -r '.branch')
+      [ -z "$NAME" ] && continue
+      [ -z "$BRANCH" ] && BRANCH="main"
+      clone_module "$NAME" "$BRANCH"
+      MODULE_NAMES+=("$NAME")
+    done < <(jq -c '.[]' "$MODULES_FILE")
+  fi
+else
+  echo "No modules.json found; no custom modules will be cloned."
+fi
+
+BASE_MODULES=("color" "key")
+MODULES_TO_ENABLE=("${BASE_MODULES[@]}" "${MODULE_NAMES[@]}")
+enable_modules "${MODULES_TO_ENABLE[@]}"
+
+$DRUSH_COMMAND cr
 
 # --- Simple OAuth keys ---
 KEY_DIR="/var/keys/simple_oauth"
