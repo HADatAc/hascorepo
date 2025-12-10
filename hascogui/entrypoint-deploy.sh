@@ -38,6 +38,14 @@ enable_modules() {
   done
 }
 
+for i in {1..6}; do
+  if [ -f "$MODULES_FILE" ]; then
+    break
+  fi
+  echo "modules.json não encontrado em $MODULES_FILE (tentativa $i/6)..."
+  sleep 5
+done
+
 if [ ! -f "$INSTALL_FLAG" ]; then
     APACHE_PORT_CONF="/etc/apache2/ports.conf"
     echo "" > "$APACHE_PORT_CONF"
@@ -118,7 +126,7 @@ if [ -f "$MODULES_FILE" ]; then
     done < <(jq -c '.[]' "$MODULES_FILE")
   fi
 else
-  echo "No modules.json found; no custom modules will be cloned."
+  echo "No modules.json found at $MODULES_FILE; no custom modules will be cloned."
 fi
 
 BASE_MODULES=("color" "key")
