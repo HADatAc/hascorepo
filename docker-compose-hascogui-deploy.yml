@@ -10,18 +10,20 @@ services:
     container_name: drupal
     ports:
       - "80:80"
-      - "443:443"      
+      - "443:443"
     volumes:
       - drupal-data:/opt/drupal/web
       - /var/keys/simple_oauth:/var/keys/simple_oauth
-      - ${MODULES_FILE:-/var/data/hascorepo/modules.json}:/opt/drupal/modules.json:ro
+      # modules.json do HOST mapeado para /opt/drupal/modules.json no container
+      - ${MODULES_FILE_HOST:-/var/data/hascorepo/modules.json}:/opt/drupal/modules.json:ro
     environment:
       DB_HOST: db
       DB_NAME: drupal
       DB_USER: drupal
       DB_PASS: drupal
       DOCKER_COMPOSE_FILE: docker-compose-hascogui-deploy.yml
-      MODULES_FILE: ${MODULES_FILE:-/opt/drupal/modules.json}
+      # Dentro do container, sempre /opt/drupal/modules.json
+      MODULES_FILE: /opt/drupal/modules.json
     depends_on:
       - db
     networks:

@@ -38,6 +38,7 @@ enable_modules() {
   done
 }
 
+# Aguarda o modules.json até 30s
 for i in {1..6}; do
   if [ -f "$MODULES_FILE" ]; then
     break
