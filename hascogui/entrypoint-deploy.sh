@@ -3,6 +3,7 @@ set -e
 
 MODULES_FILE="${MODULES_FILE:-/opt/drupal/modules.json}"
 
+# Aguarda o DB
 until nc -z -v -w30 "$DB_HOST" 3306
 do
   echo "Waiting for database connection..."
@@ -129,6 +130,10 @@ if [ -f "$MODULES_FILE" ]; then
 else
   echo "No modules.json found at $MODULES_FILE; no custom modules will be cloned."
 fi
+
+# Ativa o tema antes de módulos dependentes
+$DRUSH_COMMAND theme:enable hasco_barrio -y || echo "Não foi possível habilitar tema hasco_barrio"
+$DRUSH_COMMAND config-set system.theme default hasco_barrio -y || echo "Não foi possível definir hasco_barrio como tema default"
 
 BASE_MODULES=("color" "key")
 MODULES_TO_ENABLE=("${BASE_MODULES[@]}" "${MODULE_NAMES[@]}")
